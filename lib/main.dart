@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
+import 'package:shiftsync/presentation/intro_screen/intro_screen.dart';
+import 'package:shiftsync/presentation/sign_in_screen/sign_in_screen.dart';
 
 import 'presentation/splash_screen/splash_screen.dart';
 
@@ -13,8 +15,13 @@ class ShiftSyncApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: scafoldBackgroundColor),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: customPrimaryColor,
+        scaffoldBackgroundColor: scafoldBackgroundColor,
+      ),
       home: SplashScreen(),
+      //home: SignInScreen(),
     );
   }
 }
