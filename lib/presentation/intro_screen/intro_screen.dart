@@ -52,7 +52,7 @@ class IntroScreen extends StatelessWidget {
               label: 'Get Stardted',
               onPressed: () {
                 Navigator.of(context).pushReplacement(
-                    CupertinoPageRoute(builder: ((ctx) => SignInScreen())));
+                    MaterialPageRoute(builder: ((ctx) => SignInScreen())));
               },
             ),
           )

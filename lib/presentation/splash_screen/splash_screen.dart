@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Future.delayed(const Duration(milliseconds: 3000), () {
         Navigator.of(context).pushReplacement(
-            CupertinoPageRoute(builder: ((ctx) => const IntroScreen())));
+            MaterialPageRoute(builder: ((ctx) => const IntroScreen())));
       });
     });
     Size size = MediaQuery.of(context).size;

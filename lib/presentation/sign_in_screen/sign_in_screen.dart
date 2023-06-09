@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
@@ -6,6 +7,7 @@ import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
+import 'package:shiftsync/presentation/sign_up_screen/sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -65,7 +67,7 @@ class SignInScreen extends StatelessWidget {
                             return SignInTextFormField(
                               keyboardType: TextInputType.text,
                               controller: passwordController,
-                              icon: Iconsax.lock,
+                              icon: Iconsax.lock_1,
                               hintText: 'Password',
                               suffix: InkWell(
                                 onTap: () {
@@ -97,7 +99,15 @@ class SignInScreen extends StatelessWidget {
                       ),
                       kHeightTen,
                       const Text("Don't you have an account?"),
-                      TextButton(onPressed: () {}, child: const Text('Sign Up'))
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: ((ctx) => SignUpScreen()),
+                              ),
+                            );
+                          },
+                          child: const Text('Sign Up'))
                     ],
                   ),
                 ),
