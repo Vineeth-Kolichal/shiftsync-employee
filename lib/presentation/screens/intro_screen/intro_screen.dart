@@ -5,7 +5,7 @@ import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
-import 'package:shiftsync/presentation/sign_in_screen/sign_in_screen.dart';
+import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -51,8 +51,7 @@ class IntroScreen extends StatelessWidget {
             child: SubmitButton(
               label: 'Get Stardted',
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: ((ctx) => SignInScreen())));
+                Navigator.of(context).pushReplacementNamed('sign_in');
               },
             ),
           )

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/presentation/intro_screen/intro_screen.dart';
-import 'package:shiftsync/presentation/sign_in_screen/sign_in_screen.dart';
+import 'package:shiftsync/presentation/routes/app_routes.dart';
+import 'package:shiftsync/presentation/screens/intro_screen/intro_screen.dart';
 
-import 'presentation/sign_up_screen/sign_up_screen.dart';
-import 'presentation/splash_screen/splash_screen.dart';
+import 'presentation/screens/sign_up_screen/sign_up_screen.dart';
+import 'presentation/screens/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
   runApp(ShiftSyncApp());
 }
 
 class ShiftSyncApp extends StatelessWidget {
-  const ShiftSyncApp({super.key});
+  AppRoutes appRoutes = AppRoutes();
+  ShiftSyncApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,9 @@ class ShiftSyncApp extends StatelessWidget {
         primarySwatch: customPrimaryColor,
         scaffoldBackgroundColor: scafoldBackgroundColor,
       ),
+      onGenerateRoute: appRoutes.onGenerateRoute,
       //home: SplashScreen(),
-      home: SignUpScreen(),
+      // home: SignUpScreen(),
     );
   }
 }

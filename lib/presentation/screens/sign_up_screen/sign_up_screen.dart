@@ -7,7 +7,7 @@ import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
-import 'package:shiftsync/presentation/sign_in_screen/sign_in_screen.dart';
+import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -126,9 +126,7 @@ class SignUpScreen extends StatelessWidget {
                       const Text('Already have an account?'),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: ((ctx) => SignInScreen())));
+                          Navigator.of(context).pushReplacementNamed('sign_in');
                         },
                         child: const Text(
                           'Sing In',

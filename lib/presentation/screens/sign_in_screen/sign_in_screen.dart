@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
@@ -7,7 +6,6 @@ import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
-import 'package:shiftsync/presentation/sign_up_screen/sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -31,18 +29,18 @@ class SignInScreen extends StatelessWidget {
                 width: size.width * 0.85,
               ),
               kHeightTen,
-              Text('Sign In to'),
+             const  Text('Sign In to'),
               kHeightFive,
               Image.asset(
                 'assets/images/title.png',
                 width: size.width * 0.4,
               ),
               kheightTwenty,
-              Row(
+             const  Row(
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                        EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Text('Please fill the credentials'),
                   ),
                 ],
@@ -101,11 +99,8 @@ class SignInScreen extends StatelessWidget {
                       const Text("Don't you have an account?"),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: ((ctx) => SignUpScreen()),
-                              ),
-                            );
+                            Navigator.of(context)
+                                .pushReplacementNamed('sign_up');
                           },
                           child: const Text('Sign Up'))
                     ],
