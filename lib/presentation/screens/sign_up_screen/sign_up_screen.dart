@@ -6,9 +6,9 @@ import 'package:lottie/lottie.dart';
 import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
-import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
-import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
-import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
+import 'package:shiftsync/presentation/widgets/background_stack.dart';
+import 'package:shiftsync/presentation/widgets/sign_in_text_form_field.dart';
+import 'package:shiftsync/presentation/widgets/submit_button.dart';
 
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {

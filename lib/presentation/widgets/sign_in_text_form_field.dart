@@ -1,26 +1,41 @@
-
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 
 class SignInTextFormField extends StatelessWidget {
-  const SignInTextFormField(
-      {super.key,
-      required this.icon,
-      required this.hintText,
-      required this.suffix,
-      required this.obscureText,
-      required this.controller,
-      required this.keyboardType});
+  SignInTextFormField({
+    super.key,
+    required this.icon,
+    required this.hintText,
+    required this.suffix,
+    required this.obscureText,
+    required this.controller,
+    required this.keyboardType,
+    this.formKey,
+  });
   final IconData icon;
   final String hintText;
   final Widget? suffix;
   final bool obscureText;
   final TextEditingController controller;
   final TextInputType keyboardType;
+  GlobalKey<FormState>? formKey;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: (value) {
+        if (formKey != null) {
+          formKey?.currentState?.validate();
+        }
+      },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please fill $hintText';
+        } else {
+          return null;
+        }
+      },
       keyboardType: keyboardType,
       controller: controller,
       obscureText: obscureText,

@@ -14,7 +14,7 @@ class CustomBottomNavigationbar extends StatelessWidget {
     return Container(
       height: 50,
       width: double.infinity,
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: bottomNavigationbarColor),
       child:
           BlocBuilder<CustomBottmNavigationCubit, CustomBottmNavigationState>(
         builder: (context, state) {
@@ -34,7 +34,7 @@ class CustomBottomNavigationbar extends StatelessWidget {
                     size: 22,
                     Iconsax.home,
                     color: state.selectedIndex == 0
-                        ? customPrimaryColor
+                        ? kSkyBlueColor
                         : iconBlackColor,
                   ),
                 ),
@@ -52,7 +52,7 @@ class CustomBottomNavigationbar extends StatelessWidget {
                     size: 22,
                     Iconsax.document_text,
                     color: state.selectedIndex == 1
-                        ? customPrimaryColor
+                        ? kSkyBlueColor
                         : iconBlackColor,
                   ),
                 ),
@@ -72,7 +72,7 @@ class CustomBottomNavigationbar extends StatelessWidget {
                     size: 22,
                     Iconsax.calendar_1,
                     color: state.selectedIndex == 2
-                        ? customPrimaryColor
+                        ? kSkyBlueColor
                         : iconBlackColor,
                   ),
                 ),
@@ -90,7 +90,7 @@ class CustomBottomNavigationbar extends StatelessWidget {
                     size: 22,
                     Iconsax.money_recive,
                     color: state.selectedIndex == 3
-                        ? customPrimaryColor
+                        ? kSkyBlueColor
                         : iconBlackColor,
                   ),
                 ),

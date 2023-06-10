@@ -20,7 +20,8 @@ class ShiftSyncApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<CustomBottmNavigationCubit>(
-            create: (ctx) => CustomBottmNavigationCubit())
+          create: (ctx) => CustomBottmNavigationCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

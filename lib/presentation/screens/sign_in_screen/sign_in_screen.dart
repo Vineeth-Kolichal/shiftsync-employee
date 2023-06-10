@@ -5,15 +5,17 @@ import 'package:lottie/lottie.dart';
 import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
-import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
-import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
-import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
+import 'package:shiftsync/presentation/widgets/background_stack.dart';
+import 'package:shiftsync/presentation/widgets/sign_in_text_form_field.dart';
+import 'package:shiftsync/presentation/widgets/submit_button.dart';
 
 // ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,6 +49,7 @@ class SignInScreen extends StatelessWidget {
                 ],
               ),
               Form(
+                key: _formKey,
                 child: SizedBox(
                   width: size.width * 0.9,
                   child: Column(
@@ -58,6 +61,7 @@ class SignInScreen extends StatelessWidget {
                         icon: Iconsax.user,
                         hintText: 'User name',
                         suffix: null,
+                        formKey: _formKey,
                       ),
                       kHeightTen,
                       BlocProvider(
@@ -85,6 +89,7 @@ class SignInScreen extends StatelessWidget {
                                 obscureText: state.showPassword,
                                 controller: passwordController,
                                 keyboardType: TextInputType.visiblePassword,
+                                formKey: _formKey,
                               );
                             },
                           ),
@@ -101,8 +106,10 @@ class SignInScreen extends StatelessWidget {
                       SubmitButton(
                         label: 'Sing In',
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed('/home_screen');
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/home_screen');
+                          }
                         },
                       ),
                       kHeightTen,
