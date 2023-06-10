@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
 
+// ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController userNameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    ValueNotifier<bool> obscureText = ValueNotifier(true);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BackgroundStack(
@@ -29,18 +31,17 @@ class SignInScreen extends StatelessWidget {
                 width: size.width * 0.85,
               ),
               kHeightTen,
-             const  Text('Sign In to'),
+              const Text('Sign In to'),
               kHeightFive,
               Image.asset(
                 'assets/images/title.png',
                 width: size.width * 0.4,
               ),
               kheightTwenty,
-             const  Row(
+              const Row(
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Text('Please fill the credentials'),
                   ),
                 ],
@@ -59,30 +60,36 @@ class SignInScreen extends StatelessWidget {
                         suffix: null,
                       ),
                       kHeightTen,
-                      ValueListenableBuilder(
-                          valueListenable: obscureText,
-                          builder: (context, isObsecure, _) {
-                            return SignInTextFormField(
-                              keyboardType: TextInputType.text,
-                              controller: passwordController,
-                              icon: Iconsax.lock_1,
-                              hintText: 'Password',
-                              suffix: InkWell(
-                                onTap: () {
-                                  if (obscureText.value) {
-                                    obscureText.value = false;
-                                  } else {
-                                    obscureText.value = true;
-                                  }
-                                },
-                                child: Icon(
-                                  isObsecure ? Iconsax.eye : Iconsax.eye_slash,
-                                  color: iconBlackColor,
+                      BlocProvider(
+                        create: (context) => PasswordVisibilityCubit(),
+                        child: SizedBox(
+                          child: BlocBuilder<PasswordVisibilityCubit,
+                              PasswordVisibilityState>(
+                            builder: (context, state) {
+                              return SignInTextFormField(
+                                icon: Iconsax.lock_1,
+                                hintText: 'Password',
+                                suffix: InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<PasswordVisibilityCubit>()
+                                        .visiblepassword();
+                                  },
+                                  child: Icon(
+                                    state.showPassword
+                                        ? Iconsax.eye
+                                        : Iconsax.eye_slash,
+                                    color: iconBlackColor,
+                                  ),
                                 ),
-                              ),
-                              obscureText: isObsecure,
-                            );
-                          }),
+                                obscureText: state.showPassword,
+                                controller: passwordController,
+                                keyboardType: TextInputType.visiblePassword,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       kHeightTen,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -93,14 +100,17 @@ class SignInScreen extends StatelessWidget {
                       kheightTwenty,
                       SubmitButton(
                         label: 'Sing In',
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed('/home_screen');
+                        },
                       ),
                       kHeightTen,
                       const Text("Don't you have an account?"),
                       TextButton(
                           onPressed: () {
                             Navigator.of(context)
-                                .pushReplacementNamed('sign_up');
+                                .pushReplacementNamed('/sign_up');
                           },
                           child: const Text('Sign Up'))
                     ],

@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
-import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
 
+// ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordFirstController = TextEditingController();
+  TextEditingController passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController fullnameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController userNameController = TextEditingController();
-    TextEditingController passwordFirstController = TextEditingController();
-    TextEditingController passwordConfirmController = TextEditingController();
-
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BackgroundStack(
@@ -41,11 +42,10 @@ class SignUpScreen extends StatelessWidget {
                 width: size.width * 0.4,
               ),
               kheightTwenty,
-             const  Row(
+              const Row(
                 children: [
                   Padding(
-                    padding:
-                         EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Text('Please fill the credentials'),
                   ),
                 ],
@@ -91,34 +91,66 @@ class SignUpScreen extends StatelessWidget {
                         keyboardType: TextInputType.name,
                       ),
                       kHeightTen,
-                      SignInTextFormField(
-                        icon: Iconsax.lock_1,
-                        hintText: 'password',
-                        suffix: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Iconsax.eye,
-                            color: iconBlackColor,
+                      BlocProvider(
+                        create: (context) => PasswordVisibilityCubit(),
+                        child: SizedBox(
+                          child: BlocBuilder<PasswordVisibilityCubit,
+                              PasswordVisibilityState>(
+                            builder: (context, state) {
+                              return SignInTextFormField(
+                                icon: Iconsax.lock_1,
+                                hintText: 'Password',
+                                suffix: InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<PasswordVisibilityCubit>()
+                                        .visiblepassword();
+                                  },
+                                  child: Icon(
+                                    state.showPassword
+                                        ? Iconsax.eye
+                                        : Iconsax.eye_slash,
+                                    color: iconBlackColor,
+                                  ),
+                                ),
+                                obscureText: state.showPassword,
+                                controller: passwordFirstController,
+                                keyboardType: TextInputType.visiblePassword,
+                              );
+                            },
                           ),
                         ),
-                        obscureText: true,
-                        controller: passwordFirstController,
-                        keyboardType: TextInputType.visiblePassword,
                       ),
                       kHeightTen,
-                      SignInTextFormField(
-                        icon: Iconsax.lock_1,
-                        hintText: 'Confirm Password',
-                        suffix: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Iconsax.eye,
-                            color: iconBlackColor,
+                      BlocProvider(
+                        create: (context) => PasswordVisibilityCubit(),
+                        child: SizedBox(
+                          child: BlocBuilder<PasswordVisibilityCubit,
+                              PasswordVisibilityState>(
+                            builder: (context, state) {
+                              return SignInTextFormField(
+                                icon: Iconsax.lock_1,
+                                hintText: 'Confirm Password',
+                                suffix: InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<PasswordVisibilityCubit>()
+                                        .visiblepassword();
+                                  },
+                                  child: Icon(
+                                    state.showPassword
+                                        ? Iconsax.eye
+                                        : Iconsax.eye_slash,
+                                    color: iconBlackColor,
+                                  ),
+                                ),
+                                obscureText: state.showPassword,
+                                controller: passwordConfirmController,
+                                keyboardType: TextInputType.visiblePassword,
+                              );
+                            },
                           ),
                         ),
-                        obscureText: true,
-                        controller: passwordConfirmController,
-                        keyboardType: TextInputType.visiblePassword,
                       ),
                       kheightTwenty,
                       SubmitButton(onPressed: () {}, label: 'Sign Up'),
@@ -126,7 +158,7 @@ class SignUpScreen extends StatelessWidget {
                       const Text('Already have an account?'),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('sign_in');
+                          Navigator.of(context).pushReplacementNamed('/sign_in');
                         },
                         child: const Text(
                           'Sing In',

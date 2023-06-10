@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/core/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/common_widgets/background_stack.dart';
 import 'package:shiftsync/presentation/common_widgets/submit_button.dart';
 import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
@@ -50,8 +52,10 @@ class IntroScreen extends StatelessWidget {
             width: size.width * 0.6,
             child: SubmitButton(
               label: 'Get Stardted',
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed('sign_in');
+              onPressed: () async {
+                Navigator.of(context).pushReplacementNamed('/sign_in');
+                final shared = await SharedPreferences.getInstance();
+                await shared.setBool(newUser, false);
               },
             ),
           )
