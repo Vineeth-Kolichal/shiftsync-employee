@@ -1,7 +1,9 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 
+// ignore: must_be_immutable
 class SignInTextFormField extends StatelessWidget {
   SignInTextFormField({
     super.key,
@@ -37,6 +39,12 @@ class SignInTextFormField extends StatelessWidget {
         } else if (password != null) {
           if (password != value) {
             return "Confirm password does not match";
+          } else {
+            return null;
+          }
+        } else if (hintText == 'e-mail') {
+          if (!EmailValidator.validate(value)) {
+            return 'Please check $hintText id';
           } else {
             return null;
           }
