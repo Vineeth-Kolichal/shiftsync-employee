@@ -11,7 +11,8 @@ class SignInTextFormField extends StatelessWidget {
     required this.obscureText,
     required this.controller,
     required this.keyboardType,
-    this.formKey,
+    required this.formKey,
+    this.password,
   });
   final IconData icon;
   final String hintText;
@@ -19,7 +20,8 @@ class SignInTextFormField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputType keyboardType;
-  GlobalKey<FormState>? formKey;
+  final GlobalKey<FormState>? formKey;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,12 @@ class SignInTextFormField extends StatelessWidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please fill $hintText';
+        } else if (password != null) {
+          if (password != value) {
+            return "Confirm password does not match";
+          } else {
+            return null;
+          }
         } else {
           return null;
         }

@@ -96,7 +96,7 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                       kHeightTen,
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text('Forget Password?'),

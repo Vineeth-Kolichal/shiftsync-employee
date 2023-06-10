@@ -19,6 +19,7 @@ class SignUpScreen extends StatelessWidget {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordFirstController = TextEditingController();
   TextEditingController passwordConfirmController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,7 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
               Form(
+                key: _formKey,
                 child: SizedBox(
                   width: size.width * 0.9,
                   child: Column(
@@ -62,6 +64,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: false,
                         controller: fullnameController,
                         keyboardType: TextInputType.text,
+                        formKey: _formKey,
                       ),
                       kHeightTen,
                       SignInTextFormField(
@@ -71,6 +74,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: false,
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
+                        formKey: _formKey,
                       ),
                       kHeightTen,
                       SignInTextFormField(
@@ -80,6 +84,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: false,
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
+                        formKey: _formKey,
                       ),
                       kHeightTen,
                       SignInTextFormField(
@@ -89,6 +94,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: false,
                         controller: userNameController,
                         keyboardType: TextInputType.name,
+                        formKey: _formKey,
                       ),
                       kHeightTen,
                       BlocProvider(
@@ -116,6 +122,7 @@ class SignUpScreen extends StatelessWidget {
                                 obscureText: state.showPassword,
                                 controller: passwordFirstController,
                                 keyboardType: TextInputType.visiblePassword,
+                                formKey: _formKey,
                               );
                             },
                           ),
@@ -147,18 +154,25 @@ class SignUpScreen extends StatelessWidget {
                                 obscureText: state.showPassword,
                                 controller: passwordConfirmController,
                                 keyboardType: TextInputType.visiblePassword,
+                                formKey: _formKey,
+                                password: passwordFirstController.text,
                               );
                             },
                           ),
                         ),
                       ),
                       kheightTwenty,
-                      SubmitButton(onPressed: () {}, label: 'Sign Up'),
+                      SubmitButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
+                          label: 'Sign Up'),
                       kheightTwenty,
                       const Text('Already have an account?'),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/sign_in');
+                          Navigator.of(context)
+                              .pushReplacementNamed('/sign_in');
                         },
                         child: const Text(
                           'Sing In',
