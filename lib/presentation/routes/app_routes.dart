@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftsync/presentation/screens/home_screen/home_screen.dart';
 import 'package:shiftsync/presentation/screens/intro_screen/intro_screen.dart';

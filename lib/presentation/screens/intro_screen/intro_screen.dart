@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +6,6 @@ import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/core/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
-import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -34,18 +32,19 @@ class IntroScreen extends StatelessWidget {
               Text(
                 'Workers',
                 style: TextStyle(
-                    color: kSkyBlueColor,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700),
+                  color: kSkyBlueColor,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                ),
               )
             ],
           ),
           kHeightTen,
-          Text(
+          const Text(
             'HR management easly,Organize\nYour daily routine easly',
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           SizedBox(

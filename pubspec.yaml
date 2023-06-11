@@ -35,6 +35,8 @@ dependencies:
   flutter_bloc: ^8.1.3
   iconsax: ^0.0.8
   lottie: ^2.4.0
+  package_info_plus: ^4.0.2
+  pinput: ^2.2.31
   shared_preferences: ^2.1.2
 
 dev_dependencies:
@@ -57,6 +59,7 @@ flutter:
     - assets/images/
     - assets/lottie_jsons/
     - assets/images/title.png
+    - assets/lottie_jsons/otp.json
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
