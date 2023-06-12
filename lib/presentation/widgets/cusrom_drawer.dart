@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -47,7 +48,24 @@ class CustomDrawer extends StatelessWidget {
           ),
         ),
         ListView(
-          children: [DrawerHeader(child: SizedBox()),],
+          children: [
+            DrawerHeader(child: SizedBox()),
+            ListTile(
+              leading: Icon(Iconsax.lock_1),
+              title: Text('Set/Reset PIN'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/set_pin');
+              },
+            ),
+            ListTile(
+              leading: Icon(Iconsax.document),
+              title: Text('Privacy policy'),
+            ),
+            ListTile(
+              leading: Icon(Iconsax.logout_1),
+              title: Text('Logout'),
+            ),
+          ],
         )
       ]),
     );

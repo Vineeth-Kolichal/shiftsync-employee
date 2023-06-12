@@ -50,6 +50,7 @@ class IntroScreen extends StatelessWidget {
           SizedBox(
             width: size.width * 0.6,
             child: SubmitButton(
+              buttonWidth: 0.8,
               label: 'Get Stardted',
               onPressed: () async {
                 Navigator.of(context).pushReplacementNamed('/sign_in');

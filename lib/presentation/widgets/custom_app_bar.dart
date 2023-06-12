@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, this.leading, this.title, this.trailing});
+  const CustomAppBar(
+      {super.key,
+      this.leading,
+      this.title,
+      this.trailing,
+      required this.appBarColor});
   final Widget? leading;
   final Widget? title;
   final Widget? trailing;
+  final Color appBarColor;
 
   @override
   Widget build(BuildContext context) {

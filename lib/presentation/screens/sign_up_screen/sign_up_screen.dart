@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/presentation/screens/otp_verification_screen/screen_otp_verification.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';
 import 'package:shiftsync/presentation/widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
@@ -104,7 +105,7 @@ class SignUpScreen extends StatelessWidget {
                               PasswordVisibilityState>(
                             builder: (context, state) {
                               return SignInTextFormField(
-                                icon: Iconsax.lock_1,
+                                icon: Iconsax.key_square,
                                 hintText: 'Password',
                                 suffix: InkWell(
                                   onTap: () {
@@ -136,7 +137,7 @@ class SignUpScreen extends StatelessWidget {
                               PasswordVisibilityState>(
                             builder: (context, state) {
                               return SignInTextFormField(
-                                icon: Iconsax.lock_1,
+                                icon: Iconsax.key_square,
                                 hintText: 'Confirm Password',
                                 suffix: InkWell(
                                   onTap: () {
@@ -162,9 +163,19 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       kheightTwenty,
-                      SubmitButton(
+                      SubmitButton(buttonWidth: 0.8,
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: ((ctx) => OtpVerificationScreen(
+                                        otpMessage:
+                                            'We need to verify your phone number \n +91${phoneController.text}\nbefore getting started',
+                                        onCompleted: (p0) {
+                                          Navigator.of(context)
+                                              .pushNamed('/home_screen');
+                                        },
+                                      ))));
+                            }
                           },
                           label: 'Sign Up'),
                       kheightTwenty,

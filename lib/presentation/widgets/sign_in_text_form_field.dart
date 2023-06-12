@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
+import 'package:shiftsync/domain/core/debouncer/debouncer.dart';
 
 // ignore: must_be_immutable
 class SignInTextFormField extends StatelessWidget {
@@ -27,17 +28,20 @@ class SignInTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Debouncer debouncer = Debouncer(milliseconds: 1000);
     return TextFormField(
       onChanged: (value) {
-        if (formKey != null) {
-          formKey?.currentState?.validate();
-        }
+        debouncer.run(() {
+          if (formKey != null) {
+            formKey?.currentState?.validate();
+          }
+        });
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please fill $hintText';
         } else if (password != null) {
-          if (password != value) {
+          if (password != value.trim()) {
             return "Confirm password does not match";
           } else {
             return null;

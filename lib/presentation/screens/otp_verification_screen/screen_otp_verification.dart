@@ -9,11 +9,11 @@ class OtpVerificationScreen extends StatelessWidget {
   OtpVerificationScreen({
     super.key,
     required this.otpMessage,
-    required this.buttonLabel,
+    this.onCompleted,
   });
   final String otpMessage;
-  final String buttonLabel;
   final _formKey = GlobalKey<FormState>();
+  final Function(String)? onCompleted;
 
   final defaultPinTheme = PinTheme(
     width: 50,
@@ -94,9 +94,9 @@ class OtpVerificationScreen extends StatelessWidget {
                       return null;
                     }
                   },
-                  onCompleted: (value) {
-                    print(value);
-                  },
+                  androidSmsAutofillMethod:
+                      AndroidSmsAutofillMethod.smsUserConsentApi,
+                  onCompleted: onCompleted
                 ),
               ),
               kheightTwenty,

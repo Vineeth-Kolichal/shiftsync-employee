@@ -71,7 +71,7 @@ class SignInScreen extends StatelessWidget {
                               PasswordVisibilityState>(
                             builder: (context, state) {
                               return SignInTextFormField(
-                                icon: Iconsax.lock_1,
+                                icon: Iconsax.key_square,
                                 hintText: 'Password',
                                 suffix: InkWell(
                                   onTap: () {
@@ -103,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                         ],
                       ),
                       kheightTwenty,
-                      SubmitButton(
+                      SubmitButton(buttonWidth: 0.8,
                         label: 'Sing In',
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -116,6 +116,7 @@ class SignInScreen extends StatelessWidget {
                       const Text("Don't you have an account?"),
                       TextButton(
                           onPressed: () {
+                            
                             Navigator.of(context)
                                 .pushReplacementNamed('/sign_up');
                           },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/application/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
+import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/presentation/widgets/cusrom_drawer.dart';
 import 'package:shiftsync/presentation/widgets/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/custom_bottom_navigationbar.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: SafeArea(
-              child: CustomAppBar(
+              child: CustomAppBar(appBarColor: appBarColor,
                 leading: InkWell(
                   onTap: () {
                     scaffoldKey.currentState!.openDrawer();

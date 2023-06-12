@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color scafoldBackgroundColor = Color(0xFFE3F1F5);
+const Color scafoldBackgroundColor = Color.fromARGB(255, 237, 246, 248);
 const Color bottomNavigationbarColor = Colors.white;
 const Color appBarColor = Colors.white;
 const MaterialColor customPrimaryColor = MaterialColor(
