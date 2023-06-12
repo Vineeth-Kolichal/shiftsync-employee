@@ -4,6 +4,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/core/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/screens/pin_validation_screen/pin_validation_screen.dart';
+import 'package:shiftsync/presentation/widgets/custom_drawer/logout_dialoge.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -14,8 +15,7 @@ class CustomDrawer extends StatelessWidget {
       child: Stack(children: [
         Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
-            // color: whiteColor,
+          child: SizedBox(
             height: 60,
             width: double.infinity,
             child: Padding(
@@ -78,6 +78,9 @@ class CustomDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Iconsax.logout_1),
               title: Text('Logout'),
+              onTap: () {
+                logout(context);
+              },
             ),
           ],
         )
