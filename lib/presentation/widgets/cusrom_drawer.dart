@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shiftsync/core/shared_preference_key_names.dart';
+import 'package:shiftsync/presentation/screens/pin_validation_screen/pin_validation_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -51,10 +54,21 @@ class CustomDrawer extends StatelessWidget {
           children: [
             DrawerHeader(child: SizedBox()),
             ListTile(
-              leading: Icon(Iconsax.lock_1),
-              title: Text('Set/Reset PIN'),
-              onTap: () {
-                Navigator.of(context).pushNamed('/set_pin');
+              leading: const Icon(Iconsax.lock_1),
+              title: const Text('Set/Reset PIN'),
+              onTap: () async {
+                SharedPreferences shared =
+                    await SharedPreferences.getInstance();
+                final pinValue = shared.getString(pin);
+                if (pinValue == null) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushNamed('/set_pin');
+                } else {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((ctx) =>
+                          PinValidationScreen(routeName: '/set_pin'))));
+                }
               },
             ),
             ListTile(

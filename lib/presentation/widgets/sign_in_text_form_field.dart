@@ -6,17 +6,16 @@ import 'package:shiftsync/domain/core/debouncer/debouncer.dart';
 
 // ignore: must_be_immutable
 class SignInTextFormField extends StatelessWidget {
-  SignInTextFormField({
-    super.key,
-    required this.icon,
-    required this.hintText,
-    required this.suffix,
-    required this.obscureText,
-    required this.controller,
-    required this.keyboardType,
-    required this.formKey,
-    this.password,
-  });
+  SignInTextFormField(
+      {super.key,
+      required this.icon,
+      required this.hintText,
+      required this.suffix,
+      required this.obscureText,
+      required this.controller,
+      required this.keyboardType,
+      required this.formKey,
+      this.onChanged});
   final IconData icon;
   final String hintText;
   final Widget? suffix;
@@ -24,28 +23,24 @@ class SignInTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final GlobalKey<FormState>? formKey;
-  String? password;
+  
+  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     Debouncer debouncer = Debouncer(milliseconds: 1000);
     return TextFormField(
-      onChanged: (value) {
-        debouncer.run(() {
-          if (formKey != null) {
-            formKey?.currentState?.validate();
-          }
-        });
-      },
+      onChanged: onChanged ??
+          (value) {
+            debouncer.run(() {
+              if (formKey != null) {
+                formKey?.currentState?.validate();
+              }
+            });
+          },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please fill $hintText';
-        } else if (password != null) {
-          if (password != value.trim()) {
-            return "Confirm password does not match";
-          } else {
-            return null;
-          }
         } else if (hintText == 'e-mail') {
           if (!EmailValidator.validate(value)) {
             return 'Please check $hintText id';

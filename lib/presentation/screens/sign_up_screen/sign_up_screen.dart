@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shiftsync/application/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/application/cubits/password_visibility/password_visibility_cubit.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/domain/core/debouncer/debouncer.dart';
 import 'package:shiftsync/presentation/screens/otp_verification_screen/screen_otp_verification.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';
 import 'package:shiftsync/presentation/widgets/sign_in_text_form_field.dart';
@@ -24,6 +26,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Debouncer debouncer = Debouncer(milliseconds: 1000);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BackgroundStack(
@@ -105,6 +108,13 @@ class SignUpScreen extends StatelessWidget {
                               PasswordVisibilityState>(
                             builder: (context, state) {
                               return SignInTextFormField(
+                                onChanged: (password) {
+                                  debouncer.run(() {
+                                    context
+                                        .read<ConfirmPasswordCubit>()
+                                        .setpasswordState(password);
+                                  });
+                                },
                                 icon: Iconsax.key_square,
                                 hintText: 'Password',
                                 suffix: InkWell(
@@ -137,6 +147,13 @@ class SignUpScreen extends StatelessWidget {
                               PasswordVisibilityState>(
                             builder: (context, state) {
                               return SignInTextFormField(
+                                onChanged: (confirmPassword) {
+                                  debouncer.run(() {
+                                    context
+                                        .read<ConfirmPasswordCubit>()
+                                        .checkPassword(confirmPassword);
+                                  });
+                                },
                                 icon: Iconsax.key_square,
                                 hintText: 'Confirm Password',
                                 suffix: InkWell(
@@ -156,14 +173,37 @@ class SignUpScreen extends StatelessWidget {
                                 controller: passwordConfirmController,
                                 keyboardType: TextInputType.visiblePassword,
                                 formKey: _formKey,
-                                password: passwordFirstController.text,
                               );
                             },
                           ),
                         ),
                       ),
+                      kHeightFive,
+                      SizedBox(
+                        width: double.infinity,
+                        height: 20,
+                        child: BlocBuilder<ConfirmPasswordCubit,
+                            ConfirmPasswordState>(
+                          builder: (context, state) {
+                            if (state.status == 1) {
+                              return const Text(
+                                ' ✅ Passwords are same',
+                                style: TextStyle(color: Colors.green),
+                              );
+                            } else if (state.status == 2) {
+                              return const Text(
+                                ' ❌ Password and Confirm password are not same',
+                                style: TextStyle(color: Colors.red),
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          },
+                        ),
+                      ),
                       kheightTwenty,
-                      SubmitButton(buttonWidth: 0.8,
+                      SubmitButton(
+                          buttonWidth: 0.8,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               Navigator.of(context).push(MaterialPageRoute(

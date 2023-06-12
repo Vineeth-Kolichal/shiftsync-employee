@@ -8,11 +8,13 @@ class PinInputField extends StatelessWidget {
       this.onCompleted,
       this.autofillMethod,
       required this.pinLength,
-      this.controller});
+      this.controller,
+      this.keyboardType});
   final Function(String)? onCompleted;
   final AndroidSmsAutofillMethod? autofillMethod;
   final int pinLength;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
   final defaultPinTheme = PinTheme(
     width: 50,
     height: 52,
@@ -53,9 +55,9 @@ class PinInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AndroidSmsAutofillMethod androidSmsAutofillMethod =
-        autofillMethod ?? AndroidSmsAutofillMethod.none;
-    AndroidSmsAutofillMethod.none;
+        autofillMethod ?? AndroidSmsAutofillMethod.smsUserConsentApi;
     return Pinput(
+        keyboardType: keyboardType ?? TextInputType.number,
         controller: controller,
         defaultPinTheme: defaultPinTheme,
         focusedPinTheme: focusedPinTheme,
