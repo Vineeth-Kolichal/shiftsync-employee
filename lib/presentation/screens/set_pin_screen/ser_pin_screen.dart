@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/core/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';
-import 'package:shiftsync/presentation/widgets/custom_app_bar.dart';
+import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/pin_input_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
 
