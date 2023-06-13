@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shiftsync/core/shared_preference_key_names.dart';
+import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/screens/pin_validation_screen/pin_validation_screen.dart';
 import 'package:shiftsync/presentation/widgets/custom_drawer/logout_dialoge.dart';
 

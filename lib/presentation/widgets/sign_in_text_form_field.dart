@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
-import 'package:shiftsync/domain/core/debouncer/debouncer.dart';
+import 'package:shiftsync/core/debouncer/debouncer.dart';
 
 // ignore: must_be_immutable
 class SignInTextFormField extends StatelessWidget {
@@ -23,7 +23,7 @@ class SignInTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final GlobalKey<FormState>? formKey;
-  
+
   Function(String)? onChanged;
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
-import 'package:shiftsync/application/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';

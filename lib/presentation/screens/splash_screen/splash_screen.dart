@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shiftsync/core/shared_preference_key_names.dart';
+import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

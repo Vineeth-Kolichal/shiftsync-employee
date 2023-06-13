@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shiftsync/core/shared_preference_key_names.dart';
+import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
 
 part 'pin_verification_loading_state.dart';
 
@@ -11,10 +11,12 @@ class PinVerificationLoadingCubit extends Cubit<PinVerificationLoadingState> {
     return emit(
         PinVerificationLoadingState(isLoading: newState, isWrongPin: false));
   }
+
   void changeWrongPinState(bool newState) {
     return emit(
         PinVerificationLoadingState(isLoading: false, isWrongPin: newState));
   }
+
   Future<void> verifyPin(
       {required String pinValue,
       required BuildContext context,

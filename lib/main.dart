@@ -1,10 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shiftsync/application/cubits/confirm_password/confirm_password_cubit.dart';
-import 'package:shiftsync/application/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
-import 'package:shiftsync/application/cubits/internet_connection_check/internet_connection_check_cubit.dart';
-import 'package:shiftsync/application/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
 

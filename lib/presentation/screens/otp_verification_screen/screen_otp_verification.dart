@@ -83,21 +83,20 @@ class OtpVerificationScreen extends StatelessWidget {
               Form(
                 key: _formKey,
                 child: Pinput(
-                  defaultPinTheme: defaultPinTheme,
-                  focusedPinTheme: focusedPinTheme,
-                  submittedPinTheme: submittedPinTheme,
-                  length: 5,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter OTP';
-                    } else {
-                      return null;
-                    }
-                  },
-                  androidSmsAutofillMethod:
-                      AndroidSmsAutofillMethod.smsUserConsentApi,
-                  onCompleted: onCompleted
-                ),
+                    defaultPinTheme: defaultPinTheme,
+                    focusedPinTheme: focusedPinTheme,
+                    submittedPinTheme: submittedPinTheme,
+                    length: 5,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter OTP';
+                      } else {
+                        return null;
+                      }
+                    },
+                    androidSmsAutofillMethod:
+                        AndroidSmsAutofillMethod.smsUserConsentApi,
+                    onCompleted: onCompleted),
               ),
               kheightTwenty,
               const Text("Don't recieve code?"),
