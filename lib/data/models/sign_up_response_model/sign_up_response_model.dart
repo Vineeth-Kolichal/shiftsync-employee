@@ -9,8 +9,10 @@ class SignUpResponseModel {
   @JsonKey(name: 'message')
   String? message;
 
-
-  SignUpResponseModel({required this.status,required this.message,});
+  SignUpResponseModel({
+    required this.status,
+    required this.message,
+  });
 
   factory SignUpResponseModel.fromJson(Map<String, dynamic> json) {
     return _$SignUpResponseModelFromJson(json);

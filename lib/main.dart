@@ -1,7 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
@@ -41,6 +43,12 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider<SignInBloc>(
           create: (ctx) => SignInBloc(),
+        ),
+        BlocProvider<SignUpBloc>(
+          create: (ctx) => SignUpBloc(),
+        ),
+        BlocProvider<OtpVerificationBloc>(
+          create: (ctx) => OtpVerificationBloc(),
         ),
       ],
       child: MaterialApp(

@@ -7,7 +7,7 @@ part of 'otp.dart';
 // **************************************************************************
 
 OtpModel _$OtpModelFromJson(Map<String, dynamic> json) => OtpModel(
-      otp: json['otp'] as String?,
+      otp: json['otp'] as String,
     );
 
 Map<String, dynamic> _$OtpModelToJson(OtpModel instance) => <String, dynamic>{

@@ -58,10 +58,12 @@ class SignInScreen extends StatelessWidget {
           if (state is SignInResult) {
             if (state.signInAuthenticationResponseModel.status == 200) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  duration: Duration(milliseconds: 1000),
+                SnackBar(
+                  duration: const Duration(milliseconds: 1000),
                   backgroundColor: Colors.green,
-                  content: Text('logined successyfully'),
+                  content: Text(toBeginningOfSentenceCase(
+                          state.signInAuthenticationResponseModel.message) ??
+                      'Successfully logged in'),
                 ),
               );
               Future.delayed(const Duration(milliseconds: 1500), () {
@@ -127,7 +129,7 @@ class SignInScreen extends StatelessWidget {
                             controller: userNameController,
                             obscureText: false,
                             icon: Iconsax.user,
-                            hintText: 'User name',
+                            hintText: 'e-mail id',
                             suffix: null,
                             formKey: _formKey,
                           ),

@@ -5,7 +5,7 @@ part 'otp.g.dart';
 @JsonSerializable()
 class OtpModel {
   @JsonKey(name: 'otp')
-  String? otp;
+  String otp;
 
   OtpModel({required this.otp});
 
