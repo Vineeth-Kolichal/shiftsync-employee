@@ -8,10 +8,15 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final shared = await SharedPreferences.getInstance();
+      final cookieData = shared.getString(cookie);
       final isNewUser = shared.getBool(newUser);
       await Future.delayed(const Duration(milliseconds: 3000), () {
-        Navigator.of(context).pushReplacementNamed(
-            (isNewUser == true || isNewUser == null) ? '/intro' : '/sign_in');
+        Navigator.of(context)
+            .pushReplacementNamed((isNewUser == true || isNewUser == null)
+                ? '/intro'
+                : (cookieData == null)
+                    ? '/sign_in'
+                    : '/home_screen');
       });
     });
     Size size = MediaQuery.of(context).size;

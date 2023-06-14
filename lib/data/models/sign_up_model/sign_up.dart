@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'sign_up.g.dart';
 
 @JsonSerializable()
-class SignUp {
+class SignUpModel {
   @JsonKey(name: 'firstname')
   final String firstname;
 
@@ -22,7 +22,7 @@ class SignUp {
   @JsonKey(name: 'password')
   final String password;
 
-  SignUp({
+  SignUpModel({
     required this.firstname,
     required this.lastname,
     required this.email,
@@ -31,9 +31,9 @@ class SignUp {
     required this.password,
   });
 
-  factory SignUp.fromJson(Map<String, dynamic> json) {
-    return _$SignUpFromJson(json);
+  factory SignUpModel.fromJson(Map<String, dynamic> json) {
+    return _$SignUpModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$SignUpToJson(this);
+  Map<String, dynamic> toJson() => _$SignUpModelToJson(this);
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
+import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
 
 void logout(BuildContext context) {
   showDialog(
@@ -28,9 +30,13 @@ void logout(BuildContext context) {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/sign_in', (route) => false);
+              onPressed: () async {
+                final shared = await SharedPreferences.getInstance();
+                await shared.remove(cookie);
+                Future.delayed(const Duration(microseconds: 100), () {
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/sign_in', (route) => false);
+                });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: customPrimaryColor,

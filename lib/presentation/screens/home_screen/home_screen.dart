@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -89,21 +88,11 @@ class HomeScreen extends StatelessWidget {
                                 },
                               ),
                             )
-                          // InkWell(
-                          //     onTap: () {
-                          //       if (state.selectedIndex == 1) {}
-                          //       if (state.selectedIndex == 3) {}
-                          //     },
-                          //     child: const SizedBox(
-                          //         height: 30,
-                          //         width: 30,
-                          //         child: Icon(Iconsax.more_square)),
-                          //   )
                           : null,
                 ),
               ),
             ),
-            drawer: CustomDrawer(),
+            drawer: const CustomDrawer(),
             body: pages[state.selectedIndex],
             bottomNavigationBar: const CustomBottomNavigationbar(),
             floatingActionButton: FloatingActionButton(

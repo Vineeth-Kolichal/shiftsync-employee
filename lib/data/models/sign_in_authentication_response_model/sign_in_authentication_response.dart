@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'sign_in_authentication_response.g.dart';
 
 @JsonSerializable()
-class SignInAuthenticationResponse {
+class SignInAuthenticationResponseModel {
   @JsonKey(name: 'status')
   int? status;
 
@@ -16,16 +16,16 @@ class SignInAuthenticationResponse {
   @JsonKey(name: 'data')
   String? data;
 
-  SignInAuthenticationResponse({
+  SignInAuthenticationResponseModel({
     this.status,
     this.message,
     this.errors,
     this.data,
   });
 
-  factory SignInAuthenticationResponse.fromJson(Map<String, dynamic> json) {
-    return _$SignInAuthenticationResponseFromJson(json);
+  factory SignInAuthenticationResponseModel.fromJson(Map<String, dynamic> json) {
+    return _$SignInAuthenticationResponseModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$SignInAuthenticationResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SignInAuthenticationResponseModelToJson(this);
 }

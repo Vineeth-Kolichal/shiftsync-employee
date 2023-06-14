@@ -6,15 +6,15 @@ part of 'sign_in_authentication.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SignInAuthentication _$SignInAuthenticationFromJson(
+SignInAuthenticationModel _$SignInAuthenticationModelFromJson(
         Map<String, dynamic> json) =>
-    SignInAuthentication(
-      username: json['username'] as String?,
-      password: json['password'] as String?,
+    SignInAuthenticationModel(
+      username: json['username'] as String,
+      password: json['password'] as String,
     );
 
-Map<String, dynamic> _$SignInAuthenticationToJson(
-        SignInAuthentication instance) =>
+Map<String, dynamic> _$SignInAuthenticationModelToJson(
+        SignInAuthenticationModel instance) =>
     <String, dynamic>{
       'username': instance.username,
       'password': instance.password,

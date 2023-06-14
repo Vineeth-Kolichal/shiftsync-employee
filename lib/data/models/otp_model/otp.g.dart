@@ -6,10 +6,10 @@ part of 'otp.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Otp _$OtpFromJson(Map<String, dynamic> json) => Otp(
+OtpModel _$OtpModelFromJson(Map<String, dynamic> json) => OtpModel(
       otp: json['otp'] as String?,
     );
 
-Map<String, dynamic> _$OtpToJson(Otp instance) => <String, dynamic>{
+Map<String, dynamic> _$OtpModelToJson(OtpModel instance) => <String, dynamic>{
       'otp': instance.otp,
     };
