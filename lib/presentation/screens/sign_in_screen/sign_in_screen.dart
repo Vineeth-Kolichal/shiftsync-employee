@@ -3,11 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
-import 'package:shiftsync/core/api_response_type/api_respose_result_type.dart';
+import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/colors/common_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
@@ -54,22 +56,7 @@ class SignInScreen extends StatelessWidget {
       child: BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state is SignInResult) {
-            if (state.responseType == ApiResponseResultType.clientError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text('Incorrect User name or Password'),
-                ),
-              );
-            } else if (state.responseType ==
-                ApiResponseResultType.serverError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text('Something went wrong'),
-                ),
-              );
-            } else {
+            if (state.signInAuthenticationResponseModel.status == 200) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   duration: Duration(milliseconds: 1000),
@@ -80,6 +67,22 @@ class SignInScreen extends StatelessWidget {
               Future.delayed(const Duration(milliseconds: 1500), () {
                 Navigator.of(context).pushReplacementNamed('/home_screen');
               });
+            } else if (state.signInAuthenticationResponseModel.status == 404) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text('Something went wrong'),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(toBeginningOfSentenceCase(
+                          state.signInAuthenticationResponseModel.errors?[0]) ??
+                      'Something error'),
+                ),
+              );
             }
           }
         },
@@ -170,6 +173,12 @@ class SignInScreen extends StatelessWidget {
                           kheightTwenty,
                           BlocBuilder<SignInBloc, SignInState>(
                             builder: (context, state) {
+                              if (state.isLoading) {
+                                return LoadingAnimationWidget.inkDrop(
+                                  color: customPrimaryColor,
+                                  size: 25,
+                                );
+                              }
                               return SubmitButton(
                                 buttonWidth: 0.8,
                                 label: 'Sing In',

@@ -1,13 +1,21 @@
 part of 'sign_in_bloc.dart';
 
-@immutable
-abstract class SignInState {}
+class SignInState {
+  final bool isLoading;
+  SignInState({required this.isLoading});
+}
 
-class SignInInitial extends SignInState {}
+class SignInInitial extends SignInState {
+  SignInInitial() : super(isLoading: false);
+}
 
-class SignInLoading extends SignInState {}
+class SignInLoading extends SignInState {
+  SignInLoading() : super(isLoading: true);
+}
 
 class SignInResult extends SignInState {
-  final ApiResponseResultType responseType;
-  SignInResult({required this.responseType});
+  final SignInAuthenticationResponseModel signInAuthenticationResponseModel;
+  SignInResult(
+      {required this.signInAuthenticationResponseModel,
+      required super.isLoading});
 }

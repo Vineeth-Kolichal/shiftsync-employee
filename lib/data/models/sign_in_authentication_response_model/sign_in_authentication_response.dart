@@ -11,7 +11,7 @@ class SignInAuthenticationResponseModel {
   String? message;
 
   @JsonKey(name: 'erros')
-  List<String>? errors;
+  List<dynamic>? errors;
 
   @JsonKey(name: 'data')
   String? data;
@@ -23,9 +23,11 @@ class SignInAuthenticationResponseModel {
     this.data,
   });
 
-  factory SignInAuthenticationResponseModel.fromJson(Map<String, dynamic> json) {
+  factory SignInAuthenticationResponseModel.fromJson(
+      Map<String, dynamic> json) {
     return _$SignInAuthenticationResponseModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$SignInAuthenticationResponseModelToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$SignInAuthenticationResponseModelToJson(this);
 }

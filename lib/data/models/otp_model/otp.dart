@@ -9,7 +9,8 @@ class OtpModel {
 
   OtpModel({required this.otp});
 
-  factory OtpModel.fromJson(Map<String, dynamic> json) => _$OtpModelFromJson(json);
+  factory OtpModel.fromJson(Map<String, dynamic> json) =>
+      _$OtpModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$OtpModelToJson(this);
 }

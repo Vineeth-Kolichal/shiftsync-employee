@@ -11,8 +11,7 @@ SignInAuthenticationResponseModel _$SignInAuthenticationResponseModelFromJson(
     SignInAuthenticationResponseModel(
       status: json['status'] as int?,
       message: json['message'] as String?,
-      errors:
-          (json['erros'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      errors: json['erros'] as List<dynamic>?,
       data: json['data'] as String?,
     );
 
