@@ -14,7 +14,7 @@ class SignInAuthenticationResponseModel {
   List<dynamic>? errors;
 
   @JsonKey(name: 'data')
-  String? data;
+  List<dynamic>? data;
 
   SignInAuthenticationResponseModel({
     this.status,

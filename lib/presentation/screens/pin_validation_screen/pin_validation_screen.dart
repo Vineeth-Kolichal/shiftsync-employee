@@ -65,7 +65,7 @@ class PinValidationScreen extends StatelessWidget {
                     } else if (state.isWrongPin) {
                       return const Center(
                         child: Text(
-                          'You enterd worong PIN !',
+                          'Wrong PIN !',
                           style: TextStyle(color: Colors.red),
                         ),
                       );
@@ -95,18 +95,13 @@ class PinValidationScreen extends StatelessWidget {
                   const Divider(),
                   SizedBox(
                     height: size.width * 0.15,
-                    //color: Colors.amber,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         PinKeyboardButton(
                           keylabel: const SizedBox(),
                           size: size,
-                          onTap: () {
-                            // if (pinController.text.length < 4) {
-                            //   pinController.text = '${pinController.text}${keysValue[0]}';
-                            // }
-                          },
+                          onTap: () {},
                         ),
                         const VerticalDivider(),
                         PinKeyboardButton(

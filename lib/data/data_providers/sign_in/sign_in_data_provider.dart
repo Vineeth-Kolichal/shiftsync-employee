@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:shiftsync/core/api_end_points/api_end_points.dart';
+import 'package:shiftsync/core/api_end_points/persistent_cookiejar.dart';
+import 'package:shiftsync/core/constants/constants.dart';
 
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_response_model/sign_in_authentication_response.dart';
@@ -8,6 +13,8 @@ class SignInDataProvider {
   Future<SignInAuthenticationResponseModel> signIn(
       SignInAuthenticationModel signInAuthenticationModel) async {
     Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+
+    dio.interceptors.add(CookieManager(persistentCookieJar));
     try {
       final response = await dio.post(
         signInPoint,
@@ -17,22 +24,31 @@ class SignInDataProvider {
         },
       );
       if (response.statusCode == 200) {
+        //if authentication is successfull return response
+        log('is it working');
         return SignInAuthenticationResponseModel.fromJson(response.data);
       } else {
+        log('message one');
+        //if any error occured the return an error message
         return SignInAuthenticationResponseModel(
-            data: '', errors: ['Something Error'], message: '', status: 404);
+            data: [], errors: ['Something Error'], message: '', status: 404);
       }
     } on DioException catch (e) {
       if (e.response?.statusCode == 400) {
+        //Return if username or password not correct
         return SignInAuthenticationResponseModel(
             status: e.response?.statusCode, errors: e.response?.data['errors']);
       } else {
+        log('meeeeee');
+        //if any error occured the return an error message
         return SignInAuthenticationResponseModel(
-            data: '', errors: ['Something Error'], message: '', status: 404);
+            data: [], errors: ['Something Error'], message: '', status: 404);
       }
     } catch (e) {
+      log(e.toString());
+      //if any error occured the return an error message
       return SignInAuthenticationResponseModel(
-          data: '', errors: ['Something Error'], message: '', status: 404);
+          data: [], errors: ['Something Error'], message: '', status: 404);
     }
   }
 }

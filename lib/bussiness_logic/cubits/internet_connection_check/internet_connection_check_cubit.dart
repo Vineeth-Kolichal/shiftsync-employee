@@ -11,12 +11,16 @@ class InternetConnectionCheckCubit extends Cubit<InternetConnectionCheckState> {
   late StreamSubscription connectivityStreamSubscription;
   InternetConnectionCheckCubit({required this.connectivity})
       : super(InternetConnectionCheckLoading()) {
+    //listening internet connectivity status
     connectivityStreamSubscription =
         connectivity.onConnectivityChanged.listen((connectivityResult) {
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
+            //if internet is connected
         emitIntenetConnected();
       } else {
+        //if mobile is not connected to mobile data ro wifi then emit no internet
+
         emitNoInternet();
       }
     });

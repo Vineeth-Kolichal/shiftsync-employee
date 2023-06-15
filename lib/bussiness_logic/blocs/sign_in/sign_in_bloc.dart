@@ -11,9 +11,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInRepository signInRepository = SignInRepository();
   SignInBloc() : super(SignInInitial()) {
     on<EmployeeSignIn>((event, emit) async {
+      //send loading state to ui
       emit(SignInLoading());
+      //communicate with server through repository and data providers
       final response = await signInRepository
           .employeeSignIn(event.signInAuthenticationModel);
+      //emit response state to ui
       emit(SignInResult(
           signInAuthenticationResponseModel: response, isLoading: false));
     });

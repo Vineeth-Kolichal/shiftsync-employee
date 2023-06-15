@@ -55,8 +55,10 @@ class SignInScreen extends StatelessWidget {
       },
       child: BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
+          //Snackbar messages after validating the credentials
           if (state is SignInResult) {
             if (state.signInAuthenticationResponseModel.status == 200) {
+              // this snackbar will show if authentication is successfull
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   duration: const Duration(milliseconds: 1000),
@@ -70,6 +72,7 @@ class SignInScreen extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('/home_screen');
               });
             } else if (state.signInAuthenticationResponseModel.status == 404) {
+              //This snakbar will show if any error orrcured
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.red,
@@ -77,6 +80,7 @@ class SignInScreen extends StatelessWidget {
                 ),
               );
             } else {
+              //this snack bar will show if user name or password are not correct
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.red,
@@ -93,7 +97,6 @@ class SignInScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   kheightTwenty,
                   LottieBuilder.asset(
@@ -166,12 +169,12 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           kHeightTen,
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('Forget Password?'),
-                            ],
-                          ),
+                          // const Row(
+                          //   mainAxisAlignment: MainAxisAlignment.end,
+                          //   children: [
+                          //     Text('Forget Password?'),
+                          //   ],
+                          // ),
                           kheightTwenty,
                           BlocBuilder<SignInBloc, SignInState>(
                             builder: (context, state) {

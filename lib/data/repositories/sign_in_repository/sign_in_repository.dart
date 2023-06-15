@@ -11,8 +11,9 @@ class SignInRepository {
     SignInAuthenticationResponseModel response =
         await signInDataProvider.signIn(signInAuthenticationModel);
     if (response.status == 200) {
-      SharedPreferences shared = await SharedPreferences.getInstance();
-      await shared.setString(cookie, response.data!);
+      //if successfull login ,then cookie value store to shared preference to control the navigations
+      // SharedPreferences shared = await SharedPreferences.getInstance();
+      // await shared.setString(cookie, response.data!);
     }
     return response;
   }

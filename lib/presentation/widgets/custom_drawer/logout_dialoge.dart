@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shiftsync/core/api_end_points/persistent_cookiejar.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
+import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
 
 void logout(BuildContext context) {
@@ -31,8 +33,10 @@ void logout(BuildContext context) {
             ),
             ElevatedButton(
               onPressed: () async {
+                persistentCookieJar.deleteAll();
                 final shared = await SharedPreferences.getInstance();
-                await shared.remove(cookie);
+                //await shared.remove(cookie);
+                await shared.remove(pin);
                 Future.delayed(const Duration(microseconds: 100), () {
                   Navigator.of(context)
                       .pushNamedAndRemoveUntil('/sign_in', (route) => false);

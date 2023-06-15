@@ -12,7 +12,7 @@ SignInAuthenticationResponseModel _$SignInAuthenticationResponseModelFromJson(
       status: json['status'] as int?,
       message: json['message'] as String?,
       errors: json['erros'] as List<dynamic>?,
-      data: json['data'] as String?,
+      data: json['data'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$SignInAuthenticationResponseModelToJson(

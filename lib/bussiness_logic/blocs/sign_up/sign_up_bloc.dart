@@ -11,9 +11,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpDataProvider signUpDataProvider = SignUpDataProvider();
   SignUpBloc() : super(SignUpInitial()) {
     on<EmployeeSignUp>((event, emit) async {
+      //emit loading to ui
       emit(SignUpLoadingState());
+      //send request and take respose 
       SignUpResponseModel response =
           await signUpDataProvider.sinUp(event.signUpModel);
+      //emit response as new state
       emit(
           SignUpResponseState(signUpResponseModel: response, isLoading: false));
     });

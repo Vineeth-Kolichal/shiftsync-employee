@@ -1,6 +1,10 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
@@ -11,7 +15,11 @@ import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_ve
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
 
+late Directory appDirectory;
+
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  appDirectory = await getApplicationDocumentsDirectory();
   runApp(ShiftSyncApp(
     appRoutes: AppRoutes(),
     connectivity: Connectivity(),

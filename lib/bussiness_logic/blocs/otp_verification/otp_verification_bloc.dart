@@ -12,9 +12,12 @@ class OtpVerificationBloc
   SignUpOtpProvider otpProvider = SignUpOtpProvider();
   OtpVerificationBloc() : super(OtpVerificationInitial()) {
     on<VerifySignUpOtp>((event, emit) async {
+      //emit loading state till getting server response
       emit(OtpVerificationLoadingState());
+      //get server responds as response model class object
       SignUpOtpResponseModel responseModel =
           await otpProvider.verifyOtp(otp: event.otp);
+      //emit respose as state to screen
       emit(OtpVerificationResponseState(
           signUpOtpResponseModel: responseModel, isLoading: false));
     });

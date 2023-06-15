@@ -47,6 +47,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   lottie: ^2.4.0
   package_info_plus: ^4.0.2
+  path_provider: ^2.0.15
   pinput: ^2.2.31
   shared_preferences: ^2.1.2
 
