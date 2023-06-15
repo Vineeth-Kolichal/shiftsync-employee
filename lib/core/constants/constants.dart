@@ -1,5 +1,7 @@
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/material.dart';
 
+final cookieJar = CookieJar();
 const kHeightTen = SizedBox(
   height: 10,
 );

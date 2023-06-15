@@ -69,7 +69,7 @@ class OtpVerificationScreen extends StatelessWidget {
                 duration: const Duration(milliseconds: 1000),
                 backgroundColor: Colors.green,
                 content: Text(toBeginningOfSentenceCase(
-                        '${state.signUpOtpResponseModel.message}/n Please login to continue') ??
+                        '${state.signUpOtpResponseModel.message}\n Please login to continue') ??
                     'Account created successfully'),
               ),
             );

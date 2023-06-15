@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:shiftsync/core/api_end_points/api_end_points.dart';
+import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/data/models/sign_up_model/sign_up.dart';
 import 'package:shiftsync/data/models/sign_up_response_model/sign_up_response_model.dart';
 
 class SignUpDataProvider {
   Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
   Future<SignUpResponseModel> sinUp(SignUpModel signUpModel) async {
+    dio.interceptors.add(CookieManager(cookieJar));
     try {
       final response = await dio.post(singUpPoint, data: {
         "firstname": signUpModel.firstname,
@@ -15,7 +18,6 @@ class SignUpDataProvider {
         "username": signUpModel.username,
         "password": signUpModel.password
       });
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         return SignUpResponseModel.fromJson(response.data);
       } else {
