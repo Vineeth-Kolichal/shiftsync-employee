@@ -13,6 +13,7 @@ import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/logout/logout_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/complete_profile_details_screen.dart';
@@ -64,6 +65,9 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider<CompleteProfileScreenBloc>(
           create: (ctx) => CompleteProfileScreenBloc(),
+        ),
+        BlocProvider<UploadImageCubit>(
+          create: (ctx) => UploadImageCubit(),
         ),
       ],
       child: MaterialApp(

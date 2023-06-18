@@ -8,7 +8,7 @@ import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/core/enums/complete_profile_enums.dart';
-import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/title_text.dart';
+import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class PersonalinformationSection extends StatelessWidget {

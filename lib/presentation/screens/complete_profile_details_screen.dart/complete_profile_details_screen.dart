@@ -2,17 +2,19 @@
 
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
+import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/core/enums/complete_profile_enums.dart';
+import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/bank_account_details.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/comunication_details.dart';
-import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/personal_information_section.dart';
-import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/title_text.dart';
+import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/job_details.dart';
+import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/other_details.dart';
+import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
@@ -26,7 +28,8 @@ class CompleteProfileDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MaritalStatus? maritalStatus;
     Gender? gender;
-
+    TextEditingController communicationController = TextEditingController();
+    TextEditingController permenentController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -59,16 +62,11 @@ class CompleteProfileDetailsScreen extends StatelessWidget {
                         children: [
                           const TitileText(title: 'Upload Photo'),
                           kHeightFive,
-                          BlocProvider(
-                            create: (context) => CompleteProfileScreenBloc(),
-                            child: InkWell(
-                              onTap: () {
-                                context
-                                    .read<CompleteProfileScreenBloc>()
-                                    .add(UploadImageEvent());
-                              },
-                              child: ProfileImage(size: size),
-                            ),
+                          InkWell(
+                            onTap: () {
+                              context.read<UploadImageCubit>().uploadImage();
+                            },
+                            child: ProfileImage(size: size),
                           ),
                         ],
                       ),
@@ -174,13 +172,21 @@ class CompleteProfileDetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              CommunicationDetails(),
+              JobDetails(),
+              CommunicationDetails(
+                  communicationController: communicationController,
+                  permenentController: permenentController),
+              BankAccountDetailsSection(),
+              OtherDetails(),
+              kHeightTen,
+              Text('* Please verify all detials before clicking submit button'),
               SubmitButton(
-                  onPressed: () {
-                    log('$gender ,$maritalStatus,${dataController.text}');
-                  },
-                  label: 'Submit',
-                  buttonWidth: size.width * 0.8)
+                onPressed: () {
+                  log('$gender ,$maritalStatus,${dataController.text}');
+                },
+                label: 'Submit',
+                buttonWidth: size.width * 0.8,
+              ),
             ],
           ),
         ),
@@ -199,11 +205,13 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CompleteProfileScreenBloc, CompleteProfileScreenState>(
-      builder: (context, state) {
-        if (state is UploadPhotoState) {
+    return BlocConsumer<UploadImageCubit, UploadImageState>(
+      listener: (context, state) {
+        if (state is UploadImgState) {
           newImage = state.image;
         }
+      },
+      builder: (context, state) {
         return Container(
           height: size.width * 0.31,
           width: size.width * 0.27,

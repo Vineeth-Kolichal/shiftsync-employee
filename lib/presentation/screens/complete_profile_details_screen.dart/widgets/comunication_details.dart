@@ -3,8 +3,12 @@ import 'package:shiftsync/core/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class CommunicationDetails extends StatelessWidget {
-  const CommunicationDetails({super.key});
-
+  CommunicationDetails(
+      {super.key,
+      required this.communicationController,
+      required this.permenentController});
+  TextEditingController permenentController;
+  TextEditingController communicationController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,20 +16,20 @@ class CommunicationDetails extends StatelessWidget {
       children: [
         kHeightTen,
         const Text(
-          '2.Communication Details',
+          '3.Communication Details',
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
         ),
         kHeightTen,
         CustomTextFormFiel(
           controller: TextEditingController(),
           labelText: 'Permenent address',
-          maxLines: 7,
+          maxLines: 5,
         ),
         kHeightTen,
         CustomTextFormFiel(
           controller: TextEditingController(),
-          labelText: 'Permenent address',
-          maxLines: 7,
+          labelText: 'Communication address',
+          maxLines: 5,
         ),
       ],
     );
