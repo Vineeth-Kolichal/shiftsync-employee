@@ -130,10 +130,8 @@ class SignInScreen extends StatelessWidget {
                           SignInTextFormField(
                             keyboardType: TextInputType.name,
                             controller: userNameController,
-                            obscureText: false,
                             icon: Iconsax.user,
                             hintText: 'e-mail id',
-                            suffix: null,
                             formKey: _formKey,
                           ),
                           kHeightTen,

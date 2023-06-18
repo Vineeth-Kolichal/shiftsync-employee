@@ -116,8 +116,6 @@ class SignUpScreen extends StatelessWidget {
                         SignInTextFormField(
                           icon: Iconsax.user_octagon,
                           hintText: 'First Name',
-                          suffix: null,
-                          obscureText: false,
                           controller: firstNameController,
                           keyboardType: TextInputType.text,
                           formKey: _formKey,
@@ -126,8 +124,6 @@ class SignUpScreen extends StatelessWidget {
                         SignInTextFormField(
                           icon: Iconsax.user,
                           hintText: 'Last Name',
-                          suffix: null,
-                          obscureText: false,
                           controller: lastNameController,
                           keyboardType: TextInputType.name,
                           formKey: _formKey,
@@ -136,8 +132,6 @@ class SignUpScreen extends StatelessWidget {
                         SignInTextFormField(
                           icon: CupertinoIcons.mail,
                           hintText: 'e-mail',
-                          suffix: null,
-                          obscureText: false,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           formKey: _formKey,
@@ -146,8 +140,6 @@ class SignUpScreen extends StatelessWidget {
                         SignInTextFormField(
                           icon: Iconsax.call,
                           hintText: 'Phone Number',
-                          suffix: null,
-                          obscureText: false,
                           controller: phoneController,
                           keyboardType: TextInputType.phone,
                           formKey: _formKey,

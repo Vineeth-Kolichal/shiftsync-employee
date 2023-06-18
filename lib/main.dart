@@ -1,19 +1,21 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
+import 'package:shiftsync/bussiness_logic/cubits/logout/logout_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
 import 'package:shiftsync/core/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
+import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/complete_profile_details_screen.dart';
 
 late Directory appDirectory;
 
@@ -33,7 +35,6 @@ class ShiftSyncApp extends StatelessWidget {
   final Connectivity connectivity;
   @override
   Widget build(BuildContext context) {
-    AppRoutes appRoutes = AppRoutes();
     return MultiBlocProvider(
       providers: [
         BlocProvider<InternetConnectionCheckCubit>(
@@ -58,6 +59,12 @@ class ShiftSyncApp extends StatelessWidget {
         BlocProvider<OtpVerificationBloc>(
           create: (ctx) => OtpVerificationBloc(),
         ),
+        BlocProvider<LogoutCubit>(
+          create: (ctx) => LogoutCubit(),
+        ),
+        BlocProvider<CompleteProfileScreenBloc>(
+          create: (ctx) => CompleteProfileScreenBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -65,8 +72,8 @@ class ShiftSyncApp extends StatelessWidget {
           primarySwatch: customPrimaryColor,
           scaffoldBackgroundColor: scafoldBackgroundColor,
         ),
-        onGenerateRoute: appRoutes.onGenerateRoute,
-        //home: SetPinScreen(),
+        // onGenerateRoute: appRoutes.onGenerateRoute,
+        home: CompleteProfileDetailsScreen(),
       ),
     );
   }

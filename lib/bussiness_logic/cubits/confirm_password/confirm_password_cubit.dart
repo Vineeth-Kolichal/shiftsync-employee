@@ -11,6 +11,7 @@ class ConfirmPasswordCubit extends Cubit<ConfirmPasswordState> {
     }
     pass = password;
   }
+
 //to manage the password and confirm password in the signup screen
   void checkPassword(String? confirmPassword) {
     if (confirmPassword == null || confirmPassword.isEmpty) {

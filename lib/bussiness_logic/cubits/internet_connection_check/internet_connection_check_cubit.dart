@@ -16,7 +16,7 @@ class InternetConnectionCheckCubit extends Cubit<InternetConnectionCheckState> {
         connectivity.onConnectivityChanged.listen((connectivityResult) {
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
-            //if internet is connected
+        //if internet is connected
         emitIntenetConnected();
       } else {
         //if mobile is not connected to mobile data ro wifi then emit no internet

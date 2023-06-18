@@ -3,9 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:shiftsync/core/api_end_points/api_end_points.dart';
-import 'package:shiftsync/core/api_end_points/persistent_cookiejar.dart';
-import 'package:shiftsync/core/constants/constants.dart';
-
+import 'package:shiftsync/core/cookie_handler/persist_cookiejar.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_response_model/sign_in_authentication_response.dart';
 
@@ -14,7 +12,7 @@ class SignInDataProvider {
       SignInAuthenticationModel signInAuthenticationModel) async {
     Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
 
-    dio.interceptors.add(CookieManager(persistentCookieJar));
+    dio.interceptors.add(CookieManager(persistCookieJar));
     try {
       final response = await dio.post(
         signInPoint,

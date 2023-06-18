@@ -9,9 +9,11 @@ class SignUpOtpResponseModel {
 
   @JsonKey(name: 'message')
   String? message;
-  
 
-  SignUpOtpResponseModel({this.status, this.message,});
+  SignUpOtpResponseModel({
+    this.status,
+    this.message,
+  });
 
   factory SignUpOtpResponseModel.fromJson(Map<String, dynamic> json) {
     return _$SignUpOtpResponseModelFromJson(json);
