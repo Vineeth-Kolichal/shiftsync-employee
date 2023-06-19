@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/colors/common_colors.dart';
+import 'package:shiftsync/util/colors/common_colors.dart';
 
 class TitileText extends StatelessWidget {
   const TitileText({super.key, required this.title});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(

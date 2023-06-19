@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
 
 class PinInputField extends StatelessWidget {
   PinInputField(

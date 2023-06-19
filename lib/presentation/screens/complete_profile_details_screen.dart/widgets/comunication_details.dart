@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class CommunicationDetails extends StatelessWidget {
-  CommunicationDetails(
+  const CommunicationDetails(
       {super.key,
       required this.communicationController,
       required this.permenentController});
-  TextEditingController permenentController;
-  TextEditingController communicationController;
+  final TextEditingController permenentController;
+  final TextEditingController communicationController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,13 +21,13 @@ class CommunicationDetails extends StatelessWidget {
         ),
         kHeightTen,
         CustomTextFormFiel(
-          controller: TextEditingController(),
+          controller: permenentController,
           labelText: 'Permenent address',
           maxLines: 5,
         ),
         kHeightTen,
         CustomTextFormFiel(
-          controller: TextEditingController(),
+          controller: communicationController,
           labelText: 'Communication address',
           maxLines: 5,
         ),

@@ -5,8 +5,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/background_stack.dart';
 
 class OtpVerificationScreen extends StatelessWidget {

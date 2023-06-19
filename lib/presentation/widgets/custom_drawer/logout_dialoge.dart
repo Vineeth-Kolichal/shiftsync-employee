@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/bussiness_logic/cubits/logout/logout_cubit.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/constants/shared_preference_key_names.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/constants/shared_preference_key_names.dart';
 
 void logout(BuildContext context) {
   showDialog(

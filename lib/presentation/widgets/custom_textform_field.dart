@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 
 class CustomTextFormFiel extends StatelessWidget {

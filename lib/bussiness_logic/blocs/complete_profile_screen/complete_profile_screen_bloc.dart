@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'dart:typed_data';
 
-import 'package:shiftsync/core/enums/complete_profile_enums.dart';
+import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 
 part 'complete_profile_screen_event.dart';
 part 'complete_profile_screen_state.dart';

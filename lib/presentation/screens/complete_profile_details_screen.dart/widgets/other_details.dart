@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class OtherDetails extends StatelessWidget {
-  const OtherDetails({super.key});
+   const OtherDetails({super.key, required this.aadharController, required this.panController});
+  final TextEditingController aadharController ;
+  final TextEditingController panController ;
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +13,16 @@ class OtherDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeightTen,
-        Text(
+        const Text(
           '5. Other Details',
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
         ),
         kHeightTen,
         CustomTextFormFiel(
-            controller: TextEditingController(), labelText: 'Aadhar Number'),
+            controller:aadharController , labelText: 'Aadhar Number'),
         kHeightTen,
         CustomTextFormFiel(
-            controller: TextEditingController(), labelText: 'PAN number')
+            controller: panController, labelText: 'PAN number')
       ],
     );
   }

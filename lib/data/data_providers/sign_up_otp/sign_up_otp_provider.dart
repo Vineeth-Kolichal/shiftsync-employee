@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:shiftsync/core/api_end_points/api_end_points.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/api_end_points/api_end_points.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/data/models/otp_model/otp.dart';
 import 'package:shiftsync/data/models/sign_up_otp_response_model/sign_up_otp_response_model.dart';
 
 class SignUpOtpProvider {
-  Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+  Dio dio = Dio(BaseOptions(baseUrl: ApiEndPoints.baseUrl));
   Future<SignUpOtpResponseModel> verifyOtp({required OtpModel otp}) async {
     //to use cookie form the signup respose
     dio.interceptors.add(CookieManager(cookieJar));
     try {
       final response = await dio.post(
-        signUpOtpPoint,
+        ApiEndPoints.signUpOtpPoint,
         data: {"otp": otp.otp},
       );
       if (response.statusCode == 201 || response.statusCode == 200) {

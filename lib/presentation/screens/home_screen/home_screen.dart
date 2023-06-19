@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/attendence/attendence_page.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/dashboard_page.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/leave_request/leave_request_page.dart';

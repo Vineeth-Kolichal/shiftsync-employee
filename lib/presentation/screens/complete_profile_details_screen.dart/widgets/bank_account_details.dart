@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class BankAccountDetailsSection extends StatelessWidget {
-  const BankAccountDetailsSection({super.key});
-
+ const  BankAccountDetailsSection({super.key, required this.accNoController, required this.ifscController, required this.nameAspassbookController,});
+ final TextEditingController accNoController;
+ final TextEditingController ifscController ;
+  final TextEditingController nameAspassbookController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,13 +19,13 @@ class BankAccountDetailsSection extends StatelessWidget {
         ),
         kHeightTen,
         CustomTextFormFiel(
-            controller: TextEditingController(), labelText: 'Account number'),
+            controller: accNoController, labelText: 'Account number'),
+        kHeightTen,
+        CustomTextFormFiel(controller: ifscController, labelText: 'IFSC Code'),
         kHeightTen,
         CustomTextFormFiel(
-            controller: TextEditingController(), labelText: 'IFSC Code'),
-        kHeightTen,
-        CustomTextFormFiel(
-            controller: TextEditingController(), labelText: 'Name As Passbook'),
+            controller: nameAspassbookController,
+            labelText: 'Name As Passbook'),
         kHeightTen,
       ],
     );

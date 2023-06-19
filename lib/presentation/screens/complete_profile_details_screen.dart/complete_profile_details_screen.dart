@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/constants/constants.dart';
-import 'package:shiftsync/core/enums/complete_profile_enums.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/constants/constants.dart';
+import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/bank_account_details.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/comunication_details.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/job_details.dart';
@@ -21,15 +21,39 @@ import 'package:shiftsync/presentation/widgets/submit_button.dart';
 
 String? newImage;
 
-class CompleteProfileDetailsScreen extends StatelessWidget {
-  CompleteProfileDetailsScreen({super.key});
-  TextEditingController dataController = TextEditingController();
+class CompleteProfileDetailsScreen extends StatefulWidget {
+ const  CompleteProfileDetailsScreen({super.key});
+
+  @override
+  State<CompleteProfileDetailsScreen> createState() => _CompleteProfileDetailsScreenState();
+}
+
+class _CompleteProfileDetailsScreenState extends State<CompleteProfileDetailsScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController dateController = TextEditingController();
+
+  TextEditingController communicationController = TextEditingController();
+
+  TextEditingController permenentController = TextEditingController();
+
+  TextEditingController accNoController = TextEditingController();
+
+  TextEditingController ifscController = TextEditingController();
+
+  TextEditingController nameAspassbookController = TextEditingController();
+
+  TextEditingController aadharController = TextEditingController();
+
+  TextEditingController panController = TextEditingController();
+
+  TextEditingController desigController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     MaritalStatus? maritalStatus;
     Gender? gender;
-    TextEditingController communicationController = TextEditingController();
-    TextEditingController permenentController = TextEditingController();
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -45,153 +69,170 @@ class CompleteProfileDetailsScreen extends StatelessWidget {
             )),
         body: Padding(
           padding: const EdgeInsets.all(15),
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    '1. Personal Details',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-                  ),
-                  kheightTwenty,
-                  kHeightFive,
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          const TitileText(title: 'Upload Photo'),
-                          kHeightFive,
-                          InkWell(
-                            onTap: () {
-                              context.read<UploadImageCubit>().uploadImage();
-                            },
-                            child: ProfileImage(size: size),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        height: size.width * 0.35,
-                        width: size.width * 0.60,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '1. Personal Details',
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    ),
+                    kheightTwenty,
+                    kHeightFive,
+                    Row(
+                      children: [
+                        Column(
                           children: [
-                            const TitileText(title: 'Gender'),
-                            BlocConsumer<CompleteProfileScreenBloc,
-                                CompleteProfileScreenState>(
-                              listener: (context, state) {
-                                if (state is GenderChangeState) {
-                                  gender = state.gender;
-                                }
+                            const TitileText(title: 'Upload Photo'),
+                            kHeightFive,
+                            InkWell(
+                              onTap: () {
+                                context.read<UploadImageCubit>().uploadImage();
                               },
-                              builder: (context, state) {
-                                return Row(
-                                  children: [
-                                    Radio(
-                                      value: Gender.male,
-                                      groupValue: gender,
-                                      onChanged: (value) {
-                                        context
-                                            .read<CompleteProfileScreenBloc>()
-                                            .add(GenderChangeEvent(
-                                                gender: value!));
-                                      },
-                                    ),
-                                    const Text('Male'),
-                                    Radio(
-                                      value: Gender.female,
-                                      groupValue: gender,
-                                      onChanged: (value) {
-                                        context
-                                            .read<CompleteProfileScreenBloc>()
-                                            .add(GenderChangeEvent(
-                                                gender: value!));
-                                      },
-                                    ),
-                                    const Text('Female')
-                                  ],
-                                );
-                              },
-                            ),
-                            const TitileText(title: 'Marital Status'),
-                            BlocConsumer<CompleteProfileScreenBloc,
-                                CompleteProfileScreenState>(
-                              listener: (context, state) {
-                                if (state is MaritalStatusChangeState) {
-                                  maritalStatus = state.maritalStatus;
-                                }
-                              },
-                              builder: (context, state) {
-                                return Row(
-                                  children: [
-                                    Radio(
-                                      value: MaritalStatus.single,
-                                      groupValue: maritalStatus,
-                                      onChanged: (value) {
-                                        context
-                                            .read<CompleteProfileScreenBloc>()
-                                            .add(MaritalStatusChangeEvent(
-                                                maritalStatus: value!));
-                                      },
-                                    ),
-                                    const Text('Single'),
-                                    Radio(
-                                      value: MaritalStatus.married,
-                                      groupValue: maritalStatus,
-                                      onChanged: (value) {
-                                        context
-                                            .read<CompleteProfileScreenBloc>()
-                                            .add(MaritalStatusChangeEvent(
-                                                maritalStatus: value!));
-                                      },
-                                    ),
-                                    const Text('Married')
-                                  ],
-                                );
-                              },
+                              child: ProfileImage(size: size),
                             ),
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                  kheightTwenty,
-                  CustomTextFormFiel(
-                    onTap: () {
-                      showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1975),
-                          lastDate: DateTime.now());
-                    },
-                    keyboardType: TextInputType.none,
-                    controller: dataController,
-                    labelText: 'Date of Birth',
-                    suffuxIcon: const Icon(Iconsax.calendar),
-                  ),
-                ],
-              ),
-              JobDetails(),
-              CommunicationDetails(
-                  communicationController: communicationController,
-                  permenentController: permenentController),
-              BankAccountDetailsSection(),
-              OtherDetails(),
-              kHeightTen,
-              Text('* Please verify all detials before clicking submit button'),
-              SubmitButton(
-                onPressed: () {
-                  log('$gender ,$maritalStatus,${dataController.text}');
-                },
-                label: 'Submit',
-                buttonWidth: size.width * 0.8,
-              ),
-            ],
+                        const Spacer(),
+                        SizedBox(
+                          height: size.width * 0.35,
+                          width: size.width * 0.60,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const TitileText(title: 'Gender'),
+                              BlocConsumer<CompleteProfileScreenBloc,
+                                  CompleteProfileScreenState>(
+                                listener: (context, state) {
+                                  if (state is GenderChangeState) {
+                                    gender = state.gender;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return Row(
+                                    children: [
+                                      Radio(
+                                        value: Gender.male,
+                                        groupValue: gender,
+                                        onChanged: (value) {
+                                          context
+                                              .read<CompleteProfileScreenBloc>()
+                                              .add(GenderChangeEvent(
+                                                  gender: value!));
+                                        },
+                                      ),
+                                      const Text('Male'),
+                                      Radio(
+                                        value: Gender.female,
+                                        groupValue: gender,
+                                        onChanged: (value) {
+                                          context
+                                              .read<CompleteProfileScreenBloc>()
+                                              .add(GenderChangeEvent(
+                                                  gender: value!));
+                                        },
+                                      ),
+                                      const Text('Female')
+                                    ],
+                                  );
+                                },
+                              ),
+                              const TitileText(title: 'Marital Status'),
+                              BlocConsumer<CompleteProfileScreenBloc,
+                                  CompleteProfileScreenState>(
+                                listener: (context, state) {
+                                  if (state is MaritalStatusChangeState) {
+                                    maritalStatus = state.maritalStatus;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return Row(
+                                    children: [
+                                      Radio(
+                                        value: MaritalStatus.single,
+                                        groupValue: maritalStatus,
+                                        onChanged: (value) {
+                                          context
+                                              .read<CompleteProfileScreenBloc>()
+                                              .add(MaritalStatusChangeEvent(
+                                                  maritalStatus: value!));
+                                        },
+                                      ),
+                                      const Text('Single'),
+                                      Radio(
+                                        value: MaritalStatus.married,
+                                        groupValue: maritalStatus,
+                                        onChanged: (value) {
+                                          context
+                                              .read<CompleteProfileScreenBloc>()
+                                              .add(MaritalStatusChangeEvent(
+                                                  maritalStatus: value!));
+                                        },
+                                      ),
+                                      const Text('Married')
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    kheightTwenty,
+                    CustomTextFormFiel(
+                      onTap: () {
+                        showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1975),
+                            lastDate: DateTime.now());
+                      },
+                      keyboardType: TextInputType.none,
+                      controller: dateController,
+                      labelText: 'Date of Birth',
+                      suffuxIcon: const Icon(Iconsax.calendar),
+                    ),
+                  ],
+                ),
+                JobDetails(desigController: desigController),
+                CommunicationDetails(
+                    communicationController: communicationController,
+                    permenentController: permenentController),
+                BankAccountDetailsSection(
+                    accNoController: accNoController,
+                    ifscController: ifscController,
+                    nameAspassbookController: nameAspassbookController),
+                OtherDetails(
+                    aadharController: aadharController,
+                    panController: panController),
+                kHeightTen,
+                Text('* Please verify all detials before clicking submit button'),
+                SubmitButton(
+                  onPressed: () {
+                    log('${communicationController.text}, ${permenentController.text}');
+                    log('$gender ,$maritalStatus,${dateController.text}');
+                  },
+                  label: 'Submit',
+                  buttonWidth: size.width * 0.8,
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    permenentController.dispose();
+    communicationController.dispose();
+    super.dispose();
   }
 }
 

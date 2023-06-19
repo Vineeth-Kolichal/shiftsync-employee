@@ -1,8 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/colors/common_colors.dart';
-import 'package:shiftsync/core/debouncer/debouncer.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/colors/common_colors.dart';
+import 'package:shiftsync/util/debouncer/debouncer.dart';
 
 // ignore: must_be_immutable
 class SignInTextFormField extends StatelessWidget {

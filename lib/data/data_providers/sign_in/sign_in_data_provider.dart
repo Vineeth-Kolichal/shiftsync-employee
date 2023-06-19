@@ -2,20 +2,20 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:shiftsync/core/api_end_points/api_end_points.dart';
-import 'package:shiftsync/core/cookie_handler/persist_cookiejar.dart';
+import 'package:shiftsync/util/api_end_points/api_end_points.dart';
+import 'package:shiftsync/util/cookie_handler/persist_cookiejar.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_response_model/sign_in_authentication_response.dart';
 
 class SignInDataProvider {
   Future<SignInAuthenticationResponseModel> signIn(
       SignInAuthenticationModel signInAuthenticationModel) async {
-    Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+    Dio dio = Dio(BaseOptions(baseUrl: ApiEndPoints.baseUrl));
 
     dio.interceptors.add(CookieManager(persistCookieJar));
     try {
       final response = await dio.post(
-        signInPoint,
+        ApiEndPoints.signInPoint,
         data: {
           "username": signInAuthenticationModel.username,
           "password": signInAuthenticationModel.password

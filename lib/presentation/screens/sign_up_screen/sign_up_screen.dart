@@ -9,10 +9,10 @@ import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verificatio
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/colors/common_colors.dart';
-import 'package:shiftsync/core/constants/constants.dart';
-import 'package:shiftsync/core/debouncer/debouncer.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/colors/common_colors.dart';
+import 'package:shiftsync/util/constants/constants.dart';
+import 'package:shiftsync/util/debouncer/debouncer.dart';
 import 'package:shiftsync/data/models/otp_model/otp.dart';
 import 'package:shiftsync/data/models/sign_up_model/sign_up.dart';
 import 'package:shiftsync/presentation/screens/otp_verification_screen/screen_otp_verification.dart';

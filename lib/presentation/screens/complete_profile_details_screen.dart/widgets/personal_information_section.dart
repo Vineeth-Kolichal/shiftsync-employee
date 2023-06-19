@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
-import 'package:shiftsync/core/colors/background_colors.dart';
-import 'package:shiftsync/core/constants/constants.dart';
-import 'package:shiftsync/core/enums/complete_profile_enums.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
+import 'package:shiftsync/util/constants/constants.dart';
+import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 

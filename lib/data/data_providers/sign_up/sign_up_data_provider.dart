@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:shiftsync/core/api_end_points/api_end_points.dart';
-import 'package:shiftsync/core/constants/constants.dart';
+import 'package:shiftsync/util/api_end_points/api_end_points.dart';
+import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/data/models/sign_up_model/sign_up.dart';
 import 'package:shiftsync/data/models/sign_up_response_model/sign_up_response_model.dart';
 
 class SignUpDataProvider {
-  Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+  Dio dio = Dio(BaseOptions(baseUrl: ApiEndPoints.baseUrl));
   Future<SignUpResponseModel> sinUp(SignUpModel signUpModel) async {
     //if server set any cookie cookiejar will handle it
     dio.interceptors.add(CookieManager(cookieJar));
     try {
-      final response = await dio.post(singUpPoint, data: {
+      final response = await dio.post(ApiEndPoints.singUpPoint, data: {
         "firstname": signUpModel.firstname,
         "lastname": signUpModel.lastname,
         "email": signUpModel.email,
