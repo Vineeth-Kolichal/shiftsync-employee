@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
@@ -11,12 +12,9 @@ class JobDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeightTen,
-        const Text(
-          '2.Job Details',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-        ),
+        const BoldTitleText(title: '2.Job Details'),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
             controller: TextEditingController(), labelText: 'Designation'),
         kHeightTen
       ],

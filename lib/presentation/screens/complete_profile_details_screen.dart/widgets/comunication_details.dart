@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
@@ -15,18 +16,15 @@ class CommunicationDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeightTen,
-        const Text(
-          '3.Communication Details',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-        ),
+        const BoldTitleText(title: '3.Communication Details'),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
           controller: permenentController,
           labelText: 'Permenent address',
           maxLines: 5,
         ),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
           controller: communicationController,
           labelText: 'Communication address',
           maxLines: 5,

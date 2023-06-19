@@ -75,8 +75,8 @@ class ShiftSyncApp extends StatelessWidget {
           primarySwatch: customPrimaryColor,
           scaffoldBackgroundColor: scafoldBackgroundColor,
         ),
-        // onGenerateRoute: appRoutes.onGenerateRoute,
-        home: CompleteProfileDetailsScreen(),
+        onGenerateRoute: appRoutes.onGenerateRoute,
+        //home: CompleteProfileDetailsScreen(),
       ),
     );
   }

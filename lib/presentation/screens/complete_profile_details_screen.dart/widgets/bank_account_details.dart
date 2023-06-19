@@ -18,12 +18,12 @@ class BankAccountDetailsSection extends StatelessWidget {
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
         ),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
             controller: accNoController, labelText: 'Account number'),
         kHeightTen,
-        CustomTextFormFiel(controller: ifscController, labelText: 'IFSC Code'),
+        CustomTextFormField(controller: ifscController, labelText: 'IFSC Code'),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
             controller: nameAspassbookController,
             labelText: 'Name As Passbook'),
         kHeightTen,

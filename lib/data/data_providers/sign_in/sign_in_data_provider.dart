@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -21,12 +20,11 @@ class SignInDataProvider {
           "password": signInAuthenticationModel.password
         },
       );
+      
       if (response.statusCode == 200) {
         //if authentication is successfull return response
-        log('is it working');
         return SignInAuthenticationResponseModel.fromJson(response.data);
       } else {
-        log('message one');
         //if any error occured the return an error message
         return SignInAuthenticationResponseModel(
             data: [], errors: ['Something Error'], message: '', status: 404);
@@ -37,13 +35,11 @@ class SignInDataProvider {
         return SignInAuthenticationResponseModel(
             status: e.response?.statusCode, errors: e.response?.data['errors']);
       } else {
-        log('meeeeee');
         //if any error occured the return an error message
         return SignInAuthenticationResponseModel(
             data: [], errors: ['Something Error'], message: '', status: 404);
       }
     } catch (e) {
-      log(e.toString());
       //if any error occured the return an error message
       return SignInAuthenticationResponseModel(
           data: [], errors: ['Something Error'], message: '', status: 404);

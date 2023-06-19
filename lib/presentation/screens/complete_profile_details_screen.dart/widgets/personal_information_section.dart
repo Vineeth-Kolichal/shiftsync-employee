@@ -158,7 +158,7 @@ class PersonalinformationSection extends StatelessWidget {
           ],
         ),
         kheightTwenty,
-        CustomTextFormFiel(
+        CustomTextFormField(
           onTap: () {
             showDatePicker(
                 context: context,

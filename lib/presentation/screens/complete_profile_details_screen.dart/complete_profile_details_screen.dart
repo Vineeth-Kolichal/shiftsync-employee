@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
+import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
@@ -22,13 +23,15 @@ import 'package:shiftsync/presentation/widgets/submit_button.dart';
 String? newImage;
 
 class CompleteProfileDetailsScreen extends StatefulWidget {
- const  CompleteProfileDetailsScreen({super.key});
+  const CompleteProfileDetailsScreen({super.key});
 
   @override
-  State<CompleteProfileDetailsScreen> createState() => _CompleteProfileDetailsScreenState();
+  State<CompleteProfileDetailsScreen> createState() =>
+      _CompleteProfileDetailsScreenState();
 }
 
-class _CompleteProfileDetailsScreenState extends State<CompleteProfileDetailsScreen> {
+class _CompleteProfileDetailsScreenState
+    extends State<CompleteProfileDetailsScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController dateController = TextEditingController();
@@ -76,10 +79,7 @@ class _CompleteProfileDetailsScreenState extends State<CompleteProfileDetailsScr
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      '1. Personal Details',
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-                    ),
+                    const BoldTitleText(title: '1. Personal Details'),
                     kheightTwenty,
                     kHeightFive,
                     Row(
@@ -183,7 +183,7 @@ class _CompleteProfileDetailsScreenState extends State<CompleteProfileDetailsScr
                       ],
                     ),
                     kheightTwenty,
-                    CustomTextFormFiel(
+                    CustomTextFormField(
                       onTap: () {
                         showDatePicker(
                             context: context,
@@ -210,7 +210,8 @@ class _CompleteProfileDetailsScreenState extends State<CompleteProfileDetailsScr
                     aadharController: aadharController,
                     panController: panController),
                 kHeightTen,
-                Text('* Please verify all detials before clicking submit button'),
+                Text(
+                    '* Please verify all detials before clicking submit button'),
                 SubmitButton(
                   onPressed: () {
                     log('${communicationController.text}, ${permenentController.text}');

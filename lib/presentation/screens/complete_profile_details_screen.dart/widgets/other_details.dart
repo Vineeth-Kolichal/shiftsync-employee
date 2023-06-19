@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
@@ -13,15 +14,12 @@ class OtherDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeightTen,
-        const Text(
-          '5. Other Details',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-        ),
+        const BoldTitleText(title: '5. Other Details'),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
             controller:aadharController , labelText: 'Aadhar Number'),
         kHeightTen,
-        CustomTextFormFiel(
+        CustomTextFormField(
             controller: panController, labelText: 'PAN number')
       ],
     );

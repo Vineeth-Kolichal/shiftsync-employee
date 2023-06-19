@@ -3,8 +3,8 @@ import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 
-class CustomTextFormFiel extends StatelessWidget {
-  const CustomTextFormFiel(
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField(
       {super.key,
       this.keyboardType = TextInputType.text,
       this.onChanged,
@@ -29,6 +29,13 @@ class CustomTextFormFiel extends StatelessWidget {
         TitileText(title: labelText),
         kHeightFive,
         TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please fill $labelText';
+            } else {
+              return null;
+            }
+          },
           maxLines: maxLines,
           onTap: onTap,
           controller: controller,

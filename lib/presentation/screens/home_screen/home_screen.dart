@@ -14,7 +14,7 @@ import 'package:shiftsync/presentation/widgets/custom_bottom_navigationbar/custo
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final List<Widget> pages = const [
+  final List<Widget> pages = [
     DashboardPage(),
     LeaveRequestpage(),
     AttendencePage(),
