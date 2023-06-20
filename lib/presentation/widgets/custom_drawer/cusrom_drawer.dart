@@ -52,7 +52,10 @@ class CustomDrawer extends StatelessWidget {
         ),
         ListView(
           children: [
-            DrawerHeader(child: SizedBox()),
+            DrawerHeader(
+                child: Center(
+              child: Image.asset('assets/images/shiftsync.png'),
+            )),
             ListTile(
               leading: const Icon(Iconsax.lock_1),
               title: const Text('Set/Reset PIN'),
@@ -67,17 +70,17 @@ class CustomDrawer extends StatelessWidget {
                   // ignore: use_build_context_synchronously
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: ((ctx) =>
-                          PinValidationScreen(routeName: '/set_pin'))));
+                          const PinValidationScreen(routeName: '/set_pin'))));
                 }
               },
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Iconsax.document),
               title: Text('Privacy policy'),
             ),
             ListTile(
-              leading: Icon(Iconsax.logout_1),
-              title: Text('Logout'),
+              leading: const Icon(Iconsax.logout_1),
+              title: const Text('Logout'),
               onTap: () {
                 logout(context);
               },

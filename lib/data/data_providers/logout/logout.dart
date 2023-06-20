@@ -12,20 +12,16 @@ class Logout {
     try {
       dio.interceptors.add(CookieManager(persistCookieJar));
       final response = await dio.get(ApiEndPoints.logoutPoint);
-      if (response.statusCode == 401) {
-    
-      }
+      if (response.statusCode == 401) {}
       if (response.statusCode == 200) {
         return LogoutResponseModel.fromJson(response.data);
       } else {
-      
         return LogoutResponseModel(message: 'Something error', status: 404);
       }
     } on DioException catch (e) {
       log(e.response.toString());
       return LogoutResponseModel(message: 'Something error', status: 401);
     } catch (e) {
-    
       return LogoutResponseModel(message: 'Something Error', status: 401);
     }
   }

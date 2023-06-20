@@ -13,7 +13,11 @@ import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class PersonalinformationSection extends StatelessWidget {
   PersonalinformationSection(
-      {super.key, this.gender, this.maritalStatus, this.newImage,required this.dateController});
+      {super.key,
+      this.gender,
+      this.maritalStatus,
+      this.newImage,
+      required this.dateController});
   Gender? gender;
   MaritalStatus? maritalStatus;
   String? newImage;

@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shiftsync/bussiness_logic/blocs/bloc/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
@@ -21,7 +22,8 @@ late Directory appDirectory;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  appDirectory = await getApplicationDocumentsDirectory();
+  appDirectory = await getTemporaryDirectory();
+  // appDirectory = await getApplicationDocumentsDirectory();
   runApp(ShiftSyncApp(
     appRoutes: AppRoutes(),
     connectivity: Connectivity(),
@@ -67,6 +69,9 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider<UploadImageCubit>(
           create: (ctx) => UploadImageCubit(),
+        ),
+        BlocProvider<DashboardBloc>(
+          create: (ctx) => DashboardBloc(),
         ),
       ],
       child: MaterialApp(

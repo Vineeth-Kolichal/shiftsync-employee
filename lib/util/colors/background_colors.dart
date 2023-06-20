@@ -18,3 +18,8 @@ const MaterialColor customPrimaryColor = MaterialColor(
     900: Color(0xFF0377D9),
   },
 );
+
+const List<Color> linearGradientColors = [
+  Color.fromARGB(255, 245, 247, 247),
+  Color.fromARGB(255, 226, 240, 241)
+];

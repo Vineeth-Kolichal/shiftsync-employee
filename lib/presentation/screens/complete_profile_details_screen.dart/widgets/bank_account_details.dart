@@ -3,9 +3,14 @@ import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 
 class BankAccountDetailsSection extends StatelessWidget {
- const  BankAccountDetailsSection({super.key, required this.accNoController, required this.ifscController, required this.nameAspassbookController,});
- final TextEditingController accNoController;
- final TextEditingController ifscController ;
+  const BankAccountDetailsSection({
+    super.key,
+    required this.accNoController,
+    required this.ifscController,
+    required this.nameAspassbookController,
+  });
+  final TextEditingController accNoController;
+  final TextEditingController ifscController;
   final TextEditingController nameAspassbookController;
   @override
   Widget build(BuildContext context) {

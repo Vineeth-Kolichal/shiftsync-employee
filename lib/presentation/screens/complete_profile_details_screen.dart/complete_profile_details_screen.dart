@@ -68,7 +68,11 @@ class _CompleteProfileDetailsScreenState
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
               appBarColor: Colors.white,
-              leading: Icon(Iconsax.arrow_left_2),
+              leading: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushReplacementNamed('/home_screen');
+                  },
+                  child: Icon(Iconsax.arrow_left_2)),
             )),
         body: Padding(
           padding: const EdgeInsets.all(15),
@@ -84,19 +88,19 @@ class _CompleteProfileDetailsScreenState
                     kHeightFive,
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            const TitileText(title: 'Upload Photo'),
-                            kHeightFive,
-                            InkWell(
-                              onTap: () {
-                                context.read<UploadImageCubit>().uploadImage();
-                              },
-                              child: ProfileImage(size: size),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
+                        // Column(
+                        //   children: [
+                        //     const TitileText(title: 'Upload Photo'),
+                        //     kHeightFive,
+                        //     InkWell(
+                        //       onTap: () {
+                        //         context.read<UploadImageCubit>().uploadImage();
+                        //       },
+                        //       child: ProfileImage(size: size),
+                        //     ),
+                        //   ],
+                        // ),
+                        //const Spacer(),
                         SizedBox(
                           height: size.width * 0.35,
                           width: size.width * 0.60,
