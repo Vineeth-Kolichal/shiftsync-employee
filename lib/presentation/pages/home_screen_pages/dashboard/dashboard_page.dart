@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shiftsync/bussiness_logic/blocs/bloc/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -54,10 +55,31 @@ class DashboardPage extends StatelessWidget {
                 ),
               );
             }
-            return Scaffold(
-              body: Column(
-                children: [Text('dashboard')],
-              ),
+            return BlocBuilder<DashboardBloc, DashboardState>(
+              builder: (context, state) {
+                if (state is DashboardResponseState) {
+                  return Scaffold(
+                    body: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(child: Text('${state.dashboardModel.message}')),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed('/complete_profile');
+                            },
+                            child: Text('fill form again'))
+                      ],
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  );
+                }
+              },
             );
           },
         ),

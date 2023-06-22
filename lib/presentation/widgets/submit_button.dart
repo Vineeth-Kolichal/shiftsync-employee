@@ -5,11 +5,13 @@ class SubmitButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.label,
-      required this.buttonWidth});
+      required this.buttonWidth,
+      this.backgroundColor});
 
   final String label;
   final Function() onPressed;
   final double buttonWidth;
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,6 +21,7 @@ class SubmitButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

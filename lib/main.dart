@@ -77,6 +77,7 @@ class ShiftSyncApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          // brightness: Brightness.dark,
           primarySwatch: customPrimaryColor,
           scaffoldBackgroundColor: scafoldBackgroundColor,
         ),

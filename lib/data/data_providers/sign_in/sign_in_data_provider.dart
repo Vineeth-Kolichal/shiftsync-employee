@@ -12,13 +12,8 @@ class SignInDataProvider {
 
     dio.interceptors.add(CookieManager(persistCookieJar));
     try {
-      final response = await dio.post(
-        ApiEndPoints.signInPoint,
-        data: {
-          "username": signInAuthenticationModel.username,
-          "password": signInAuthenticationModel.password
-        },
-      );
+      final response = await dio.post(ApiEndPoints.signInPoint,
+          data: signInAuthenticationModel.toJson());
 
       if (response.statusCode == 200) {
         //if authentication is successfull return response

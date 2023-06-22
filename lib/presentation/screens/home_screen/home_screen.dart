@@ -16,6 +16,7 @@ import 'package:shiftsync/presentation/pages/home_screen_pages/salary_details/sa
 import 'package:shiftsync/presentation/widgets/custom_drawer/cusrom_drawer.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/custom_bottom_navigationbar/custom_bottom_navigationbar.dart';
+import 'package:shiftsync/util/cookie_handler/persist_cookiejar.dart';
 import 'package:shiftsync/util/debouncer/debouncer.dart';
 
 Debouncer debouncer = Debouncer(milliseconds: 1000);
@@ -51,14 +52,14 @@ class HomeScreen extends StatelessWidget {
           }
           if (state is DashboardResponseState &&
               state.dashboardModel.msg != null) {
-            //persistCookieJar.deleteAll();
-            // showAlert(
-            //   context: context,
-            //   title: const Text('Error'),
-            //   content: 'Something went wrong, please sign in again!',
-            //   nextRouteName: '/sign_in',
-            //   buttonLabel: 'Sign In',
-            // );
+            persistCookieJar.deleteAll();
+            showAlert(
+              context: context,
+              title: const Text('Oops'),
+              content: 'Your session is expired, please sign in again!',
+              nextRouteName: '/sign_in',
+              buttonLabel: 'Sign In',
+            );
           }
         });
       },
@@ -155,7 +156,9 @@ class HomeScreen extends StatelessWidget {
               body: pages[state.selectedIndex],
               bottomNavigationBar: const CustomBottomNavigationbar(),
               floatingActionButton: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/punch');
+                },
                 child: const Icon(
                   Iconsax.finger_scan,
                   size: 30,

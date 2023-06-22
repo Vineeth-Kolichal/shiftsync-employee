@@ -5,6 +5,7 @@ class DashboardRepository {
   DashboardDataProvider dashboardDataProvider = DashboardDataProvider();
   Future<DashboardModel> dashboardData() async {
     final response = await dashboardDataProvider.getDashboradData();
+
     final DashboardModel result = response.fold(
         (l) => DashboardModel.fromJson(l.data),
         (r) => DashboardModel(status: 404, message: r));

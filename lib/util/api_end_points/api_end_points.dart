@@ -5,4 +5,5 @@ class ApiEndPoints {
   static String signUpOtpPoint = '/signup/verify-otp';
   static String logoutPoint = '/logout';
   static String dashboardPoint = '/dashboard/';
+  static String formSubmitPoint = '/form/';
 }

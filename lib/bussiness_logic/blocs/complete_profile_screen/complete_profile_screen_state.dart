@@ -14,8 +14,3 @@ class MaritalStatusChangeState extends CompleteProfileScreenState {
   final MaritalStatus maritalStatus;
   MaritalStatusChangeState({required this.maritalStatus});
 }
-
-class UploadPhotoState extends CompleteProfileScreenState {
-  final String? image;
-  UploadPhotoState({this.image});
-}

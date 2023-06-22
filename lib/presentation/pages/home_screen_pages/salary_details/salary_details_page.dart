@@ -17,7 +17,7 @@ class SalaryDetailsPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
+          children: [
             BoldTitleText(title: 'Pay detials'),
             kDividerTwo,
             PayDetilsRowWidget(
@@ -85,7 +85,10 @@ class SalaryDetailsPage extends StatelessWidget {
               leadingFontSize: 22,
               text: '19000',
             ),
-            TextButton.icon(onPressed: (){}, icon: Icon(Iconsax.document_download), label: Text('Download salary slip'))
+            TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Iconsax.document_download),
+                label: Text('Download salary slip'))
           ],
         ),
       ),

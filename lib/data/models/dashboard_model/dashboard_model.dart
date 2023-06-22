@@ -9,7 +9,7 @@ class DashboardModel {
 
   @JsonKey(name: 'message')
   String? message;
-@JsonKey(name: 'msg')
+  @JsonKey(name: 'msg')
   String? msg;
 
   DashboardModel({

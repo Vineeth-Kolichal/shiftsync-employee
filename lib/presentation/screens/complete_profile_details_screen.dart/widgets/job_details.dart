@@ -15,7 +15,7 @@ class JobDetails extends StatelessWidget {
         const BoldTitleText(title: '2.Job Details'),
         kHeightTen,
         CustomTextFormField(
-            controller: TextEditingController(), labelText: 'Designation'),
+            controller: desigController, labelText: 'Designation'),
         kHeightTen
       ],
     );

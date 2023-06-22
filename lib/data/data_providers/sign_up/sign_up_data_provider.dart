@@ -11,14 +11,8 @@ class SignUpDataProvider {
     //if server set any cookie cookiejar will handle it
     dio.interceptors.add(CookieManager(cookieJar));
     try {
-      final response = await dio.post(ApiEndPoints.singUpPoint, data: {
-        "firstname": signUpModel.firstname,
-        "lastname": signUpModel.lastname,
-        "email": signUpModel.email,
-        "phone": signUpModel.phone,
-        "username": signUpModel.username,
-        "password": signUpModel.password
-      });
+      final response =
+          await dio.post(ApiEndPoints.singUpPoint, data: signUpModel.toJson());
       if (response.statusCode == 200 || response.statusCode == 201) {
         //if user is entered correct data and an otp send to their mobile number then return this
         return SignUpResponseModel.fromJson(response.data);

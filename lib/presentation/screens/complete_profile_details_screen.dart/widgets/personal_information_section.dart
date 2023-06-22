@@ -43,40 +43,31 @@ class PersonalinformationSection extends StatelessWidget {
                 const TitileText(title: 'Upload Photo'),
                 kHeightFive,
                 InkWell(
-                  onTap: () {
-                    context
-                        .read<CompleteProfileScreenBloc>()
-                        .add(UploadImageEvent());
-                  },
-                  child: BlocBuilder<CompleteProfileScreenBloc,
-                      CompleteProfileScreenState>(
-                    builder: (context, state) {
-                      if (state is UploadPhotoState) {
-                        newImage = state.image;
-                      }
-                      return Container(
-                        height: size.width * 0.31,
-                        width: size.width * 0.27,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: customPrimaryColor[700]!),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: (newImage != null)
-                              ? Image.memory(
-                                  base64Decode(newImage!),
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  'assets/images/user.png',
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                      );
+                    onTap: () {
+                      context
+                          .read<CompleteProfileScreenBloc>()
+                          .add(UploadImageEvent());
                     },
-                  ),
-                ),
+                    child: Container(
+                      height: size.width * 0.31,
+                      width: size.width * 0.27,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: customPrimaryColor[700]!),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: (newImage != null)
+                            ? Image.memory(
+                                base64Decode(newImage!),
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'assets/images/user.png',
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                    )),
               ],
             ),
             const Spacer(),

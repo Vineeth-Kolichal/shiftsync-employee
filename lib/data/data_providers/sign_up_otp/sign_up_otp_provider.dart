@@ -13,7 +13,7 @@ class SignUpOtpProvider {
     try {
       final response = await dio.post(
         ApiEndPoints.signUpOtpPoint,
-        data: {"otp": otp.otp},
+        data: otp.toJson(),
       );
       if (response.statusCode == 201 || response.statusCode == 200) {
         //if otp verification successfull then this wil works

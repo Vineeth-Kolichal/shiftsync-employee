@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
-import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
+import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
-import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/bank_account_details.dart';
@@ -51,12 +50,11 @@ class _CompleteProfileDetailsScreenState
   TextEditingController panController = TextEditingController();
 
   TextEditingController desigController = TextEditingController();
+  MaritalStatus? maritalStatus;
+  Gender? gender;
 
   @override
   Widget build(BuildContext context) {
-    MaritalStatus? maritalStatus;
-    Gender? gender;
-
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -88,19 +86,6 @@ class _CompleteProfileDetailsScreenState
                     kHeightFive,
                     Row(
                       children: [
-                        // Column(
-                        //   children: [
-                        //     const TitileText(title: 'Upload Photo'),
-                        //     kHeightFive,
-                        //     InkWell(
-                        //       onTap: () {
-                        //         context.read<UploadImageCubit>().uploadImage();
-                        //       },
-                        //       child: ProfileImage(size: size),
-                        //     ),
-                        //   ],
-                        // ),
-                        //const Spacer(),
                         SizedBox(
                           height: size.width * 0.35,
                           width: size.width * 0.60,
@@ -188,12 +173,16 @@ class _CompleteProfileDetailsScreenState
                     ),
                     kheightTwenty,
                     CustomTextFormField(
-                      onTap: () {
-                        showDatePicker(
+                      onTap: () async {
+                        final date = await showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1975),
                             lastDate: DateTime.now());
+                        if (date != null) {
+                          dateController.text =
+                              DateFormat.yMMMMd('en_US').format(date);
+                        }
                       },
                       keyboardType: TextInputType.none,
                       controller: dateController,
@@ -202,7 +191,9 @@ class _CompleteProfileDetailsScreenState
                     ),
                   ],
                 ),
-                JobDetails(desigController: desigController),
+                JobDetails(
+                  desigController: desigController,
+                ),
                 CommunicationDetails(
                     communicationController: communicationController,
                     permenentController: permenentController),
@@ -218,8 +209,31 @@ class _CompleteProfileDetailsScreenState
                     '* Please verify all detials before clicking submit button'),
                 SubmitButton(
                   onPressed: () {
-                    log('${communicationController.text}, ${permenentController.text}');
-                    log('$gender ,$maritalStatus,${dateController.text}');
+                    if (_formKey.currentState!.validate()) {
+                      if (gender == null) {
+                        log('select gender');
+                      } else if (maritalStatus == null) {
+                        log('select marital status ');
+                      } else {
+                        ProfileFormModel profileFormModel = ProfileFormModel(
+                            gender: (gender == Gender.male) ? 'm' : 'f',
+                            maritalstatus:
+                                (maritalStatus == MaritalStatus.single)
+                                    ? 's'
+                                    : 'm',
+                            dateofbirth: dateController.text,
+                            paddress: permenentController.text,
+                            caddress: communicationController.text,
+                            accno: accNoController.text,
+                            ifsccode: ifscController.text,
+                            nameinpass: nameAspassbookController.text,
+                            pannumber: panController.text,
+                            adhaarno: aadharController.text,
+                            designation: desigController.text,
+                            photo: 'no_photo');
+                        log('${profileFormModel.toJson()}');
+                      }
+                    }
                   },
                   label: 'Submit',
                   buttonWidth: size.width * 0.8,
@@ -237,48 +251,7 @@ class _CompleteProfileDetailsScreenState
     dateController.dispose();
     permenentController.dispose();
     communicationController.dispose();
+    panController.dispose();
     super.dispose();
-  }
-}
-
-class ProfileImage extends StatelessWidget {
-  const ProfileImage({
-    super.key,
-    required this.size,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<UploadImageCubit, UploadImageState>(
-      listener: (context, state) {
-        if (state is UploadImgState) {
-          newImage = state.image;
-        }
-      },
-      builder: (context, state) {
-        return Container(
-          height: size.width * 0.31,
-          width: size.width * 0.27,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: customPrimaryColor[700]!),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: (newImage != null)
-                ? Image.memory(
-                    base64Decode(newImage!),
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    'assets/images/user.png',
-                    fit: BoxFit.cover,
-                  ),
-          ),
-        );
-      },
-    );
   }
 }
