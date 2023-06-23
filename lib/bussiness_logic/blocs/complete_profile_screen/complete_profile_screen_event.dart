@@ -1,8 +1,6 @@
 part of 'complete_profile_screen_bloc.dart';
 
-class CompleteProfileScreenEvent {
- 
-}
+class CompleteProfileScreenEvent {}
 
 class GenderChangeEvent extends CompleteProfileScreenEvent {
   final Gender gender;
@@ -16,5 +14,7 @@ class MaritalStatusChangeEvent extends CompleteProfileScreenEvent {
 
 class ProfileFormSubmitEvent extends CompleteProfileScreenEvent {
   final ProfileFormModel profileFormModel;
-  ProfileFormSubmitEvent({required this.profileFormModel,});
+  ProfileFormSubmitEvent({
+    required this.profileFormModel,
+  });
 }

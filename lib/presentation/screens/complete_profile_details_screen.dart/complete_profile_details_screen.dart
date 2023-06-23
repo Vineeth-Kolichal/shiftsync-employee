@@ -1,17 +1,12 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/sumbitting_alert.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
-import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/util/debouncer/debouncer.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
@@ -23,6 +18,8 @@ import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
+
+import 'widgets/form_submit_message.dart';
 
 String? newImage;
 
@@ -37,23 +34,14 @@ class CompleteProfileDetailsScreen extends StatefulWidget {
 class _CompleteProfileDetailsScreenState
     extends State<CompleteProfileDetailsScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   TextEditingController dateController = TextEditingController();
-
   TextEditingController communicationController = TextEditingController();
-
   TextEditingController permenentController = TextEditingController();
-
   TextEditingController accNoController = TextEditingController();
-
   TextEditingController ifscController = TextEditingController();
-
   TextEditingController nameAspassbookController = TextEditingController();
-
   TextEditingController aadharController = TextEditingController();
-
   TextEditingController panController = TextEditingController();
-
   TextEditingController desigController = TextEditingController();
   MaritalStatus? maritalStatus;
   Gender? gender;
@@ -67,15 +55,19 @@ class _CompleteProfileDetailsScreenState
         listener: (context, state) {
           log(state.runtimeType.toString());
           if (state.isLoading) {
-            showDialog(context: context, builder: (ctx) => SubmitAlert());
-            log('is loading.....................');
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (ctx) =>
+                  const SubmitAlert(nextScreen: FormSubmitMessage()),
+            );
           }
         },
         child: Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50),
+              preferredSize: const Size.fromHeight(50),
               child: CustomAppBar(
-                title: Text(
+                title: const Text(
                   'Complete your profile',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
@@ -85,7 +77,7 @@ class _CompleteProfileDetailsScreenState
                       Navigator.of(context)
                           .pushReplacementNamed('/home_screen');
                     },
-                    child: Icon(Iconsax.arrow_left_2)),
+                    child: const Icon(Iconsax.arrow_left_2)),
               )),
           body: Padding(
             padding: const EdgeInsets.all(15),
@@ -224,53 +216,43 @@ class _CompleteProfileDetailsScreenState
                       aadharController: aadharController,
                       panController: panController),
                   kHeightTen,
-                  Text(
+                  const Text(
                       '* Please verify all detials before clicking submit button'),
-                  BlocBuilder<CompleteProfileScreenBloc,
-                      CompleteProfileScreenState>(
-                    builder: (context, state) {
-                      log(state.runtimeType.toString());
-                      // if (state is ProfileFormSubmitLoading) {
-                      //   return LoadingAnimationWidget.inkDrop(
-                      //       color: customPrimaryColor, size: 30);
-                      // }
-                      return SubmitButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            if (gender == null) {
-                              log('select gender');
-                            } else if (maritalStatus == null) {
-                              log('select marital status ');
-                            } else {
-                              ProfileFormModel profileFormModel =
-                                  ProfileFormModel(
-                                      gender:
-                                          (gender == Gender.male) ? 'm' : 'f',
-                                      maritalstatus: (maritalStatus ==
-                                              MaritalStatus.single)
-                                          ? 's'
-                                          : 'm',
-                                      dateofbirth: dateController.text,
-                                      paddress: permenentController.text,
-                                      caddress: communicationController.text,
-                                      accno: accNoController.text,
-                                      ifsccode: ifscController.text,
-                                      nameinpass: nameAspassbookController.text,
-                                      pannumber: panController.text,
-                                      adhaarno: aadharController.text,
-                                      designation: desigController.text,
-                                      photo: 'no_photo');
-                              log('${profileFormModel.toJson()}');
-                              context.read<CompleteProfileScreenBloc>().add(
-                                  ProfileFormSubmitEvent(
-                                      profileFormModel: profileFormModel));
-                            }
-                          }
-                        },
-                        label: 'Submit',
-                        buttonWidth: size.width * 0.8,
-                      );
+                  kHeightTen,
+                  SubmitButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        if (gender == null) {
+                          log('select gender');
+                        } else if (maritalStatus == null) {
+                          log('select marital status ');
+                        } else {
+                          ProfileFormModel profileFormModel = ProfileFormModel(
+                              gender: (gender == Gender.male) ? 'm' : 'f',
+                              maritalstatus:
+                                  (maritalStatus == MaritalStatus.single)
+                                      ? 's'
+                                      : 'm',
+                              dateofbirth: dateController.text,
+                              paddress: permenentController.text,
+                              caddress: communicationController.text,
+                              accno: accNoController.text,
+                              ifsccode: ifscController.text,
+                              nameinpass: nameAspassbookController.text,
+                              pannumber: panController.text,
+                              adhaarno: aadharController.text,
+                              designation: desigController.text,
+                              photo: 'no_photo');
+                          context.read<CompleteProfileScreenBloc>().add(
+                                ProfileFormSubmitEvent(
+                                  profileFormModel: profileFormModel,
+                                ),
+                              );
+                        }
+                      }
                     },
+                    label: 'Submit',
+                    buttonWidth: size.width * 0.8,
                   ),
                 ],
               ),

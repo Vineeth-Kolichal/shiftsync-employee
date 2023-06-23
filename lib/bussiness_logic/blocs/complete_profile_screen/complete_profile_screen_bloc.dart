@@ -25,7 +25,8 @@ class CompleteProfileScreenBloc
       emit(ProfileFormSubmitLoading());
       ProfileFormResponseModel responseModel = await profileFormRepository
           .profileFormSubmit(profileForm: event.profileFormModel);
-      emit(ProfileFormSubmitRespState(profileFormResponseModel: responseModel,isLoading: false));
+      emit(ProfileFormSubmitRespState(
+          profileFormResponseModel: responseModel, isLoading: false));
     });
   }
 }

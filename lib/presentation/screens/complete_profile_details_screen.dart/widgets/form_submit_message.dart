@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -56,7 +55,13 @@ class FormSubmitMessage extends StatelessWidget {
                 ],
               );
             } else {
-              return const SizedBox();
+              return Center(
+                  child: SizedBox(
+                child: LottieBuilder.asset(
+                  'assets/lottie_jsons/no-internet.json',
+                  width: size.width * 0.4,
+                ),
+              ));
             }
           },
         ),

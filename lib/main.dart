@@ -3,8 +3,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shiftsync/bussiness_logic/blocs/bloc/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
@@ -16,9 +16,6 @@ import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_ve
 import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
-import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/complete_profile_details_screen.dart';
-
-import 'presentation/screens/complete_profile_details_screen.dart/widgets/form_submit_message.dart';
 
 late Directory appDirectory;
 

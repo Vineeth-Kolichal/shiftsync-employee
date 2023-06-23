@@ -184,7 +184,7 @@ class SignInScreen extends StatelessWidget {
                               }
                               return SubmitButton(
                                 buttonWidth: 0.8,
-                                label: 'Sing In',
+                                label: 'Sign In',
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     context.read<SignInBloc>().add(

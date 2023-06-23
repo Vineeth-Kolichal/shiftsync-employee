@@ -3,11 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shiftsync/bussiness_logic/blocs/bloc/dashboard_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/presentation/screens/view_leave_status_history_screen/view_leave_status_history_screen.dart';
 import 'package:shiftsync/util/alert_popup_functions/home_screen_alert.dart';
+import 'package:shiftsync/util/alert_popup_functions/no_internet_banner.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/attendence/attendence_page.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/dashboard_page.dart';
@@ -69,20 +70,12 @@ class HomeScreen extends StatelessWidget {
           return BlocListener<InternetConnectionCheckCubit,
               InternetConnectionCheckState>(
             listener: (context, state) {
-              // if (state is InternetDisconnected) {
-              //   Flushbar(
-              //     isDismissible: false,
-              //     messageColor: Colors.white,
-              //     titleColor: Colors.white,
-              //     backgroundColor: Colors.red,
-              //     flushbarPosition: FlushbarPosition.TOP,
-              //     title: 'Connectivity error',
-              //     message: 'Please turn on wifi or mobile data',
-              //     // duration: const Duration(seconds: 3),
-              //   ).show(ctx);
-              // } else {
-              //   Navigator.of(ctx).pop();
-              // }
+              if (state is InternetDisconnected) {
+                ScaffoldMessenger.of(context)
+                    .showMaterialBanner(noInternetBanner());
+              } else {
+                ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+              }
             },
             child: Scaffold(
               key: scaffoldKey,

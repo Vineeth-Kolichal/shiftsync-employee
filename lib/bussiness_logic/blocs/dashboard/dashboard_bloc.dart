@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:shiftsync/data/models/dashboard_model/dashboard_model.dart';
 import 'package:shiftsync/data/repositories/dashboard_repository/dashboard_repository.dart';
 
