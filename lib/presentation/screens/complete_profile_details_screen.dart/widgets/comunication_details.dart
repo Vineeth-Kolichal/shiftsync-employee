@@ -19,12 +19,14 @@ class CommunicationDetails extends StatelessWidget {
         const BoldTitleText(title: '3.Communication Details'),
         kHeightTen,
         CustomTextFormField(
+          keyboardType: TextInputType.multiline,
           controller: permenentController,
           labelText: 'Permenent address',
           maxLines: 5,
         ),
         kHeightTen,
         CustomTextFormField(
+          keyboardType: TextInputType.multiline,
           controller: communicationController,
           labelText: 'Communication address',
           maxLines: 5,

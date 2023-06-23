@@ -1,7 +1,8 @@
 part of 'complete_profile_screen_bloc.dart';
 
-@immutable
-abstract class CompleteProfileScreenEvent {}
+class CompleteProfileScreenEvent {
+ 
+}
 
 class GenderChangeEvent extends CompleteProfileScreenEvent {
   final Gender gender;
@@ -13,4 +14,7 @@ class MaritalStatusChangeEvent extends CompleteProfileScreenEvent {
   MaritalStatusChangeEvent({required this.maritalStatus});
 }
 
-class UploadImageEvent extends CompleteProfileScreenEvent {}
+class ProfileFormSubmitEvent extends CompleteProfileScreenEvent {
+  final ProfileFormModel profileFormModel;
+  ProfileFormSubmitEvent({required this.profileFormModel,});
+}

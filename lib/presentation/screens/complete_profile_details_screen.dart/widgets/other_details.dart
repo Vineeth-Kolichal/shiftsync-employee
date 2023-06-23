@@ -18,9 +18,14 @@ class OtherDetails extends StatelessWidget {
         const BoldTitleText(title: '5. Other Details'),
         kHeightTen,
         CustomTextFormField(
-            controller: aadharController, labelText: 'Aadhar Number'),
+            keyboardType: TextInputType.number,
+            controller: aadharController,
+            labelText: 'Aadhar Number'),
         kHeightTen,
-        CustomTextFormField(controller: panController, labelText: 'PAN number')
+        CustomTextFormField(
+          controller: panController,
+          labelText: 'PAN number',
+        )
       ],
     );
   }

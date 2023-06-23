@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
+import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/sumbitting_alert.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
+import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
+import 'package:shiftsync/util/debouncer/debouncer.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/bank_account_details.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/comunication_details.dart';
@@ -52,193 +57,223 @@ class _CompleteProfileDetailsScreenState
   TextEditingController desigController = TextEditingController();
   MaritalStatus? maritalStatus;
   Gender? gender;
-
+  Debouncer debouncer = Debouncer(milliseconds: 4000);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: CustomAppBar(
-              title: Text(
-                'Complete your profile',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+      child:
+          BlocListener<CompleteProfileScreenBloc, CompleteProfileScreenState>(
+        listener: (context, state) {
+          log(state.runtimeType.toString());
+          if (state.isLoading) {
+            showDialog(context: context, builder: (ctx) => SubmitAlert());
+            log('is loading.....................');
+          }
+        },
+        child: Scaffold(
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50),
+              child: CustomAppBar(
+                title: Text(
+                  'Complete your profile',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                ),
+                appBarColor: Colors.white,
+                leading: InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed('/home_screen');
+                    },
+                    child: Icon(Iconsax.arrow_left_2)),
+              )),
+          body: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const BoldTitleText(title: '1. Personal Details'),
+                      kheightTwenty,
+                      kHeightFive,
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: size.width * 0.35,
+                            width: size.width * 0.60,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const TitileText(title: 'Gender'),
+                                BlocConsumer<CompleteProfileScreenBloc,
+                                    CompleteProfileScreenState>(
+                                  listener: (context, state) {
+                                    if (state is GenderChangeState) {
+                                      gender = state.gender;
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return Row(
+                                      children: [
+                                        Radio(
+                                          value: Gender.male,
+                                          groupValue: gender,
+                                          onChanged: (value) {
+                                            context
+                                                .read<
+                                                    CompleteProfileScreenBloc>()
+                                                .add(GenderChangeEvent(
+                                                    gender: value!));
+                                          },
+                                        ),
+                                        const Text('Male'),
+                                        Radio(
+                                          value: Gender.female,
+                                          groupValue: gender,
+                                          onChanged: (value) {
+                                            context
+                                                .read<
+                                                    CompleteProfileScreenBloc>()
+                                                .add(GenderChangeEvent(
+                                                    gender: value!));
+                                          },
+                                        ),
+                                        const Text('Female')
+                                      ],
+                                    );
+                                  },
+                                ),
+                                const TitileText(title: 'Marital Status'),
+                                BlocConsumer<CompleteProfileScreenBloc,
+                                    CompleteProfileScreenState>(
+                                  listener: (context, state) {
+                                    if (state is MaritalStatusChangeState) {
+                                      maritalStatus = state.maritalStatus;
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return Row(
+                                      children: [
+                                        Radio(
+                                          value: MaritalStatus.single,
+                                          groupValue: maritalStatus,
+                                          onChanged: (value) {
+                                            context
+                                                .read<
+                                                    CompleteProfileScreenBloc>()
+                                                .add(MaritalStatusChangeEvent(
+                                                    maritalStatus: value!));
+                                          },
+                                        ),
+                                        const Text('Single'),
+                                        Radio(
+                                          value: MaritalStatus.married,
+                                          groupValue: maritalStatus,
+                                          onChanged: (value) {
+                                            context
+                                                .read<
+                                                    CompleteProfileScreenBloc>()
+                                                .add(MaritalStatusChangeEvent(
+                                                    maritalStatus: value!));
+                                          },
+                                        ),
+                                        const Text('Married')
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      kheightTwenty,
+                      CustomTextFormField(
+                        onTap: () async {
+                          final date = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1975),
+                              lastDate: DateTime.now());
+                          if (date != null) {
+                            dateController.text =
+                                DateFormat.yMMMMd('en_US').format(date);
+                          }
+                        },
+                        keyboardType: TextInputType.none,
+                        controller: dateController,
+                        labelText: 'Date of Birth',
+                        suffuxIcon: const Icon(Iconsax.calendar),
+                      ),
+                    ],
+                  ),
+                  JobDetails(
+                    desigController: desigController,
+                  ),
+                  CommunicationDetails(
+                      communicationController: communicationController,
+                      permenentController: permenentController),
+                  BankAccountDetailsSection(
+                      accNoController: accNoController,
+                      ifscController: ifscController,
+                      nameAspassbookController: nameAspassbookController),
+                  OtherDetails(
+                      aadharController: aadharController,
+                      panController: panController),
+                  kHeightTen,
+                  Text(
+                      '* Please verify all detials before clicking submit button'),
+                  BlocBuilder<CompleteProfileScreenBloc,
+                      CompleteProfileScreenState>(
+                    builder: (context, state) {
+                      log(state.runtimeType.toString());
+                      // if (state is ProfileFormSubmitLoading) {
+                      //   return LoadingAnimationWidget.inkDrop(
+                      //       color: customPrimaryColor, size: 30);
+                      // }
+                      return SubmitButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            if (gender == null) {
+                              log('select gender');
+                            } else if (maritalStatus == null) {
+                              log('select marital status ');
+                            } else {
+                              ProfileFormModel profileFormModel =
+                                  ProfileFormModel(
+                                      gender:
+                                          (gender == Gender.male) ? 'm' : 'f',
+                                      maritalstatus: (maritalStatus ==
+                                              MaritalStatus.single)
+                                          ? 's'
+                                          : 'm',
+                                      dateofbirth: dateController.text,
+                                      paddress: permenentController.text,
+                                      caddress: communicationController.text,
+                                      accno: accNoController.text,
+                                      ifsccode: ifscController.text,
+                                      nameinpass: nameAspassbookController.text,
+                                      pannumber: panController.text,
+                                      adhaarno: aadharController.text,
+                                      designation: desigController.text,
+                                      photo: 'no_photo');
+                              log('${profileFormModel.toJson()}');
+                              context.read<CompleteProfileScreenBloc>().add(
+                                  ProfileFormSubmitEvent(
+                                      profileFormModel: profileFormModel));
+                            }
+                          }
+                        },
+                        label: 'Submit',
+                        buttonWidth: size.width * 0.8,
+                      );
+                    },
+                  ),
+                ],
               ),
-              appBarColor: Colors.white,
-              leading: InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushReplacementNamed('/home_screen');
-                  },
-                  child: Icon(Iconsax.arrow_left_2)),
-            )),
-        body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const BoldTitleText(title: '1. Personal Details'),
-                    kheightTwenty,
-                    kHeightFive,
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: size.width * 0.35,
-                          width: size.width * 0.60,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const TitileText(title: 'Gender'),
-                              BlocConsumer<CompleteProfileScreenBloc,
-                                  CompleteProfileScreenState>(
-                                listener: (context, state) {
-                                  if (state is GenderChangeState) {
-                                    gender = state.gender;
-                                  }
-                                },
-                                builder: (context, state) {
-                                  return Row(
-                                    children: [
-                                      Radio(
-                                        value: Gender.male,
-                                        groupValue: gender,
-                                        onChanged: (value) {
-                                          context
-                                              .read<CompleteProfileScreenBloc>()
-                                              .add(GenderChangeEvent(
-                                                  gender: value!));
-                                        },
-                                      ),
-                                      const Text('Male'),
-                                      Radio(
-                                        value: Gender.female,
-                                        groupValue: gender,
-                                        onChanged: (value) {
-                                          context
-                                              .read<CompleteProfileScreenBloc>()
-                                              .add(GenderChangeEvent(
-                                                  gender: value!));
-                                        },
-                                      ),
-                                      const Text('Female')
-                                    ],
-                                  );
-                                },
-                              ),
-                              const TitileText(title: 'Marital Status'),
-                              BlocConsumer<CompleteProfileScreenBloc,
-                                  CompleteProfileScreenState>(
-                                listener: (context, state) {
-                                  if (state is MaritalStatusChangeState) {
-                                    maritalStatus = state.maritalStatus;
-                                  }
-                                },
-                                builder: (context, state) {
-                                  return Row(
-                                    children: [
-                                      Radio(
-                                        value: MaritalStatus.single,
-                                        groupValue: maritalStatus,
-                                        onChanged: (value) {
-                                          context
-                                              .read<CompleteProfileScreenBloc>()
-                                              .add(MaritalStatusChangeEvent(
-                                                  maritalStatus: value!));
-                                        },
-                                      ),
-                                      const Text('Single'),
-                                      Radio(
-                                        value: MaritalStatus.married,
-                                        groupValue: maritalStatus,
-                                        onChanged: (value) {
-                                          context
-                                              .read<CompleteProfileScreenBloc>()
-                                              .add(MaritalStatusChangeEvent(
-                                                  maritalStatus: value!));
-                                        },
-                                      ),
-                                      const Text('Married')
-                                    ],
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    kheightTwenty,
-                    CustomTextFormField(
-                      onTap: () async {
-                        final date = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1975),
-                            lastDate: DateTime.now());
-                        if (date != null) {
-                          dateController.text =
-                              DateFormat.yMMMMd('en_US').format(date);
-                        }
-                      },
-                      keyboardType: TextInputType.none,
-                      controller: dateController,
-                      labelText: 'Date of Birth',
-                      suffuxIcon: const Icon(Iconsax.calendar),
-                    ),
-                  ],
-                ),
-                JobDetails(
-                  desigController: desigController,
-                ),
-                CommunicationDetails(
-                    communicationController: communicationController,
-                    permenentController: permenentController),
-                BankAccountDetailsSection(
-                    accNoController: accNoController,
-                    ifscController: ifscController,
-                    nameAspassbookController: nameAspassbookController),
-                OtherDetails(
-                    aadharController: aadharController,
-                    panController: panController),
-                kHeightTen,
-                Text(
-                    '* Please verify all detials before clicking submit button'),
-                SubmitButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      if (gender == null) {
-                        log('select gender');
-                      } else if (maritalStatus == null) {
-                        log('select marital status ');
-                      } else {
-                        ProfileFormModel profileFormModel = ProfileFormModel(
-                            gender: (gender == Gender.male) ? 'm' : 'f',
-                            maritalstatus:
-                                (maritalStatus == MaritalStatus.single)
-                                    ? 's'
-                                    : 'm',
-                            dateofbirth: dateController.text,
-                            paddress: permenentController.text,
-                            caddress: communicationController.text,
-                            accno: accNoController.text,
-                            ifsccode: ifscController.text,
-                            nameinpass: nameAspassbookController.text,
-                            pannumber: panController.text,
-                            adhaarno: aadharController.text,
-                            designation: desigController.text,
-                            photo: 'no_photo');
-                        log('${profileFormModel.toJson()}');
-                      }
-                    }
-                  },
-                  label: 'Submit',
-                  buttonWidth: size.width * 0.8,
-                ),
-              ],
             ),
           ),
         ),

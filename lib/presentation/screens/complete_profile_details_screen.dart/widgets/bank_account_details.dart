@@ -24,12 +24,18 @@ class BankAccountDetailsSection extends StatelessWidget {
         ),
         kHeightTen,
         CustomTextFormField(
-            controller: accNoController, labelText: 'Account number'),
+            keyboardType: TextInputType.number,
+            controller: accNoController,
+            labelText: 'Account number'),
         kHeightTen,
-        CustomTextFormField(controller: ifscController, labelText: 'IFSC Code'),
+        CustomTextFormField(
+          controller: ifscController,
+          labelText: 'IFSC Code',
+        ),
         kHeightTen,
         CustomTextFormField(
             controller: nameAspassbookController,
+            keyboardType: TextInputType.name,
             labelText: 'Name As Passbook'),
         kHeightTen,
       ],

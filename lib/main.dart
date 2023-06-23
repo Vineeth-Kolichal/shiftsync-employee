@@ -18,6 +18,8 @@ import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/complete_profile_details_screen.dart';
 
+import 'presentation/screens/complete_profile_details_screen.dart/widgets/form_submit_message.dart';
+
 late Directory appDirectory;
 
 Future<void> main() async {
@@ -82,7 +84,7 @@ class ShiftSyncApp extends StatelessWidget {
           scaffoldBackgroundColor: scafoldBackgroundColor,
         ),
         onGenerateRoute: appRoutes.onGenerateRoute,
-        //home: CompleteProfileDetailsScreen(),
+        //home: FormSubmitMessage(),
       ),
     );
   }
