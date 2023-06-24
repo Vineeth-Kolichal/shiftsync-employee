@@ -13,10 +13,12 @@ class SubmitAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Timer(const Duration(milliseconds: 3000), () {
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: ((context) {
-          return nextScreen;
-        })));
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: ((context) {
+            return nextScreen;
+          })),
+          (route) => false,
+        );
       });
     });
     return AlertDialog(

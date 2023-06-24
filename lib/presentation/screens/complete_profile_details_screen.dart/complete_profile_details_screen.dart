@@ -5,7 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
-import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/sumbitting_alert.dart';
+import 'package:shiftsync/util/alert_popup_functions/sumbitting_alert.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'package:shiftsync/util/debouncer/debouncer.dart';
@@ -266,9 +266,14 @@ class _CompleteProfileDetailsScreenState
   @override
   void dispose() {
     dateController.dispose();
-    permenentController.dispose();
     communicationController.dispose();
+    permenentController.dispose();
+    accNoController.dispose();
+    ifscController.dispose();
+    nameAspassbookController.dispose();
+    aadharController.dispose();
     panController.dispose();
+    desigController.dispose();
     super.dispose();
   }
 }

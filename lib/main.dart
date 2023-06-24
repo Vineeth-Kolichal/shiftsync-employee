@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/leave_request/leave_request_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
@@ -71,6 +72,9 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider<DashboardBloc>(
           create: (ctx) => DashboardBloc(),
+        ),
+        BlocProvider<LeaveRequestBloc>(
+          create: (ctx) => LeaveRequestBloc(),
         ),
       ],
       child: MaterialApp(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -16,16 +18,17 @@ class LeaveRequestApi {
       if (response.statusCode == 200) {
         return Right(response);
       } else {
-        return const Left('Error occured');
+        return const Left('Error occured1');
       }
     } on DioException catch (e) {
+      log(e.toString());
       if (e.response?.statusCode == 422 || e.response?.statusCode == 400) {
         return Right(e.response!);
       } else {
-        return const Left('Error occured');
+        return Left(e.response!.statusCode.toString());
       }
     } catch (e) {
-      return const Left('Error occured');
+      return const Left('Error occured3');
     }
   }
 }

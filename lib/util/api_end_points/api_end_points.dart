@@ -6,5 +6,5 @@ class ApiEndPoints {
   static String logoutPoint = '/logout';
   static String dashboardPoint = '/dashboard/';
   static String formSubmitPoint = '/form/';
-  static String leaveRequestPoint = '/leave/apply/';
+  static String leaveRequestPoint = '/leave/apply';
 }

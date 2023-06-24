@@ -4,3 +4,10 @@ part of 'leave_request_bloc.dart';
 abstract class LeaveRequestState {}
 
 class LeaveRequestInitial extends LeaveRequestState {}
+
+class LeaveRequestLoading extends LeaveRequestState {}
+
+class LeaveRequestResponseState extends LeaveRequestState {
+  final LeaveRequestRespModel leaveRequestRespModel;
+  LeaveRequestResponseState({required this.leaveRequestRespModel});
+}

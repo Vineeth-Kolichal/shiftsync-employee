@@ -7,7 +7,7 @@ class DashboardRepository {
     final response = await dashboardDataProvider.getDashboradData();
 
     final DashboardModel result = response.fold(
-        (l) => DashboardModel.fromJson(l.data),
+        (resp) => DashboardModel.fromJson(resp.data),
         (r) => DashboardModel(status: 404, message: r));
     return result;
   }

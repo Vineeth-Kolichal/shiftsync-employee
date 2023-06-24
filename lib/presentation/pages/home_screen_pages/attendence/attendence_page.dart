@@ -75,7 +75,6 @@ class AttendenceTileWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  height: size.width * 0.12,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

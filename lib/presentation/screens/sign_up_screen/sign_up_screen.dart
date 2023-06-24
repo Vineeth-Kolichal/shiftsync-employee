@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
+import 'package:shiftsync/util/alert_popup_functions/responseMessageSnackbar.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
@@ -20,15 +20,21 @@ import 'package:shiftsync/presentation/widgets/background_stack.dart';
 import 'package:shiftsync/presentation/widgets/sign_in_text_form_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
 
-// ignore: must_be_immutable
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController passwordFirstController = TextEditingController();
   TextEditingController passwordConfirmController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -39,15 +45,9 @@ class SignUpScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpResponseState) {
           if (state.signUpResponseModel.status == 200) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(milliseconds: 1000),
-                backgroundColor: Colors.green,
-                content: Text(toBeginningOfSentenceCase(
-                        state.signUpResponseModel.message) ??
-                    'Otp sent'),
-              ),
-            );
+            ScaffoldMessenger.of(context).showSnackBar(responseMessageSnackbar(
+                message: state.signUpResponseModel.message ?? 'Otp sent',
+                color: Colors.green));
             Future.delayed(const Duration(milliseconds: 1500), () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: ((ctx) => OtpVerificationScreen(
@@ -62,20 +62,11 @@ class SignUpScreen extends StatelessWidget {
                       ))));
             });
           } else if (state.signUpResponseModel.status == 404) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                backgroundColor: Colors.red,
-                content: Text('Something went wrong'),
-              ),
-            );
+            ScaffoldMessenger.of(context).showSnackBar(responseMessageSnackbar(
+                message: 'Something went wrong', color: Colors.red));
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Text(toBeginningOfSentenceCase(
-                        state.signUpResponseModel.message) ??
-                    'Something error'),
-              ),
+              responseMessageSnackbar(message: state.signUpResponseModel.message??'Something Error', color: Colors.red)
             );
           }
         }
@@ -308,5 +299,16 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    lastNameController.dispose();
+    passwordFirstController.dispose();
+    passwordConfirmController.dispose();
+    super.dispose();
   }
 }

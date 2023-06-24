@@ -6,9 +6,10 @@ part 'leave_request_resp_model.g.dart';
 class LeaveRequestRespModel {
   int? status;
   String? message;
+  List<String>? errors;
 
 
-  LeaveRequestRespModel({this.status, this.message,});
+  LeaveRequestRespModel({this.status, this.message,this.errors});
 
   factory LeaveRequestRespModel.fromJson(Map<String, dynamic> json) {
     return _$LeaveRequestRespModelFromJson(json);

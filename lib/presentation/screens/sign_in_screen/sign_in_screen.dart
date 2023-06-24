@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
+import 'package:shiftsync/util/alert_popup_functions/responseMessageSnackbar.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
@@ -60,34 +60,27 @@ class SignInScreen extends StatelessWidget {
             if (state.signInAuthenticationResponseModel.status == 200) {
               // this snackbar will show if authentication is successfull
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  duration: const Duration(milliseconds: 1000),
-                  backgroundColor: Colors.green,
-                  content: Text(toBeginningOfSentenceCase(
-                          state.signInAuthenticationResponseModel.message) ??
-                      'Successfully logged in'),
-                ),
-              );
+                  responseMessageSnackbar(
+                      message:
+                          state.signInAuthenticationResponseModel.message ??
+                              'Successfully logged in',
+                      color: Colors.green));
               Future.delayed(const Duration(milliseconds: 1500), () {
                 Navigator.of(context).pushReplacementNamed('/home_screen');
               });
             } else if (state.signInAuthenticationResponseModel.status == 404) {
               //This snakbar will show if any error orrcured
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text('Something went wrong'),
-                ),
-              );
+                  responseMessageSnackbar(
+                      message: 'Something Went wrong', color: Colors.red));
             } else {
               //this snack bar will show if user name or password are not correct
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text(toBeginningOfSentenceCase(
-                          state.signInAuthenticationResponseModel.errors?[0]) ??
-                      'Something error'),
-                ),
+                responseMessageSnackbar(
+                    message:
+                        state.signInAuthenticationResponseModel.errors?[0] ??
+                            'Something error',
+                    color: Colors.red),
               );
             }
           }
@@ -206,11 +199,12 @@ class SignInScreen extends StatelessWidget {
                           kHeightTen,
                           const Text("Don't you have an account?"),
                           TextButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushReplacementNamed('/sign_up');
-                              },
-                              child: const Text('Sign Up'))
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/sign_up');
+                            },
+                            child: const Text('Sign Up'),
+                          )
                         ],
                       ),
                     ),
