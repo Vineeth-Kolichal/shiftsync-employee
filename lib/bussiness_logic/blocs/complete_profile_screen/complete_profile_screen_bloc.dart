@@ -1,9 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
 import 'package:shiftsync/data/models/profile_form_response_model/profile_form_response_model.dart';
 import 'package:shiftsync/data/repositories/profile_form_repository/profile_form_repository.dart';

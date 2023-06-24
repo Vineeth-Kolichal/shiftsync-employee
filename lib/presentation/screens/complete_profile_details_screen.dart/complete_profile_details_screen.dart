@@ -191,8 +191,8 @@ class _CompleteProfileDetailsScreenState
                               firstDate: DateTime(1975),
                               lastDate: DateTime.now());
                           if (date != null) {
-                            dateController.text =
-                                DateFormat.yMMMMd('en_US').format(date);
+                            DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+                            dateController.text = dateFormat.format(date);
                           }
                         },
                         keyboardType: TextInputType.none,

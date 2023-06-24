@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -5,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:shiftsync/bussiness_logic/blocs/leave_request/leave_request_bloc.dart';
 import 'package:shiftsync/data/models/leave_request_model/leave_request_model.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/leave_request/widgets/leave_request_response_message.dart';
-import 'package:shiftsync/presentation/screens/home_screen/home_screen.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_textform_field.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
@@ -36,8 +36,8 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
           showDialog(
             barrierDismissible: false,
             context: context,
-            builder: (ctx) =>const  SubmitAlert(
-              nextScreen:  LeaveRequestResponseMessage(),
+            builder: (ctx) => const SubmitAlert(
+              nextScreen: LeaveRequestResponseMessage(),
             ),
           );
         }
@@ -108,8 +108,8 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                             lastDate: DateTime(2101),
                           );
                           if (date != null) {
-                            fromDateController.text =
-                                DateFormat.yMMMMd('en_US').format(date);
+                            DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+                            fromDateController.text = dateFormat.format(date);
                           }
                         },
                         keyboardType: TextInputType.none,
@@ -129,8 +129,8 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                             lastDate: DateTime(2101),
                           );
                           if (date != null) {
-                            toDateController.text =
-                                DateFormat.yMMMMd('en_US').format(date);
+                            DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+                            toDateController.text = dateFormat.format(date);
                           }
                         },
                         keyboardType: TextInputType.none,

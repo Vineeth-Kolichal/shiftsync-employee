@@ -42,14 +42,14 @@ class HomeScreen extends StatelessWidget {
         debouncer.run(() {
           if (state is DashboardResponseState &&
               state.dashboardModel.message == '') {
-            showAlert(
-              context: context,
-              title: const Icon(Iconsax.danger),
-              content:
-                  'Please complete profile registration before getting started',
-              nextRouteName: '/complete_profile',
-              buttonLabel: 'Fill details',
-            );
+            // showAlert(
+            //   context: context,
+            //   title: const Icon(Iconsax.danger),
+            //   content:
+            //       'Please complete profile registration before getting started',
+            //   nextRouteName: '/complete_profile',
+            //   buttonLabel: 'Fill details',
+            // );
           }
           if (state is DashboardResponseState &&
               state.dashboardModel.msg != null) {

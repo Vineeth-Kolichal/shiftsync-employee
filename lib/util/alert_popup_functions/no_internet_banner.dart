@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 MaterialBanner noInternetBanner() {
   return const MaterialBanner(

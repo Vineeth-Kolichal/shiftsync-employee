@@ -15,17 +15,23 @@ class DashboardPage extends StatelessWidget {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(child: Text('${state.dashboardModel.message}')),
+                Center(
+                    child: Text(
+                  (state.dashboardModel.message == '')
+                      ? 'Please complete profile registrations\n before getting started'
+                      : '${state.dashboardModel.message}',
+                  textAlign: TextAlign.center,
+                )),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/complete_profile');
                     },
-                    child: Text('fill form again'))
+                    child: const Text('fill form again'))
               ],
             ),
           );
         } else {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               strokeWidth: 2,
             ),
