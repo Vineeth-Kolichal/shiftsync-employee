@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -83,6 +82,7 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                   items:
                       leaveType.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
+                      alignment: Alignment.center,
                       value: value,
                       child: Text(value),
                     );

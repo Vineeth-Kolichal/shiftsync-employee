@@ -8,8 +8,7 @@ class LeaveRequestRespModel {
   String? message;
   List<String>? errors;
 
-
-  LeaveRequestRespModel({this.status, this.message,this.errors});
+  LeaveRequestRespModel({this.status, this.message, this.errors});
 
   factory LeaveRequestRespModel.fromJson(Map<String, dynamic> json) {
     return _$LeaveRequestRespModelFromJson(json);

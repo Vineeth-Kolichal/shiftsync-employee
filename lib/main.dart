@@ -17,12 +17,14 @@ import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_ve
 import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
+import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 
 late Directory appDirectory;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   appDirectory = await getTemporaryDirectory();
+  await configureInjection();
   // appDirectory = await getApplicationDocumentsDirectory();
   runApp(ShiftSyncApp(
     appRoutes: AppRoutes(),

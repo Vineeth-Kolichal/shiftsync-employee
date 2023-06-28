@@ -7,4 +7,5 @@ class ApiEndPoints {
   static String dashboardPoint = '/dashboard/';
   static String formSubmitPoint = '/form/';
   static String leaveRequestPoint = '/leave/apply';
+  static String dutyEndPoint = '/duty/';
 }

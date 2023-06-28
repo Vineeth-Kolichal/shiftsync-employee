@@ -26,7 +26,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (ctx) => SetPinScreen());
       case '/complete_profile':
         return MaterialPageRoute(
-            builder: (ctx) => const CompleteProfileDetailsScreen());
+            builder: (ctx) => CompleteProfileDetailsScreen());
       case '/view_status_history':
         return MaterialPageRoute(
             builder: (ctx) => const ViewLeaveStatusHistoryScreen());

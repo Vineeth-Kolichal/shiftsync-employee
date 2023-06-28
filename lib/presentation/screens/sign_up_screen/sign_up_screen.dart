@@ -8,7 +8,7 @@ import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verificatio
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
-import 'package:shiftsync/util/alert_popup_functions/responseMessageSnackbar.dart';
+import 'package:shiftsync/util/alert_popup_functions/response_message_snackbar.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
@@ -65,9 +65,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ScaffoldMessenger.of(context).showSnackBar(responseMessageSnackbar(
                 message: 'Something went wrong', color: Colors.red));
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              responseMessageSnackbar(message: state.signUpResponseModel.message??'Something Error', color: Colors.red)
-            );
+            ScaffoldMessenger.of(context).showSnackBar(responseMessageSnackbar(
+                message: state.signUpResponseModel.message ?? 'Something Error',
+                color: Colors.red));
           }
         }
       },
@@ -262,7 +262,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                               email:
                                                   emailController.text.trim(),
                                               phone: int.parse(
-                                                  '91${phoneController.text.trim()}'),
+                                                  phoneController.text.trim()),
                                               username:
                                                   emailController.text.trim(),
                                               password:

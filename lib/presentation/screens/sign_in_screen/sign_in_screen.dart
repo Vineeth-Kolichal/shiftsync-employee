@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/password_visibility/password_visibility_cubit.dart';
-import 'package:shiftsync/util/alert_popup_functions/responseMessageSnackbar.dart';
+import 'package:shiftsync/util/alert_popup_functions/response_message_snackbar.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';

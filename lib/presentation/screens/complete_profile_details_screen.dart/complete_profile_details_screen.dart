@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
@@ -8,7 +9,7 @@ import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart
 import 'package:shiftsync/util/alert_popup_functions/sumbitting_alert.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
-import 'package:shiftsync/util/debouncer/debouncer.dart';
+import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/bank_account_details.dart';
 import 'package:shiftsync/presentation/screens/complete_profile_details_screen.dart/widgets/comunication_details.dart';
@@ -23,31 +24,11 @@ import 'widgets/form_submit_message.dart';
 
 String? newImage;
 
-class CompleteProfileDetailsScreen extends StatefulWidget {
+class CompleteProfileDetailsScreen extends StatelessWidget {
   const CompleteProfileDetailsScreen({super.key});
-
-  @override
-  State<CompleteProfileDetailsScreen> createState() =>
-      _CompleteProfileDetailsScreenState();
-}
-
-class _CompleteProfileDetailsScreenState
-    extends State<CompleteProfileDetailsScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController dateController = TextEditingController();
-  TextEditingController communicationController = TextEditingController();
-  TextEditingController permenentController = TextEditingController();
-  TextEditingController accNoController = TextEditingController();
-  TextEditingController ifscController = TextEditingController();
-  TextEditingController nameAspassbookController = TextEditingController();
-  TextEditingController aadharController = TextEditingController();
-  TextEditingController panController = TextEditingController();
-  TextEditingController desigController = TextEditingController();
-  MaritalStatus? maritalStatus;
-  Gender? gender;
-  Debouncer debouncer = Debouncer(milliseconds: 4000);
   @override
   Widget build(BuildContext context) {
+    CompleteProfileScreenBloc cpsb = locator<CompleteProfileScreenBloc>();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child:
@@ -82,7 +63,7 @@ class _CompleteProfileDetailsScreenState
           body: Padding(
             padding: const EdgeInsets.all(15),
             child: Form(
-              key: _formKey,
+              key: cpsb.formKey,
               child: ListView(
                 children: [
                   Column(
@@ -104,7 +85,7 @@ class _CompleteProfileDetailsScreenState
                                     CompleteProfileScreenState>(
                                   listener: (context, state) {
                                     if (state is GenderChangeState) {
-                                      gender = state.gender;
+                                      cpsb.gender = state.gender;
                                     }
                                   },
                                   builder: (context, state) {
@@ -112,7 +93,7 @@ class _CompleteProfileDetailsScreenState
                                       children: [
                                         Radio(
                                           value: Gender.male,
-                                          groupValue: gender,
+                                          groupValue: cpsb.gender,
                                           onChanged: (value) {
                                             context
                                                 .read<
@@ -124,7 +105,7 @@ class _CompleteProfileDetailsScreenState
                                         const Text('Male'),
                                         Radio(
                                           value: Gender.female,
-                                          groupValue: gender,
+                                          groupValue: cpsb.gender,
                                           onChanged: (value) {
                                             context
                                                 .read<
@@ -143,7 +124,7 @@ class _CompleteProfileDetailsScreenState
                                     CompleteProfileScreenState>(
                                   listener: (context, state) {
                                     if (state is MaritalStatusChangeState) {
-                                      maritalStatus = state.maritalStatus;
+                                      cpsb.maritalStatus = state.maritalStatus;
                                     }
                                   },
                                   builder: (context, state) {
@@ -151,7 +132,7 @@ class _CompleteProfileDetailsScreenState
                                       children: [
                                         Radio(
                                           value: MaritalStatus.single,
-                                          groupValue: maritalStatus,
+                                          groupValue: cpsb.maritalStatus,
                                           onChanged: (value) {
                                             context
                                                 .read<
@@ -163,7 +144,7 @@ class _CompleteProfileDetailsScreenState
                                         const Text('Single'),
                                         Radio(
                                           value: MaritalStatus.married,
-                                          groupValue: maritalStatus,
+                                          groupValue: cpsb.maritalStatus,
                                           onChanged: (value) {
                                             context
                                                 .read<
@@ -192,57 +173,69 @@ class _CompleteProfileDetailsScreenState
                               lastDate: DateTime.now());
                           if (date != null) {
                             DateFormat dateFormat = DateFormat('dd-MM-yyyy');
-                            dateController.text = dateFormat.format(date);
+                            cpsb.dateController.text = dateFormat.format(date);
                           }
                         },
                         keyboardType: TextInputType.none,
-                        controller: dateController,
+                        controller: cpsb.dateController,
                         labelText: 'Date of Birth',
                         suffuxIcon: const Icon(Iconsax.calendar),
                       ),
                     ],
                   ),
                   JobDetails(
-                    desigController: desigController,
+                    desigController: cpsb.desigController,
                   ),
                   CommunicationDetails(
-                      communicationController: communicationController,
-                      permenentController: permenentController),
+                      communicationController: cpsb.communicationController,
+                      permenentController: cpsb.permenentController),
                   BankAccountDetailsSection(
-                      accNoController: accNoController,
-                      ifscController: ifscController,
-                      nameAspassbookController: nameAspassbookController),
+                      accNoController: cpsb.accNoController,
+                      ifscController: cpsb.ifscController,
+                      nameAspassbookController: cpsb.nameAspassbookController),
                   OtherDetails(
-                      aadharController: aadharController,
-                      panController: panController),
+                      aadharController: cpsb.aadharController,
+                      panController: cpsb.panController),
                   kHeightTen,
                   const Text(
                       '* Please verify all detials before clicking submit button'),
                   kHeightTen,
                   SubmitButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        if (gender == null) {
+                      if (cpsb.formKey.currentState!.validate()) {
+                        if (cpsb.gender == null) {
                           log('select gender');
-                        } else if (maritalStatus == null) {
+                        } else if (cpsb.maritalStatus == null) {
                           log('select marital status ');
                         } else {
                           ProfileFormModel profileFormModel = ProfileFormModel(
-                              gender: (gender == Gender.male) ? 'm' : 'f',
-                              maritalstatus:
-                                  (maritalStatus == MaritalStatus.single)
-                                      ? 's'
-                                      : 'm',
-                              dateofbirth: dateController.text,
-                              paddress: permenentController.text,
-                              caddress: communicationController.text,
-                              accno: accNoController.text,
-                              ifsccode: ifscController.text,
-                              nameinpass: nameAspassbookController.text,
-                              pannumber: panController.text,
-                              adhaarno: aadharController.text,
-                              designation: desigController.text,
-                              photo: 'no_photo');
+                            gender: (cpsb.gender == Gender.male) ? 'm' : 'f',
+                            maritalstatus:
+                                (cpsb.maritalStatus == MaritalStatus.single)
+                                    ? 's'
+                                    : 'm',
+                            dateofbirth: cpsb.dateController.text,
+                            paddress: cpsb.permenentController.text,
+                            caddress: cpsb.communicationController.text,
+                            accno: cpsb.accNoController.text,
+                            ifsccode: cpsb.ifscController.text,
+                            nameinpass: cpsb.nameAspassbookController.text,
+                            pannumber: cpsb.panController.text,
+                            adhaarno: cpsb.aadharController.text,
+                            designation: cpsb.desigController.text,
+                            photo: 'no_photo',
+                          );
+                          cpsb.dateController.clear();
+                          cpsb.communicationController.clear();
+                          cpsb.permenentController.clear();
+                          cpsb.accNoController.clear();
+                          cpsb.ifscController.clear();
+                          cpsb.nameAspassbookController.clear();
+                          cpsb.aadharController.clear();
+                          cpsb.panController.clear();
+                          cpsb.desigController.clear();
+                          cpsb.gender = null;
+                          cpsb.maritalStatus = null;
                           context.read<CompleteProfileScreenBloc>().add(
                                 ProfileFormSubmitEvent(
                                   profileFormModel: profileFormModel,
@@ -261,19 +254,5 @@ class _CompleteProfileDetailsScreenState
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    dateController.dispose();
-    communicationController.dispose();
-    permenentController.dispose();
-    accNoController.dispose();
-    ifscController.dispose();
-    nameAspassbookController.dispose();
-    aadharController.dispose();
-    panController.dispose();
-    desigController.dispose();
-    super.dispose();
   }
 }
