@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:shiftsync/data/models/profile_form_model/profile_form_model.dart';
 import 'package:shiftsync/data/models/profile_form_response_model/profile_form_response_model.dart';
 import 'package:shiftsync/data/repositories/profile_form_repository/profile_form_repository.dart';
-
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/util/enums/complete_profile_enums.dart';
 
 part 'complete_profile_screen_event.dart';
 part 'complete_profile_screen_state.dart';
 
+@Injectable()
 class CompleteProfileScreenBloc
     extends Bloc<CompleteProfileScreenEvent, CompleteProfileScreenState> {
   //Text editingcontrollers used in complete profile screen
