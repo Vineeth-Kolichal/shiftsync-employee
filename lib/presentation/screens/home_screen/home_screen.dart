@@ -109,39 +109,17 @@ class HomeScreen extends StatelessWidget {
                     ),
                     trailing: (state.selectedIndex == 1 ||
                             state.selectedIndex == 3)
-                        ? SizedBox(
-                            width: 30,
-                            child: PopupMenuButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              icon: const Icon(Iconsax.more_square),
-                              itemBuilder: (ctx) {
-                                return [
-                                  PopupMenuItem(
-                                    height: 25,
-                                    onTap: () {
-                                      log('${state.selectedIndex}');
-                                      if (state.selectedIndex == 1) {
-                                        log('${state.selectedIndex}');
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: ((BuildContext ctx) =>
-                                                ViewLeaveStatusHistoryScreen()),
-                                          ),
-                                        );
-                                        // Navigator.of(context)
-                                        //     .pushNamed('/view_status_history');
-                                      } else {}
-                                    },
-                                    child: Text(state.selectedIndex == 1
-                                        ? 'Status/History'
-                                        : 'View salary History'),
-                                  ),
-                                ];
-                              },
-                            ),
-                          )
-                        : null,
+                        ? SizedBox(width: 30, child: Icon(Iconsax.info_circle))
+                        : InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: ((BuildContext ctx) =>
+                                      const ViewLeaveStatusHistoryScreen()),
+                                ),
+                              );
+                            },
+                            child: Icon(Iconsax.status)),
                   ),
                 ),
               ),

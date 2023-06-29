@@ -4,7 +4,7 @@ import 'package:shiftsync/data/models/leave_request_resp_model/leave_request_res
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 
 class LeaveRequestRepository {
-  LeaveRequestApi leaveRequestApi = locator<LeaveRequestApi>();
+  LeaveRequestApi leaveRequestApi = getIt<LeaveRequestApi>();
   Future<LeaveRequestRespModel> submitLeaveApplication(
       {required LeaveRequestModel leaveRequestModel}) async {
     final response = await leaveRequestApi.submitApplication(leaveRequestModel);

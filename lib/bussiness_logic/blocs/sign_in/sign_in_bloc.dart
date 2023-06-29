@@ -9,7 +9,7 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInDataProvider signInDataProvider = locator<SignInDataProvider>();
+  SignInDataProvider signInDataProvider = getIt<SignInDataProvider>();
   SignInBloc() : super(SignInInitial()) {
     on<EmployeeSignIn>((event, emit) async {
       //send loading state to ui

@@ -6,7 +6,7 @@ import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 part 'logout_state.dart';
 
 class LogoutCubit extends Cubit<LogoutState> {
-  Logout empLogout =locator <Logout>();
+  Logout empLogout = getIt<Logout>();
   LogoutCubit() : super(LogoutInitial());
   Future<void> logout() async {
     emit(LogoutLoading());

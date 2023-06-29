@@ -26,7 +26,7 @@ class CompleteProfileDetailsScreen extends StatelessWidget {
   const CompleteProfileDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    CompleteProfileScreenBloc cpsb = locator<CompleteProfileScreenBloc>();
+    CompleteProfileScreenBloc cpsb = getIt<CompleteProfileScreenBloc>();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child:

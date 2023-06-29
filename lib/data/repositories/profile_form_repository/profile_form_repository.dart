@@ -4,7 +4,8 @@ import 'package:shiftsync/data/models/profile_form_response_model/profile_form_r
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 
 class ProfileFormRepository {
-  ProfileFormApiProvider profileFormApiProvider = locator<ProfileFormApiProvider>();
+  ProfileFormApiProvider profileFormApiProvider =
+      getIt<ProfileFormApiProvider>();
   Future<ProfileFormResponseModel> profileFormSubmit(
       {required ProfileFormModel profileForm}) async {
     final response =

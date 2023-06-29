@@ -3,7 +3,7 @@ import 'package:shiftsync/data/models/dashboard_model/dashboard_model.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 
 class DashboardRepository {
-  DashboardDataProvider dashboardDataProvider = locator<DashboardDataProvider>();
+  DashboardDataProvider dashboardDataProvider = getIt<DashboardDataProvider>();
   Future<DashboardModel> dashboardData() async {
     final response = await dashboardDataProvider.getDashboradData();
 

@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shiftsync/bussiness_logic/blocs/bloc/punch_in_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/leave_request/leave_request_bloc.dart';
@@ -14,7 +15,6 @@ import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/logout/logout_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/pin_verification_loading/pin_verification_loading_cubit.dart';
-import 'package:shiftsync/bussiness_logic/cubits/upload_image/upload_image_cubit.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/presentation/routes/app_routes.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
@@ -69,14 +69,14 @@ class ShiftSyncApp extends StatelessWidget {
         BlocProvider<CompleteProfileScreenBloc>(
           create: (ctx) => CompleteProfileScreenBloc(),
         ),
-        BlocProvider<UploadImageCubit>(
-          create: (ctx) => UploadImageCubit(),
-        ),
         BlocProvider<DashboardBloc>(
           create: (ctx) => DashboardBloc(),
         ),
         BlocProvider<LeaveRequestBloc>(
           create: (ctx) => LeaveRequestBloc(),
+        ),
+        BlocProvider(
+          create: (ctx) => getIt<PunchInScreenBloc>(),
         ),
       ],
       child: MaterialApp(

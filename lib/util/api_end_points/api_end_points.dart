@@ -8,4 +8,5 @@ class ApiEndPoints {
   static String formSubmitPoint = '/form/';
   static String leaveRequestPoint = '/leave/apply';
   static String dutyEndPoint = '/duty/';
+  static String punchInOtp = '/duty/punchin';
 }

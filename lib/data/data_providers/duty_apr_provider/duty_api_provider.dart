@@ -28,4 +28,18 @@ class DutyApiProvider {
       return const Left('Something error 3');
     }
   }
+
+  Future<bool> getOtpForPunchIn() async {
+    _dio.interceptors.add(_cookieManager);
+    try {
+      final response = await _dio.get(ApiEndPoints.punchInOtp);
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 }
