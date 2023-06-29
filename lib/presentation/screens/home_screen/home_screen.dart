@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,44 +82,57 @@ class HomeScreen extends StatelessWidget {
                 preferredSize: const Size.fromHeight(50),
                 child: SafeArea(
                   child: CustomAppBar(
-                    appBarColor: appBarColor,
-                    leading: InkWell(
-                      onTap: () {
-                        scaffoldKey.currentState!.openDrawer();
-                      },
-                      child: SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: CircleAvatar(
-                          backgroundColor: customPrimaryColor[50],
-                          child: Image.asset(
-                            'assets/images/icon .png',
-                            fit: BoxFit.cover,
+                      appBarColor: appBarColor,
+                      leading: InkWell(
+                        onTap: () {
+                          scaffoldKey.currentState!.openDrawer();
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: CircleAvatar(
+                            backgroundColor: customPrimaryColor[50],
+                            child: Image.asset(
+                              'assets/images/icon .png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
+                          // Icon(
+                          //   Iconsax.more_2,
+                          // ),
                         ),
-                        // Icon(
-                        //   Iconsax.more_2,
-                        // ),
                       ),
-                    ),
-                    title: Image.asset(
-                      'assets/images/title.png',
-                      width: size.width * 0.4,
-                    ),
-                    trailing: (state.selectedIndex == 1 ||
-                            state.selectedIndex == 3)
-                        ? SizedBox(width: 30, child: Icon(Iconsax.info_circle))
-                        : InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: ((BuildContext ctx) =>
-                                      const ViewLeaveStatusHistoryScreen()),
-                                ),
-                              );
-                            },
-                            child: Icon(Iconsax.status)),
-                  ),
+                      title: Image.asset(
+                        'assets/images/title.png',
+                        width: size.width * 0.4,
+                      ),
+                      trailing:
+                          (state.selectedIndex == 1 || state.selectedIndex == 3)
+                              ? SizedBox(
+                                  width: 49,
+                                  height: 30,
+                                  child: SubmenuButton(menuChildren: [
+                                    InkWell(
+                                      onTap: () {
+                                        if (state.selectedIndex == 1) {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: ((BuildContext ctx) =>
+                                                  const ViewLeaveStatusHistoryScreen()),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Text((state.selectedIndex == 1)
+                                            ? 'Status/History'
+                                            : 'Salary History'),
+                                      ),
+                                    )
+                                  ], child:const Icon(Iconsax.more_square)))
+                              : null),
                 ),
               ),
               drawer: const CustomDrawer(),
