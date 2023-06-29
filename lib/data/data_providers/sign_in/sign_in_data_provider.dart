@@ -1,16 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_response_model/sign_in_authentication_response.dart';
-import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_module.dart';
 
+@injectable
 class SignInDataProvider {
+  final Dio _dio;
+  final CookieManager _cookieManager;
+  SignInDataProvider(this._dio, this._cookieManager);
   Future<SignInAuthenticationResponseModel> signIn(
       SignInAuthenticationModel signInAuthenticationModel) async {
-    Dio dio = locator<DioObject>().returnDioObject();
+    _dio.interceptors.add(_cookieManager);
+    //  Dio dio = locator<DioObject>().returnDioObject();
     try {
-      final response = await dio.post(ApiEndPoints.signInPoint,
+      final response = await _dio.post(ApiEndPoints.signInPoint,
           data: signInAuthenticationModel.toJson());
 
       if (response.statusCode == 200) {

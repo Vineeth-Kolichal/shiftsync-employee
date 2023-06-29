@@ -2,18 +2,21 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/data/models/leave_request_model/leave_request_model.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
-import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_module.dart';
-
+@injectable
 class LeaveRequestApi {
-  Dio dio = locator<DioObject>().returnDioObject();
+  final Dio _dio;
+  final CookieManager _cookieManager;
+
+  LeaveRequestApi(this._dio, this._cookieManager);
   Future<Either<String, Response>> submitApplication(
       LeaveRequestModel leaveRequestModel) async {
+    _dio.interceptors.add(_cookieManager);
     try {
-     
-      final response = await dio.post(ApiEndPoints.leaveRequestPoint,
+      final response = await _dio.post(ApiEndPoints.leaveRequestPoint,
           data: leaveRequestModel.toJson());
       if (response.statusCode == 200) {
         return Right(response);

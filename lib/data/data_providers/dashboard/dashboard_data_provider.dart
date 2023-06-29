@@ -3,18 +3,18 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
-import 'package:shiftsync/util/cookie_handler/persist_cookiejar.dart';
-import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_module.dart';
 
+@injectable
 class DashboardDataProvider {
-  Dio dio = locator<DioObject>().returnDioObject();
-  // Dio dio = locator<DioObject>().returnDioObject();
+  final Dio _dio;
+  final CookieManager _cookieManager;
+  DashboardDataProvider(this._dio, this._cookieManager);
   Future<Either<Response<dynamic>, String>> getDashboradData() async {
     try {
-      dio.interceptors.add(CookieManager(persistCookieJar));
-      final response = await dio.get(ApiEndPoints.dashboardPoint);
+      _dio.interceptors.add(_cookieManager);
+      final response = await _dio.get(ApiEndPoints.dashboardPoint);
       if (response.statusCode == 200) {
         return Left(response);
       } else {

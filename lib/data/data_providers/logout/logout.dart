@@ -1,16 +1,21 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/data/models/logout_response_model/logout_response_model.dart';
-import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_module.dart';
 
+@injectable
 class Logout {
- Dio dio = locator<DioObject>().returnDioObject();
+  final Dio _dio;
+  final CookieManager _cookieManager;
+
+  Logout(this._dio, this._cookieManager);
   Future<LogoutResponseModel> employeeLogout() async {
+    _dio.interceptors.add(_cookieManager);
     try {
-      final response = await dio.get(ApiEndPoints.logoutPoint);
+      final response = await _dio.get(ApiEndPoints.logoutPoint);
       if (response.statusCode == 401) {}
       if (response.statusCode == 200) {
         return LogoutResponseModel.fromJson(response.data);
