@@ -6,7 +6,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/util/cookie_handler/persist_cookiejar.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_object.dart';
+import 'package:shiftsync/util/dio_object/dio_module.dart';
 
 class DashboardDataProvider {
   Dio dio = locator<DioObject>().returnDioObject();

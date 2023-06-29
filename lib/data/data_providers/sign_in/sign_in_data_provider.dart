@@ -3,7 +3,7 @@ import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_model/sign_in_authentication.dart';
 import 'package:shiftsync/data/models/sign_in_authentication_response_model/sign_in_authentication_response.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_object.dart';
+import 'package:shiftsync/util/dio_object/dio_module.dart';
 
 class SignInDataProvider {
   Future<SignInAuthenticationResponseModel> signIn(

@@ -1,14 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_object.dart';
+import 'package:shiftsync/util/dio_object/dio_module.dart';
 
+@injectable
 class DutyApiProvider {
-  Dio dio = locator<DioObject>().returnDioObject();
+  final Dio _dio;
+  final CookieManager _cookieManager;
+  DutyApiProvider(this._dio, this._cookieManager);
+  // Dio dio = locator<DioObject>().returnDioObject();
   Future<Either<String, Response>> getDutyDetailsFromApi() async {
+    _dio.interceptors.add(_cookieManager);
     try {
-      final response = await dio.get(ApiEndPoints.dutyEndPoint);
+      final response = await _dio.get(ApiEndPoints.dutyEndPoint);
       if (response.statusCode == 200) {
         return Right(response);
       } else {

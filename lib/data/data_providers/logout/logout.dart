@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 import 'package:shiftsync/data/models/logout_response_model/logout_response_model.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
-import 'package:shiftsync/util/dio_object/dio_object.dart';
+import 'package:shiftsync/util/dio_object/dio_module.dart';
 
 class Logout {
  Dio dio = locator<DioObject>().returnDioObject();
