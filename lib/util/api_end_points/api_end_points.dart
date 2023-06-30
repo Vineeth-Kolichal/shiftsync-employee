@@ -9,4 +9,5 @@ class ApiEndPoints {
   static String leaveRequestPoint = '/leave/apply';
   static String dutyEndPoint = '/duty/';
   static String punchInOtp = '/duty/punchin';
+  static String leaveStatus = '/leave/status/';
 }

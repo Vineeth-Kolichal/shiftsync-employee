@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -131,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                                             : 'Salary History'),
                                       ),
                                     )
-                                  ], child:const Icon(Iconsax.more_square)))
+                                  ], child: const Icon(Iconsax.more_square)))
                               : null),
                 ),
               ),

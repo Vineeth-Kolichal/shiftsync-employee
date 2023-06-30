@@ -3,11 +3,12 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shiftsync/bussiness_logic/blocs/bloc/punch_in_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/leave_request/leave_request_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/leave_status_history/leave_status_history_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/punch_in_screen_bloc/punch_in_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
@@ -77,6 +78,9 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (ctx) => getIt<PunchInScreenBloc>(),
+        ),
+        BlocProvider(
+          create: (ctx) => getIt<LeaveStatusHistoryBloc>(),
         ),
       ],
       child: MaterialApp(

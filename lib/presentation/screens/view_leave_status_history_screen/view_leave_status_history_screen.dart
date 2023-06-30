@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shiftsync/presentation/widgets/bold_content_text.dart';
+import 'package:shiftsync/bussiness_logic/blocs/leave_status_history/leave_status_history_bloc.dart';
+import 'package:shiftsync/presentation/screens/view_leave_status_history_screen/widgets/leave_history_loading.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
-import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
+
+import 'widgets/leave_history_tile.dart';
 
 class ViewLeaveStatusHistoryScreen extends StatelessWidget {
   const ViewLeaveStatusHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<LeaveStatusHistoryBloc>().add(const Started());
+    });
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -31,105 +37,31 @@ class ViewLeaveStatusHistoryScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                title: BoldTitleText(title: 'Leave Status/History'),
+                title: const BoldTitleText(title: 'Leave Status/History'),
                 appBarColor: appBarColor),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView.separated(
-              itemBuilder: (ctx, index) {
-                return LeaveHistoryTile();
-              },
-              separatorBuilder: (ctx, index) {
-                return kHeightTen;
-              },
-              itemCount: 20),
+        body: BlocBuilder<LeaveStatusHistoryBloc, LeaveStatusHistoryState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const LeaveHistoryLoading();
+            } else {
+              return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ListView.separated(
+                    itemBuilder: (ctx, index) {
+                      return LeaveHistoryTile(
+                        leaveStatusHistory:
+                            state.lshModel!.leaveStatusHistory![index],
+                      );
+                    },
+                    separatorBuilder: (ctx, index) {
+                      return kHeightTen;
+                    },
+                    itemCount: state.lshModel!.leaveStatusHistory!.length),
+              );
+            }
+          },
         ));
-  }
-}
-
-class LeaveHistoryTile extends StatelessWidget {
-  const LeaveHistoryTile({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  child: Row(
-                    children: [
-                      TitileText(
-                        title: 'Leave type: ',
-                      ),
-                      BoldContentText(content: 'Personal')
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 20,
-                  width: 70,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Center(
-                    child: Text(
-                      'Approved',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Divider(
-              color: customPrimaryColor,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: size.width * 0.4,
-                  child: Column(
-                    children: [
-                      TitileText(title: 'From Date'),
-                      BoldContentText(content: '12-07-2023')
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: size.width * 0.1,
-                  child: VerticalDivider(
-                    color: customPrimaryColor,
-                  ),
-                ),
-                SizedBox(
-                  width: size.width * 0.4,
-                  child: Column(children: [
-                    TitileText(title: 'To date'),
-                    BoldContentText(content: '12-07-2023')
-                  ]),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
   }
 }
