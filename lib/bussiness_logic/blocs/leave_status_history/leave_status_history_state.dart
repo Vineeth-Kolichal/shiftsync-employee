@@ -7,7 +7,7 @@ class LeaveStatusHistoryState with _$LeaveStatusHistoryState {
     LeaveStatusHistoryModel? lshModel,
   }) = _Initial;
 
-  factory LeaveStatusHistoryState.initial() =>const  LeaveStatusHistoryState(
+  factory LeaveStatusHistoryState.initial() => const LeaveStatusHistoryState(
         isLoading: true,
       );
 }
