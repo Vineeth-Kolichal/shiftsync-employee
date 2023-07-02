@@ -73,7 +73,7 @@ class ShiftSyncApp extends StatelessWidget {
           create: (ctx) => CompleteProfileScreenBloc(),
         ),
         BlocProvider<DashboardBloc>(
-          create: (ctx) => DashboardBloc(),
+          create: (ctx) => getIt<DashboardBloc>(),
         ),
         BlocProvider<LeaveRequestBloc>(
           create: (ctx) => LeaveRequestBloc(),

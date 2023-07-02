@@ -11,6 +11,8 @@ class DashboardModel {
   String? message;
   @JsonKey(name: 'msg')
   String? msg;
+  @JsonKey(name: 'data')
+  List<String>? data;
 
   DashboardModel({
     required this.status,

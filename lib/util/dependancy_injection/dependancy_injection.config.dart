@@ -17,6 +17,8 @@ import 'package:shiftsync/bussiness_logic/blocs/bloc/attendence_bloc.dart'
     as _i19;
 import 'package:shiftsync/bussiness_logic/blocs/complete_profile_screen/complete_profile_screen_bloc.dart'
     as _i5;
+import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart'
+    as _i20;
 import 'package:shiftsync/bussiness_logic/blocs/leave_status_history/leave_status_history_bloc.dart'
     as _i13;
 import 'package:shiftsync/bussiness_logic/blocs/punch_in_screen_bloc/punch_in_screen_bloc.dart'
@@ -24,7 +26,7 @@ import 'package:shiftsync/bussiness_logic/blocs/punch_in_screen_bloc/punch_in_sc
 import 'package:shiftsync/data/data_providers/attendence_api_provider/attendence_api_provider.dart'
     as _i18;
 import 'package:shiftsync/data/data_providers/dashboard/dashboard_data_provider.dart'
-    as _i20;
+    as _i21;
 import 'package:shiftsync/data/data_providers/duty_apr_provider/duty_api_provider.dart'
     as _i8;
 import 'package:shiftsync/data/data_providers/getLeaveStatusHistoryApiProvider/get_leave_status_history_api_provider.dart'
@@ -43,7 +45,7 @@ import 'package:shiftsync/data/repositories/get_duty_repository/get_duty_repo_im
 import 'package:shiftsync/data/repositories/get_leave_history_repo/get_leave_history_repo.dart'
     as _i11;
 import 'package:shiftsync/data/repositories/repositories.dart' as _i3;
-import 'package:shiftsync/util/dio_module/dio_module.dart' as _i21;
+import 'package:shiftsync/util/dio_module/dio_module.dart' as _i22;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -102,7 +104,9 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i19.AttendenceBloc>(
         () => _i19.AttendenceBloc(gh<_i3.AttendenceRepository>()));
-    gh.factory<_i20.DashboardDataProvider>(() => _i20.DashboardDataProvider(
+    gh.factory<_i20.DashboardBloc>(
+        () => _i20.DashboardBloc(gh<_i3.GetDutyRepository>()));
+    gh.factory<_i21.DashboardDataProvider>(() => _i21.DashboardDataProvider(
           gh<_i7.Dio>(),
           gh<_i6.CookieManager>(),
         ));
@@ -110,4 +114,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DioModule extends _i21.DioModule {}
+class _$DioModule extends _i22.DioModule {}

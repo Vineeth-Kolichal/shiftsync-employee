@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +14,7 @@ import 'package:shiftsync/util/alert_popup_functions/response_message_snackbar.d
 import 'package:shiftsync/util/constants/constants.dart';
 
 import 'widgets/loading_duty.dart';
+import 'widgets/punch_in_status_alert.dart';
 
 class PunchingScreen extends StatelessWidget {
   const PunchingScreen({super.key});
@@ -32,22 +33,10 @@ class PunchingScreen extends StatelessWidget {
                 barrierDismissible: false,
                 context: context,
                 builder: (ctx) {
-                  return AlertDialog(
-                    title: Text(state.isOtpVerified! ? 'Success' : 'Failed'),
-                    content: Text(state.isOtpVerified!
-                        ? 'Otp Verified Successfully'
-                        : 'Otp Verification failed'),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx)
-                                .pushReplacementNamed('/home_screen');
-                          },
-                          child: const Text('Close'))
-                    ],
+                  return PunchInAlert(
+                    isOtpVerified: state.isOtpVerified!,
                   );
                 });
-            log('${state.isOtpVerified}');
           }
           if (state.isSend != null) {
             if (state.isSend!) {
@@ -78,7 +67,7 @@ class PunchingScreen extends StatelessWidget {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 responseMessageSnackbar(
-                    message: 'Something Erro', color: Colors.red),
+                    message: 'Something Error', color: Colors.red),
               );
             }
           }
@@ -121,18 +110,7 @@ class PunchingScreen extends StatelessWidget {
               BlocBuilder<PunchInScreenBloc, PunchInScreenState>(
                 builder: (context, state) {
                   if (state.dutymodel != null) {
-                    if (state.dutymodel?.status == 404) {
-                      return Container(
-                        height: size.width * 0.5,
-                        width: size.width * 0.75,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                          child: Text('Duty'),
-                        ),
-                      );
-                    }
+                
                     return Container(
                       height: size.width * 0.5,
                       width: size.width * 0.75,
@@ -142,26 +120,39 @@ class PunchingScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const TitileText(title: 'Time:'),
-                              kWidthFive,
-                              Text('${state.dutymodel?.data?[0].time}'),
-                            ],
-                          ),
+                          (state.dutymodel?.status != 404)
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const TitileText(title: 'Time:'),
+                                    kWidthFive,
+                                    Text('${state.dutymodel?.data?[0].time}'),
+                                  ],
+                                )
+                              : const Icon(Iconsax.danger),
                           kHeightTen,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const TitileText(title: 'Duty:'),
-                              kWidthFive,
-                              Text('${state.dutymodel?.data?[0].type}')
-                            ],
-                          ),
+                          (state.dutymodel?.status != 404)
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const TitileText(title: 'Duty:'),
+                                    kWidthFive,
+                                    Text('${state.dutymodel?.data?[0].type}')
+                                  ],
+                                )
+                              : Text(
+                                  (state.punchInStatus)
+                                      ? 'Punch out only after duty time!!'
+                                      : 'Duty not scheduled yet.\nPlease contact admin!!',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 17),
+                                  textAlign: TextAlign.center,
+                                ),
                           kHeightTen,
                           Visibility(
-                            visible: (state.dutymodel?.status == 404),
+                            visible: (state.dutymodel?.status != 404 ||
+                                state.punchInStatus),
                             child: SubmitButton(
                               onPressed: () {
                                 if (state.punchInStatus) {
@@ -198,3 +189,4 @@ class PunchingScreen extends StatelessWidget {
     );
   }
 }
+

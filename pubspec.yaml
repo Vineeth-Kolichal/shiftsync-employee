@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   another_flushbar: ^1.12.30
+  carousel_slider: ^4.2.1
   connectivity_plus: ^4.0.1
   cookie_jar: ^4.0.3
   cupertino_icons: ^1.0.2
@@ -85,6 +86,10 @@ flutter:
     - assets/lottie_jsons/sending.json
     - assets/lottie_jsons/form_submit_fail.json
     - assets/lottie_jsons/form_submit_success.json
+    - assets/lottie_jsons/morning.json
+    - assets/lottie_jsons/evening.json
+    - assets/lottie_jsons/night.json
+    - assets/lottie_jsons/danger.json
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

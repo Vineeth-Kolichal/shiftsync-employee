@@ -51,7 +51,8 @@ class PunchInScreenBloc extends Bloc<PunchInScreenEvent, PunchInScreenState> {
       if (otpVerificationStatus) {
         shared.setBool(punchIn, true);
       }
-      final newState = state.copyWith(isOtpVerified: otpVerificationStatus);
+      final newState =
+          state.copyWith(isOtpVerified: otpVerificationStatus, isSend: null);
       emit(newState);
     });
 

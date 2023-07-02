@@ -16,6 +16,10 @@ class DashboardLoading extends DashboardState {
 
 class DashboardResponseState extends DashboardState {
   final DashboardModel dashboardModel;
-  DashboardResponseState(
-      {required this.dashboardModel, required super.isLoading});
+  final GetDutyModel duty;
+  DashboardResponseState({
+    required this.dashboardModel,
+    required super.isLoading,
+    required this.duty,
+  });
 }
