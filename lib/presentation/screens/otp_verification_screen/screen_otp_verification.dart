@@ -14,11 +14,12 @@ class OtpVerificationScreen extends StatelessWidget {
     super.key,
     required this.otpMessage,
     this.onCompleted,
-    required this.nextRoute,
+    required this.nextRoute, this.resendOtp,
   });
   final String otpMessage;
   final _formKey = GlobalKey<FormState>();
   final Function(String)? onCompleted;
+  final void Function()? resendOtp;
   final String nextRoute;
 
   final defaultPinTheme = PinTheme(
@@ -161,8 +162,8 @@ class OtpVerificationScreen extends StatelessWidget {
                   ),
                 ),
                 kHeightTen,
-                const Text("Don't recieve code?"),
-                TextButton(onPressed: () {}, child: const Text('Resend')),
+                const  Text("Don't recieve code?"),
+                TextButton(onPressed: resendOtp, child: const Text('Resend')),
               ],
             ),
           ),

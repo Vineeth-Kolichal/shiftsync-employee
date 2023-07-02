@@ -43,7 +43,7 @@ import 'package:shiftsync/data/repositories/get_duty_repository/get_duty_repo_im
 import 'package:shiftsync/data/repositories/get_leave_history_repo/get_leave_history_repo.dart'
     as _i11;
 import 'package:shiftsync/data/repositories/repositories.dart' as _i3;
-import 'package:shiftsync/util/dio_object/dio_module.dart' as _i21;
+import 'package:shiftsync/util/dio_module/dio_module.dart' as _i21;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt

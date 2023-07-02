@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:shiftsync/data/data_providers/duty_apr_provider/duty_api_provider.dart';
 import 'package:shiftsync/data/models/get_duty_model/get_duty_model.dart';
+import 'package:shiftsync/data/models/otp_model/otp.dart';
 import 'package:shiftsync/data/repositories/repositories.dart';
 import 'package:shiftsync/util/dependancy_injection/dependancy_injection.dart';
 
@@ -21,5 +22,15 @@ class GetDutyRepoImplementation implements GetDutyRepository {
   @override
   Future<bool> sendOtp() async {
     return await apiProvider.getOtpForPunchIn();
+  }
+
+  @override
+  Future<bool> veryfyOtp({required OtpModel otp}) async {
+    return await apiProvider.verifyOtp(otpModel: otp);
+  }
+
+  @override
+  Future<bool> punchOut() async {
+    return await apiProvider.punchOut();
   }
 }

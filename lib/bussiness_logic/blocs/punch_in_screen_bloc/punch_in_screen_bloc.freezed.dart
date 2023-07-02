@@ -21,6 +21,8 @@ mixin _$PunchInScreenEvent {
     required TResult Function() started,
     required TResult Function() getDuty,
     required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$PunchInScreenEvent {
     TResult? Function()? started,
     TResult? Function()? getDuty,
     TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$PunchInScreenEvent {
     TResult Function()? started,
     TResult Function()? getDuty,
     TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$PunchInScreenEvent {
     required TResult Function(Started value) started,
     required TResult Function(GetDuty value) getDuty,
     required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$PunchInScreenEvent {
     TResult? Function(Started value)? started,
     TResult? Function(GetDuty value)? getDuty,
     TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,8 @@ mixin _$PunchInScreenEvent {
     TResult Function(Started value)? started,
     TResult Function(GetDuty value)? getDuty,
     TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +131,8 @@ class _$Started implements Started {
     required TResult Function() started,
     required TResult Function() getDuty,
     required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
   }) {
     return started();
   }
@@ -129,6 +143,8 @@ class _$Started implements Started {
     TResult? Function()? started,
     TResult? Function()? getDuty,
     TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
   }) {
     return started?.call();
   }
@@ -139,6 +155,8 @@ class _$Started implements Started {
     TResult Function()? started,
     TResult Function()? getDuty,
     TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -153,6 +171,8 @@ class _$Started implements Started {
     required TResult Function(Started value) started,
     required TResult Function(GetDuty value) getDuty,
     required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
   }) {
     return started(this);
   }
@@ -163,6 +183,8 @@ class _$Started implements Started {
     TResult? Function(Started value)? started,
     TResult? Function(GetDuty value)? getDuty,
     TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
   }) {
     return started?.call(this);
   }
@@ -173,6 +195,8 @@ class _$Started implements Started {
     TResult Function(Started value)? started,
     TResult Function(GetDuty value)? getDuty,
     TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -225,6 +249,8 @@ class _$GetDuty implements GetDuty {
     required TResult Function() started,
     required TResult Function() getDuty,
     required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
   }) {
     return getDuty();
   }
@@ -235,6 +261,8 @@ class _$GetDuty implements GetDuty {
     TResult? Function()? started,
     TResult? Function()? getDuty,
     TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
   }) {
     return getDuty?.call();
   }
@@ -245,6 +273,8 @@ class _$GetDuty implements GetDuty {
     TResult Function()? started,
     TResult Function()? getDuty,
     TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
     required TResult orElse(),
   }) {
     if (getDuty != null) {
@@ -259,6 +289,8 @@ class _$GetDuty implements GetDuty {
     required TResult Function(Started value) started,
     required TResult Function(GetDuty value) getDuty,
     required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
   }) {
     return getDuty(this);
   }
@@ -269,6 +301,8 @@ class _$GetDuty implements GetDuty {
     TResult? Function(Started value)? started,
     TResult? Function(GetDuty value)? getDuty,
     TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
   }) {
     return getDuty?.call(this);
   }
@@ -279,6 +313,8 @@ class _$GetDuty implements GetDuty {
     TResult Function(Started value)? started,
     TResult Function(GetDuty value)? getDuty,
     TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
     required TResult orElse(),
   }) {
     if (getDuty != null) {
@@ -331,6 +367,8 @@ class _$SendOtp implements SendOtp {
     required TResult Function() started,
     required TResult Function() getDuty,
     required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
   }) {
     return sendOtp();
   }
@@ -341,6 +379,8 @@ class _$SendOtp implements SendOtp {
     TResult? Function()? started,
     TResult? Function()? getDuty,
     TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
   }) {
     return sendOtp?.call();
   }
@@ -351,6 +391,8 @@ class _$SendOtp implements SendOtp {
     TResult Function()? started,
     TResult Function()? getDuty,
     TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -365,6 +407,8 @@ class _$SendOtp implements SendOtp {
     required TResult Function(Started value) started,
     required TResult Function(GetDuty value) getDuty,
     required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
   }) {
     return sendOtp(this);
   }
@@ -375,6 +419,8 @@ class _$SendOtp implements SendOtp {
     TResult? Function(Started value)? started,
     TResult? Function(GetDuty value)? getDuty,
     TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
   }) {
     return sendOtp?.call(this);
   }
@@ -385,6 +431,8 @@ class _$SendOtp implements SendOtp {
     TResult Function(Started value)? started,
     TResult Function(GetDuty value)? getDuty,
     TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -399,11 +447,283 @@ abstract class SendOtp implements PunchInScreenEvent {
 }
 
 /// @nodoc
+abstract class _$$VerifyOtpCopyWith<$Res> {
+  factory _$$VerifyOtpCopyWith(
+          _$VerifyOtp value, $Res Function(_$VerifyOtp) then) =
+      __$$VerifyOtpCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OtpModel otp});
+}
+
+/// @nodoc
+class __$$VerifyOtpCopyWithImpl<$Res>
+    extends _$PunchInScreenEventCopyWithImpl<$Res, _$VerifyOtp>
+    implements _$$VerifyOtpCopyWith<$Res> {
+  __$$VerifyOtpCopyWithImpl(
+      _$VerifyOtp _value, $Res Function(_$VerifyOtp) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? otp = null,
+  }) {
+    return _then(_$VerifyOtp(
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as OtpModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerifyOtp implements VerifyOtp {
+  _$VerifyOtp({required this.otp});
+
+  @override
+  final OtpModel otp;
+
+  @override
+  String toString() {
+    return 'PunchInScreenEvent.verifyOtp(otp: $otp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyOtp &&
+            (identical(other.otp, otp) || other.otp == otp));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, otp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifyOtpCopyWith<_$VerifyOtp> get copyWith =>
+      __$$VerifyOtpCopyWithImpl<_$VerifyOtp>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getDuty,
+    required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
+  }) {
+    return verifyOtp(otp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getDuty,
+    TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
+  }) {
+    return verifyOtp?.call(otp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getDuty,
+    TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
+    required TResult orElse(),
+  }) {
+    if (verifyOtp != null) {
+      return verifyOtp(otp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(GetDuty value) getDuty,
+    required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
+  }) {
+    return verifyOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Started value)? started,
+    TResult? Function(GetDuty value)? getDuty,
+    TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
+  }) {
+    return verifyOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(GetDuty value)? getDuty,
+    TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
+    required TResult orElse(),
+  }) {
+    if (verifyOtp != null) {
+      return verifyOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VerifyOtp implements PunchInScreenEvent {
+  factory VerifyOtp({required final OtpModel otp}) = _$VerifyOtp;
+
+  OtpModel get otp;
+  @JsonKey(ignore: true)
+  _$$VerifyOtpCopyWith<_$VerifyOtp> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PunchOutCopyWith<$Res> {
+  factory _$$PunchOutCopyWith(
+          _$PunchOut value, $Res Function(_$PunchOut) then) =
+      __$$PunchOutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PunchOutCopyWithImpl<$Res>
+    extends _$PunchInScreenEventCopyWithImpl<$Res, _$PunchOut>
+    implements _$$PunchOutCopyWith<$Res> {
+  __$$PunchOutCopyWithImpl(_$PunchOut _value, $Res Function(_$PunchOut) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PunchOut implements PunchOut {
+  const _$PunchOut();
+
+  @override
+  String toString() {
+    return 'PunchInScreenEvent.punchOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PunchOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getDuty,
+    required TResult Function() sendOtp,
+    required TResult Function(OtpModel otp) verifyOtp,
+    required TResult Function() punchOut,
+  }) {
+    return punchOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getDuty,
+    TResult? Function()? sendOtp,
+    TResult? Function(OtpModel otp)? verifyOtp,
+    TResult? Function()? punchOut,
+  }) {
+    return punchOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getDuty,
+    TResult Function()? sendOtp,
+    TResult Function(OtpModel otp)? verifyOtp,
+    TResult Function()? punchOut,
+    required TResult orElse(),
+  }) {
+    if (punchOut != null) {
+      return punchOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(GetDuty value) getDuty,
+    required TResult Function(SendOtp value) sendOtp,
+    required TResult Function(VerifyOtp value) verifyOtp,
+    required TResult Function(PunchOut value) punchOut,
+  }) {
+    return punchOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Started value)? started,
+    TResult? Function(GetDuty value)? getDuty,
+    TResult? Function(SendOtp value)? sendOtp,
+    TResult? Function(VerifyOtp value)? verifyOtp,
+    TResult? Function(PunchOut value)? punchOut,
+  }) {
+    return punchOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(GetDuty value)? getDuty,
+    TResult Function(SendOtp value)? sendOtp,
+    TResult Function(VerifyOtp value)? verifyOtp,
+    TResult Function(PunchOut value)? punchOut,
+    required TResult orElse(),
+  }) {
+    if (punchOut != null) {
+      return punchOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PunchOut implements PunchInScreenEvent {
+  const factory PunchOut() = _$PunchOut;
+}
+
+/// @nodoc
 mixin _$PunchInScreenState {
   bool get allLoading => throw _privateConstructorUsedError;
   bool get otpSendingLoading => throw _privateConstructorUsedError;
   GetDutyModel? get dutymodel => throw _privateConstructorUsedError;
   bool? get isSend => throw _privateConstructorUsedError;
+  bool? get isOtpVerified => throw _privateConstructorUsedError;
+  bool get punchInStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PunchInScreenStateCopyWith<PunchInScreenState> get copyWith =>
@@ -420,7 +740,9 @@ abstract class $PunchInScreenStateCopyWith<$Res> {
       {bool allLoading,
       bool otpSendingLoading,
       GetDutyModel? dutymodel,
-      bool? isSend});
+      bool? isSend,
+      bool? isOtpVerified,
+      bool punchInStatus});
 }
 
 /// @nodoc
@@ -440,6 +762,8 @@ class _$PunchInScreenStateCopyWithImpl<$Res, $Val extends PunchInScreenState>
     Object? otpSendingLoading = null,
     Object? dutymodel = freezed,
     Object? isSend = freezed,
+    Object? isOtpVerified = freezed,
+    Object? punchInStatus = null,
   }) {
     return _then(_value.copyWith(
       allLoading: null == allLoading
@@ -458,6 +782,14 @@ class _$PunchInScreenStateCopyWithImpl<$Res, $Val extends PunchInScreenState>
           ? _value.isSend
           : isSend // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtpVerified: freezed == isOtpVerified
+          ? _value.isOtpVerified
+          : isOtpVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      punchInStatus: null == punchInStatus
+          ? _value.punchInStatus
+          : punchInStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -474,7 +806,9 @@ abstract class _$$_InitialCopyWith<$Res>
       {bool allLoading,
       bool otpSendingLoading,
       GetDutyModel? dutymodel,
-      bool? isSend});
+      bool? isSend,
+      bool? isOtpVerified,
+      bool punchInStatus});
 }
 
 /// @nodoc
@@ -491,6 +825,8 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? otpSendingLoading = null,
     Object? dutymodel = freezed,
     Object? isSend = freezed,
+    Object? isOtpVerified = freezed,
+    Object? punchInStatus = null,
   }) {
     return _then(_$_Initial(
       allLoading: null == allLoading
@@ -509,6 +845,14 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.isSend
           : isSend // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtpVerified: freezed == isOtpVerified
+          ? _value.isOtpVerified
+          : isOtpVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      punchInStatus: null == punchInStatus
+          ? _value.punchInStatus
+          : punchInStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -520,7 +864,9 @@ class _$_Initial implements _Initial {
       {required this.allLoading,
       required this.otpSendingLoading,
       this.dutymodel,
-      this.isSend});
+      this.isSend,
+      this.isOtpVerified,
+      required this.punchInStatus});
 
   @override
   final bool allLoading;
@@ -530,10 +876,14 @@ class _$_Initial implements _Initial {
   final GetDutyModel? dutymodel;
   @override
   final bool? isSend;
+  @override
+  final bool? isOtpVerified;
+  @override
+  final bool punchInStatus;
 
   @override
   String toString() {
-    return 'PunchInScreenState(allLoading: $allLoading, otpSendingLoading: $otpSendingLoading, dutymodel: $dutymodel, isSend: $isSend)';
+    return 'PunchInScreenState(allLoading: $allLoading, otpSendingLoading: $otpSendingLoading, dutymodel: $dutymodel, isSend: $isSend, isOtpVerified: $isOtpVerified, punchInStatus: $punchInStatus)';
   }
 
   @override
@@ -547,12 +897,16 @@ class _$_Initial implements _Initial {
                 other.otpSendingLoading == otpSendingLoading) &&
             (identical(other.dutymodel, dutymodel) ||
                 other.dutymodel == dutymodel) &&
-            (identical(other.isSend, isSend) || other.isSend == isSend));
+            (identical(other.isSend, isSend) || other.isSend == isSend) &&
+            (identical(other.isOtpVerified, isOtpVerified) ||
+                other.isOtpVerified == isOtpVerified) &&
+            (identical(other.punchInStatus, punchInStatus) ||
+                other.punchInStatus == punchInStatus));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, allLoading, otpSendingLoading, dutymodel, isSend);
+  int get hashCode => Object.hash(runtimeType, allLoading, otpSendingLoading,
+      dutymodel, isSend, isOtpVerified, punchInStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -566,7 +920,9 @@ abstract class _Initial implements PunchInScreenState {
       {required final bool allLoading,
       required final bool otpSendingLoading,
       final GetDutyModel? dutymodel,
-      final bool? isSend}) = _$_Initial;
+      final bool? isSend,
+      final bool? isOtpVerified,
+      required final bool punchInStatus}) = _$_Initial;
 
   @override
   bool get allLoading;
@@ -576,6 +932,10 @@ abstract class _Initial implements PunchInScreenState {
   GetDutyModel? get dutymodel;
   @override
   bool? get isSend;
+  @override
+  bool? get isOtpVerified;
+  @override
+  bool get punchInStatus;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

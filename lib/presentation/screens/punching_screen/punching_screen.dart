@@ -1,15 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shiftsync/bussiness_logic/blocs/punch_in_screen_bloc/punch_in_screen_bloc.dart';
+import 'package:shiftsync/data/models/otp_model/otp.dart';
 import 'package:shiftsync/presentation/screens/otp_verification_screen/screen_otp_verification.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/submit_button.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/util/alert_popup_functions/response_message_snackbar.dart';
 import 'package:shiftsync/util/constants/constants.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'widgets/loading_duty.dart';
 
 class PunchingScreen extends StatelessWidget {
   const PunchingScreen({super.key});
@@ -23,19 +27,50 @@ class PunchingScreen extends StatelessWidget {
     return SafeArea(
       child: BlocListener<PunchInScreenBloc, PunchInScreenState>(
         listener: (context, state) {
+          if (state.isOtpVerified != null) {
+            showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (ctx) {
+                  return AlertDialog(
+                    title: Text(state.isOtpVerified! ? 'Success' : 'Failed'),
+                    content: Text(state.isOtpVerified!
+                        ? 'Otp Verified Successfully'
+                        : 'Otp Verification failed'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(ctx)
+                                .pushReplacementNamed('/home_screen');
+                          },
+                          child: const Text('Close'))
+                    ],
+                  );
+                });
+            log('${state.isOtpVerified}');
+          }
           if (state.isSend != null) {
             if (state.isSend!) {
               ScaffoldMessenger.of(context).showSnackBar(
                   responseMessageSnackbar(
                       message: 'OTP send', color: Colors.green));
               Future.delayed(const Duration(milliseconds: 1100), () {
-                Navigator.of(context).pushReplacement(
+                Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: ((ctx) => OtpVerificationScreen(
                           nextRoute: '/home_screen',
                           otpMessage:
                               'An OTP send to your Registered\n Mobile number',
-                          onCompleted: (otp) {},
+                          onCompleted: (otp) {
+                            context
+                                .read<PunchInScreenBloc>()
+                                .add(VerifyOtp(otp: OtpModel(otp: otp)));
+                          },
+                          resendOtp: () {
+                            context
+                                .read<PunchInScreenBloc>()
+                                .add(const SendOtp());
+                          },
                         )),
                   ),
                 );
@@ -86,6 +121,18 @@ class PunchingScreen extends StatelessWidget {
               BlocBuilder<PunchInScreenBloc, PunchInScreenState>(
                 builder: (context, state) {
                   if (state.dutymodel != null) {
+                    if (state.dutymodel?.status == 404) {
+                      return Container(
+                        height: size.width * 0.5,
+                        width: size.width * 0.75,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Center(
+                          child: Text('Duty'),
+                        ),
+                      );
+                    }
                     return Container(
                       height: size.width * 0.5,
                       width: size.width * 0.75,
@@ -113,15 +160,28 @@ class PunchingScreen extends StatelessWidget {
                             ],
                           ),
                           kHeightTen,
-                          SubmitButton(
-                            onPressed: () {
-                              context
-                                  .read<PunchInScreenBloc>()
-                                  .add(const SendOtp());
-                            },
-                            label: 'Punch in',
-                            buttonWidth: 0.5,
-                            backgroundColor: Colors.green,
+                          Visibility(
+                            visible: (state.dutymodel?.status == 404),
+                            child: SubmitButton(
+                              onPressed: () {
+                                if (state.punchInStatus) {
+                                  context
+                                      .read<PunchInScreenBloc>()
+                                      .add(const PunchOut());
+                                } else {
+                                  context
+                                      .read<PunchInScreenBloc>()
+                                      .add(const SendOtp());
+                                }
+                              },
+                              label: state.punchInStatus
+                                  ? 'Punch Out'
+                                  : 'Punch in',
+                              buttonWidth: 0.5,
+                              backgroundColor: state.punchInStatus
+                                  ? Colors.red
+                                  : Colors.green,
+                            ),
                           )
                         ],
                       ),
@@ -134,73 +194,6 @@ class PunchingScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
-    super.key,
-    required this.size,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
-      height: size.width * 0.5,
-      width: size.width * 0.75,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              enabled: true,
-              child: Container(
-                color: Colors.grey,
-                height: 10,
-                width: size.width * 0.35,
-              ),
-            ),
-          ),
-          kHeightTen,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              enabled: true,
-              child: Container(
-                color: Colors.grey,
-                height: 10,
-                width: size.width * 0.3,
-              ),
-            ),
-          ),
-          kHeightTen,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              enabled: true,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(10)),
-                height: 30,
-                width: size.width * 0.37,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

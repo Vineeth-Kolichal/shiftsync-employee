@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shiftsync/data/models/otp_model/otp.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
 
 @injectable
@@ -33,6 +36,35 @@ class DutyApiProvider {
     _dio.interceptors.add(_cookieManager);
     try {
       final response = await _dio.get(ApiEndPoints.punchInOtp);
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> verifyOtp({required OtpModel otpModel}) async {
+    _dio.interceptors.add(_cookieManager);
+    try {
+      final response =
+          await _dio.post(ApiEndPoints.punchInOtp, data: otpModel.toJson());
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> punchOut() async {
+    _dio.interceptors.add(_cookieManager);
+    try {
+      final response = await _dio.get(ApiEndPoints.punchOut);
       if (response.statusCode == 200) {
         return true;
       } else {
