@@ -36,7 +36,7 @@ class QuoteContainer extends StatelessWidget {
                 quote,
                 style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 17,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),

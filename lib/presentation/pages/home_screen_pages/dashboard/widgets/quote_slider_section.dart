@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/qnote_container.dart';
@@ -12,7 +11,7 @@ class QuoteSliderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.width * 0.65,
+      height: size.width * 0.66,
       child: CarouselSlider(
         items: [
           QuoteContainer(
@@ -36,7 +35,7 @@ class QuoteSliderSection extends StatelessWidget {
           ),
         ],
         options: CarouselOptions(
-          height: 185.0,
+          height: 205.0,
           enlargeCenterPage: true,
           autoPlay: true,
           aspectRatio: 16 / 9,

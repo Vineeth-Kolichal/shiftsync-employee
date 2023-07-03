@@ -31,36 +31,21 @@ class HomeScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<DashboardBloc>().add(DashboardEvent());
-    });
+   
     Size size = MediaQuery.of(context).size;
     return BlocListener<DashboardBloc, DashboardState>(
       listener: (context, state) {
-        debouncer.run(() {
-          if (state is DashboardResponseState &&
-              state.dashboardModel.message == '') {
-            // showAlert(
-            //   context: context,
-            //   title: const Icon(Iconsax.danger),
-            //   content:
-            //       'Please complete profile registration before getting started',
-            //   nextRouteName: '/complete_profile',
-            //   buttonLabel: 'Fill details',
-            // );
-          }
-          if (state is DashboardResponseState &&
-              state.dashboardModel.msg != null) {
-            persistCookieJar.deleteAll();
-            showAlert(
-              context: context,
-              title: const Text('Oops'),
-              content: 'Your session is expired, please sign in again!',
-              nextRouteName: '/sign_in',
-              buttonLabel: 'Sign In',
-            );
-          }
-        });
+        if (state is DashboardResponseState &&
+            state.dashboardModel.msg != null) {
+          persistCookieJar.deleteAll();
+          showAlert(
+            context: context,
+            title: const Text('Oops'),
+            content: 'Your session is expired, please sign in again!',
+            nextRouteName: '/sign_in',
+            buttonLabel: 'Sign In',
+          );
+        }
       },
       child:
           BlocBuilder<CustomBottmNavigationCubit, CustomBottmNavigationState>(
