@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';

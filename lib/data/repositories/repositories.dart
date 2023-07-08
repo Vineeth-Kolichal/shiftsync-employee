@@ -2,6 +2,7 @@ import 'package:shiftsync/data/models/attendence_model/attendence_model.dart';
 import 'package:shiftsync/data/models/get_duty_model/get_duty_model.dart';
 import 'package:shiftsync/data/models/leave_status_history_model/leave_status_history_model.dart';
 import 'package:shiftsync/data/models/otp_model/otp.dart';
+import 'package:shiftsync/data/models/salary_details_model/salary_details_model.dart';
 
 abstract class GetDutyRepository {
   Future<GetDutyModel> getDuty();
@@ -16,4 +17,8 @@ abstract class GetLeaveStatusHistoryRepository {
 
 abstract class AttendenceRepository {
   Future<AttendenceModel> getAttendence();
+}
+
+abstract class GetSalaryDetailsRepository {
+  Future<SalaryDetailsModel> getSalaryDetails();
 }

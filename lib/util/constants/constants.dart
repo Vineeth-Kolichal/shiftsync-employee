@@ -26,5 +26,5 @@ const Widget kDividerTwo = Divider(
   thickness: 2,
 );
 
- BoxDecoration itemBoxDecoration =
+BoxDecoration itemBoxDecoration =
     BoxDecoration(color: kWhiteColor, borderRadius: BorderRadius.circular(10));

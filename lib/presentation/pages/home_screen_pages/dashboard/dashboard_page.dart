@@ -16,7 +16,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<DashboardBloc>().add(DashboardEvent());
-    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    });
     Size size = MediaQuery.of(context).size;
 
     return BlocBuilder<DashboardBloc, DashboardState>(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shiftsync/bussiness_logic/blocs/bloc/attendence_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/attendence/attendence_bloc.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 

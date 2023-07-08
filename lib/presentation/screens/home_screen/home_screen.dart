@@ -31,7 +31,6 @@ class HomeScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-   
     Size size = MediaQuery.of(context).size;
     return BlocListener<DashboardBloc, DashboardState>(
       listener: (context, state) {

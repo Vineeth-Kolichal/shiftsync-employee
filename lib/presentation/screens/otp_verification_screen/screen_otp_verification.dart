@@ -14,7 +14,8 @@ class OtpVerificationScreen extends StatelessWidget {
     super.key,
     required this.otpMessage,
     this.onCompleted,
-    required this.nextRoute, this.resendOtp,
+    required this.nextRoute,
+    this.resendOtp,
   });
   final String otpMessage;
   final _formKey = GlobalKey<FormState>();
@@ -162,7 +163,7 @@ class OtpVerificationScreen extends StatelessWidget {
                   ),
                 ),
                 kHeightTen,
-                const  Text("Don't recieve code?"),
+                const Text("Don't recieve code?"),
                 TextButton(onPressed: resendOtp, child: const Text('Resend')),
               ],
             ),

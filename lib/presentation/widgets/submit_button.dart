@@ -6,7 +6,8 @@ class SubmitButton extends StatelessWidget {
       required this.onPressed,
       required this.label,
       required this.buttonWidth,
-      this.backgroundColor, this.radius=10});
+      this.backgroundColor,
+      this.radius = 10});
 
   final String label;
   final Function() onPressed;

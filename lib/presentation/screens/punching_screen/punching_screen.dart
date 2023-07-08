@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -110,7 +108,6 @@ class PunchingScreen extends StatelessWidget {
               BlocBuilder<PunchInScreenBloc, PunchInScreenState>(
                 builder: (context, state) {
                   if (state.dutymodel != null) {
-                
                     return Container(
                       height: size.width * 0.5,
                       width: size.width * 0.75,
@@ -189,4 +186,3 @@ class PunchingScreen extends StatelessWidget {
     );
   }
 }
-

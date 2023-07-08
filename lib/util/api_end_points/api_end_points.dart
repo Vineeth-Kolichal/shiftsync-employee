@@ -1,5 +1,7 @@
 class ApiEndPoints {
-  static String baseUrl = 'https://www.shiftsync.online/employee';
+  // static String baseUrl = 'https://www.shiftsync.online/employee';
+  // static String baseUrl = 'http://localhost:8081/employee';
+  static String baseUrl = 'http://10.0.2.2:8081/employee';
   static String signInPoint = '/signin/';
   static String singUpPoint = '/signup/';
   static String signUpOtpPoint = '/signup/verify-otp';
@@ -13,4 +15,5 @@ class ApiEndPoints {
   static String attendence = '/attendance/';
   static String punchIn = '/duty/punchin/';
   static String punchOut = '/duty/punchout/';
+  static String getSalaryDetails = '/salary/details/';
 }

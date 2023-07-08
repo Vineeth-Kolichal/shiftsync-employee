@@ -8,11 +8,8 @@ class PunchInScreenState with _$PunchInScreenState {
       GetDutyModel? dutymodel,
       bool? isSend,
       bool? isOtpVerified,
-      required bool punchInStatus
-      }) = _Initial;
+      required bool punchInStatus}) = _Initial;
 
   factory PunchInScreenState.initial() => const PunchInScreenState(
-        allLoading: true,
-        otpSendingLoading: false,punchInStatus: false
-      );
+      allLoading: true, otpSendingLoading: false, punchInStatus: false);
 }

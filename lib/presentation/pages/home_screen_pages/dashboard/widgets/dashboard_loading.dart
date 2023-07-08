@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shiftsync/presentation/widgets/shimmer_loading_widget.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';

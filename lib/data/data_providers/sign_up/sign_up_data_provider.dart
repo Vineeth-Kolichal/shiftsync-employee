@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:shiftsync/util/api_end_points/api_end_points.dart';
@@ -18,9 +20,10 @@ class SignUpDataProvider {
         return SignUpResponseModel.fromJson(response.data);
       } else {
         //if any error
-        return SignUpResponseModel(status: 404, message: 'Something error');
+        return SignUpResponseModel(status: 404, message: 'Something error1');
       }
     } on DioException catch (e) {
+      log(e.toString());
       if (e.response?.statusCode == 400) {
         //if user is already exist the return this
         return SignUpResponseModel(
@@ -29,7 +32,7 @@ class SignUpDataProvider {
         );
       } else {
         //if any error
-        return SignUpResponseModel(status: 404, message: 'Something error');
+        return SignUpResponseModel(status: 404, message: 'Something error2');
       }
     } catch (e) {
       //if any other error
