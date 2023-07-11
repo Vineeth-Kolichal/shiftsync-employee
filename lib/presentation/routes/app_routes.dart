@@ -3,6 +3,7 @@ import 'package:shiftsync/presentation/screens/complete_profile_details_screen.d
 import 'package:shiftsync/presentation/screens/home_screen/home_screen.dart';
 import 'package:shiftsync/presentation/screens/intro_screen/intro_screen.dart';
 import 'package:shiftsync/presentation/screens/punching_screen/punching_screen.dart';
+import 'package:shiftsync/presentation/screens/salary_history_screen/salary_history_screen.dart';
 import 'package:shiftsync/presentation/screens/set_pin_screen/set_pin_screen.dart';
 import 'package:shiftsync/presentation/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:shiftsync/presentation/screens/sign_up_screen/sign_up_screen.dart';
@@ -19,7 +20,7 @@ class AppRoutes {
       case '/sign_in':
         return MaterialPageRoute(builder: (ctx) => SignInScreen());
       case '/sign_up':
-        return MaterialPageRoute(builder: (ctx) => SignUpScreen());
+        return MaterialPageRoute(builder: (ctx) => const SignUpScreen());
       case '/home_screen':
         return MaterialPageRoute(builder: (ctx) => HomeScreen());
       case '/set_pin':
@@ -32,6 +33,8 @@ class AppRoutes {
             builder: (ctx) => const ViewLeaveStatusHistoryScreen());
       case '/punch':
         return MaterialPageRoute(builder: (ctx) => const PunchingScreen());
+      case '/salary-history':
+        return MaterialPageRoute(builder: (ctx) => const SalaryHistoryScreen());
       default:
         return _errorRoute();
     }

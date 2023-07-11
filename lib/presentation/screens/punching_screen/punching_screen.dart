@@ -77,7 +77,7 @@ class PunchingScreen extends StatelessWidget {
               appBarColor: Colors.transparent,
               leading: InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed('/home_screen');
                 },
                 child: const SizedBox(
                   height: 30,

@@ -16,4 +16,5 @@ class ApiEndPoints {
   static String punchIn = '/duty/punchin/';
   static String punchOut = '/duty/punchout/';
   static String getSalaryDetails = '/salary/details/';
+  static String salaryHistory = '/salary/history/';
 }

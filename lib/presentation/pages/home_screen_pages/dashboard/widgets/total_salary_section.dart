@@ -7,8 +7,10 @@ class TotalSalarySection extends StatelessWidget {
   const TotalSalarySection({
     super.key,
     required this.totalSalary,
+    this.fontSize = 25,
   });
-  final int totalSalary;
+  final String totalSalary;
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,8 +28,8 @@ class TotalSalarySection extends StatelessWidget {
             ),
             kheightTwenty,
             BoldTitleText(
-              title: '$totalSalary',
-              fontSize: 24,
+              title: totalSalary,
+              fontSize: fontSize,
             )
           ],
         ),

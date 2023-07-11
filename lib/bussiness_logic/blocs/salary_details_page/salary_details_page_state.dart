@@ -8,5 +8,5 @@ class SalaryDetailsPageState with _$SalaryDetailsPageState {
   }) = _Initial;
 
   factory SalaryDetailsPageState.loading() =>
-     const SalaryDetailsPageState.initial(isLoading: true);
+      const SalaryDetailsPageState.initial(isLoading: true);
 }

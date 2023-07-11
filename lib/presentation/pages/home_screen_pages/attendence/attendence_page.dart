@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/attendence/attendence_bloc.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
+import 'package:shiftsync/presentation/widgets/empty_item_widget.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 
 import 'widgets/attendance_litst_tile.dart';
@@ -36,9 +37,8 @@ class AttendencePage extends StatelessWidget {
                   );
                 } else {
                   if (state.attendenceList.isEmpty) {
-                    return const Center(
-                      child: Text('No attendence History found'),
-                    );
+                    return EmptyItemWidget(
+                        message: 'Attendance history not found');
                   }
                   return ListView.separated(
                     itemBuilder: (ctx, index) {

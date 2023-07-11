@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/custom_bottom_navigation/custom_bottm_navigation_cubit.dart';
 import 'package:shiftsync/bussiness_logic/cubits/internet_connection_check/internet_connection_check_cubit.dart';
@@ -15,8 +16,11 @@ import 'package:shiftsync/presentation/pages/home_screen_pages/salary_details/sa
 import 'package:shiftsync/presentation/widgets/custom_drawer/cusrom_drawer.dart';
 import 'package:shiftsync/presentation/widgets/custom_appbar/custom_app_bar.dart';
 import 'package:shiftsync/presentation/widgets/custom_bottom_navigationbar/custom_bottom_navigationbar.dart';
+import 'package:shiftsync/util/constants/shared_preference_key_names.dart';
 import 'package:shiftsync/util/cookie_handler/persist_cookiejar.dart';
 import 'package:shiftsync/util/debouncer/debouncer.dart';
+
+import '../pin_validation_screen/pin_validation_screen.dart';
 
 Debouncer debouncer = Debouncer(milliseconds: 1000);
 
@@ -104,6 +108,9 @@ class HomeScreen extends StatelessWidget {
                                                   const ViewLeaveStatusHistoryScreen()),
                                             ),
                                           );
+                                        } else {
+                                          Navigator.of(context)
+                                              .pushNamed('/salary-history');
                                         }
                                       },
                                       child: Padding(
@@ -122,8 +129,22 @@ class HomeScreen extends StatelessWidget {
               body: pages[state.selectedIndex],
               bottomNavigationBar: const CustomBottomNavigationbar(),
               floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/punch');
+                onPressed: () async {
+                  SharedPreferences shared =
+                      await SharedPreferences.getInstance();
+                  final pinValue = shared.getString(pin);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    if (pinValue == null) {
+                      Navigator.of(context).pushNamed('/punch');
+                    } else {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: ((ctx) =>
+                              const PinValidationScreen(routeName: '/punch')),
+                        ),
+                      );
+                    }
+                  });
                 },
                 child: const Icon(
                   Iconsax.finger_scan,

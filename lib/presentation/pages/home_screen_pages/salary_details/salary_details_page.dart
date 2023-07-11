@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
+
 import 'package:shiftsync/bussiness_logic/blocs/salary_details_page/salary_details_page_bloc.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/salary_details/widgets/pay_details_row_widget.dart';
 import 'package:shiftsync/presentation/widgets/bold_title_text.dart';
@@ -118,10 +118,10 @@ class SalaryDetailsPage extends StatelessWidget {
                     text:
                         '${state.salaryDetailsModel?.salaryDetails?.netsalary}',
                   ),
-                  TextButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Iconsax.document_download),
-                      label: Text('Download salary slip'))
+                  // TextButton.icon(
+                  //     onPressed: () async {},
+                  //     icon: Icon(Iconsax.document_download),
+                  //     label: Text('Download salary slip'))
                 ],
               ),
             );

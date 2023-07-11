@@ -11,6 +11,7 @@ import 'package:shiftsync/bussiness_logic/blocs/leave_status_history/leave_statu
 import 'package:shiftsync/bussiness_logic/blocs/otp_verification/otp_verification_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/punch_in_screen_bloc/punch_in_screen_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/salary_details_page/salary_details_page_bloc.dart';
+import 'package:shiftsync/bussiness_logic/blocs/salary_transaction_history/salary_transaction_history_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_in/sign_in_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/sign_up/sign_up_bloc.dart';
 import 'package:shiftsync/bussiness_logic/cubits/confirm_password/confirm_password_cubit.dart';
@@ -89,6 +90,9 @@ class ShiftSyncApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (ctx) => getIt<SalaryDetailsPageBloc>(),
+        ),
+        BlocProvider(
+          create: (ctx) => getIt<SalaryTransactionHistoryBloc>(),
         ),
       ],
       child: MaterialApp(

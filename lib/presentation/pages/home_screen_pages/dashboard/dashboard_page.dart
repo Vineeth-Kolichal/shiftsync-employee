@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/dashboard_loading.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/quote_slider_section.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
+import 'package:shiftsync/util/colors/common_colors.dart';
 import 'package:shiftsync/util/constants/constants.dart';
 import 'widgets/duty_section.dart';
 import 'widgets/profile_correction_section.dart';
@@ -22,6 +25,7 @@ class DashboardPage extends StatelessWidget {
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
         if (state is DashboardResponseState) {
+          log(state.duty.message.toString());
           return Scaffold(
             body: Column(
               children: [
@@ -70,14 +74,33 @@ class DashboardPage extends StatelessWidget {
                                 children: [
                                   kheightTwenty,
                                   (state.duty.status == 404)
-                                      ? Container()
+                                      ? Container(
+                                          width: size.width * 0.9,
+                                          height: size.width * 0.3,
+                                          decoration: BoxDecoration(
+                                              color: kWhiteColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: const Center(
+                                            child: Text(
+                                              'Duty not Assigned yet\n Please contact to admin',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        )
                                       : DutySection(
                                           dutyType:
                                               '${state.duty.data![0].type}'),
                                   kheightTwenty,
-                                  TotalSalarySection(
-                                    totalSalary: 200000,
-                                  )
+                                  (state.salaryDetailsModel.status != 200)
+                                      ? const TotalSalarySection(
+                                          fontSize: 16,
+                                          totalSalary:
+                                              'Salary details not generated')
+                                      : TotalSalarySection(
+                                          totalSalary:
+                                              '₹${state.salaryDetailsModel.salaryDetails?.netsalary}',
+                                        )
                                 ],
                               )
                             : const SizedBox()
