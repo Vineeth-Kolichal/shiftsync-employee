@@ -37,7 +37,7 @@ class AttendencePage extends StatelessWidget {
                   );
                 } else {
                   if (state.attendenceList.isEmpty) {
-                    return EmptyItemWidget(
+                    return const  EmptyItemWidget(
                         message: 'Attendance history not found');
                   }
                   return ListView.separated(

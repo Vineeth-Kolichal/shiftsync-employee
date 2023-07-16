@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shiftsync/data/models/attendence_model/attendance.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/util/colors/background_colors.dart';
@@ -60,7 +61,9 @@ class AttendenceTileWidget extends StatelessWidget {
                             ),
                             kHeightTen,
                             Text(
-                              attendance.timein ?? 'time in',
+                              DateFormat('hh:mm a').format(
+                                  DateFormat('HH:mm:ss')
+                                      .parse(attendance.timein ?? '00:00:00')),
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w600),
                             )
@@ -74,7 +77,10 @@ class AttendenceTileWidget extends StatelessWidget {
                           children: [
                             const TitileText(title: 'Check Out', fontSize: 17),
                             kHeightTen,
-                            Text(attendance.timeout ?? 'time out',
+                            Text(
+                                DateFormat('hh:mm a').format(
+                                    DateFormat('HH:mm:ss').parse(
+                                        attendance.timeout ?? '00:00:00')),
                                 style: const TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600))
                           ],
