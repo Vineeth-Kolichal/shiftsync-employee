@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.vineethkolichal" "\0"
-            VALUE "FileDescription", "shiftsync" "\0"
+            VALUE "FileDescription", "ShiftSync" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "shiftsync" "\0"
+            VALUE "InternalName", "ShiftSync" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.vineethkolichal. All rights reserved." "\0"
             VALUE "OriginalFilename", "shiftsync.exe" "\0"
-            VALUE "ProductName", "shiftsync" "\0"
+            VALUE "ProductName", "ShiftSync" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -6,7 +6,6 @@ import 'package:shiftsync/presentation/screens/privacy_policy_screen/privacy_pri
 import 'package:shiftsync/util/constants/shared_preference_key_names.dart';
 import 'package:shiftsync/presentation/screens/pin_validation_screen/pin_validation_screen.dart';
 import 'package:shiftsync/presentation/widgets/custom_drawer/logout_dialoge.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
