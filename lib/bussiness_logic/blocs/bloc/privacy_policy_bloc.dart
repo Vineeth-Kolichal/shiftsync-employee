@@ -6,7 +6,7 @@ part 'privacy_policy_state.dart';
 part 'privacy_policy_bloc.freezed.dart';
 
 class PrivacyPolicyBloc extends Bloc<PrivacyPolicyEvent, PrivacyPolicyState> {
-  PrivacyPolicyBloc() : super(_Initial()) {
+  PrivacyPolicyBloc() : super(const _Initial()) {
     on<PrivacyPolicyEvent>((event, emit) {
       // TODO: implement event handler
     });

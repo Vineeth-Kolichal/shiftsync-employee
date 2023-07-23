@@ -78,7 +78,7 @@ class CustomDrawer extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (((context) => PrivacyPolicyScreen()))));
+                    builder: (((context) => const PrivacyPolicyScreen()))));
                 // await launchUrl(Uri.https('vineeth-kolichal.github.io',
                 //     '/shiftsync-privacy-policy/'));
               },

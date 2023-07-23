@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  another_flushbar: ^1.12.30
   carousel_slider: ^4.2.1
   connectivity_plus: ^4.0.1
   cookie_jar: ^4.0.3
@@ -58,7 +57,6 @@ dependencies:
   printing: ^5.11.0
   shared_preferences: ^2.1.2
   shimmer: ^3.0.0
-  url_launcher: ^6.1.12
   webview_flutter: ^4.2.2
 
 dev_dependencies:

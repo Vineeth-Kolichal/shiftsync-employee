@@ -7,5 +7,5 @@ class SalaryTransactionHistoryState with _$SalaryTransactionHistoryState {
     SalaryHistoryModel? salaryHistoryModel,
   }) = _Initial;
   factory SalaryTransactionHistoryState.Loading() =>
-      SalaryTransactionHistoryState(isLoading: true);
+      const SalaryTransactionHistoryState(isLoading: true);
 }

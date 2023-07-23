@@ -18,11 +18,10 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
 
   @override
   void initState() {
-    viewController = WebViewController()
-      //..loadHtmlString(bbb);
+    viewController = WebViewController()..loadHtmlString(privacy);
 
-      // ..loadFile('file:///assets/www/index.html');
-      ..loadRequest(Uri.parse('https://vineethchandran.live/'));
+    // ..loadFile('file:///assets/www/index.html');
+    // ..loadRequest(Uri.parse('https://vineethchandran.live/'));
     super.initState();
   }
 
@@ -141,21 +140,7 @@ class HeadingAndContent extends StatelessWidget {
   }
 }
 
-String bbb = '''<!DOCTYPE html>
-<html>
-<head>
-<title>My HTML Page</title>
-</head>
-<body>
-<h1>This is my HTML page</h1>
-<button style="background-color: #4CAF50; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
-  Click me!
-</button>
-</body>
-</html>
- ''';
-
-String aaa = ''' <h1>Privacy Policy</h1>
+String privacy = ''' <h1>Privacy Policy</h1>
 <p>Last updated: July 11, 2023</p>
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information
     when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -168,9 +153,7 @@ String aaa = ''' <h1>Privacy Policy</h1>
 <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The
     following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
 <h2>Definitions</h2>
-<button style="background-color: #4CAF50; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
-  Click me!
-</button>
+
 <p>For the purposes of this Privacy Policy:</p>
 <ul>
     <li>

@@ -27,10 +27,10 @@ Debouncer debouncer = Debouncer(milliseconds: 1000);
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final List<Widget> pages = [
-    DashboardPage(),
-    LeaveRequestpage(),
-    AttendencePage(),
-    SalaryDetailsPage()
+    const DashboardPage(),
+    const LeaveRequestpage(),
+    const AttendencePage(),
+    const SalaryDetailsPage()
   ];
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override

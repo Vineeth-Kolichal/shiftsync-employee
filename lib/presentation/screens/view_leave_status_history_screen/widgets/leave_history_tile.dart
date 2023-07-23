@@ -56,7 +56,7 @@ class LeaveHistoryTile extends StatelessWidget {
                 )
               ],
             ),
-            Divider(
+            const Divider(
               color: customPrimaryColor,
             ),
             Row(
