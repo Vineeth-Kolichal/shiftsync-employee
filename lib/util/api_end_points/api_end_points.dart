@@ -1,7 +1,7 @@
 class ApiEndPoints {
   // static String baseUrl = 'https://www.shiftsync.online/employee';
-  //static String baseUrl = 'http://13.48.42.197/employee';
-  static String baseUrl = 'http://10.0.2.2:8081/employee';
+  static String baseUrl = 'http://13.48.42.197/employee';
+  // static String baseUrl = 'http://10.0.2.2:8081/employee';
   static String signInPoint = '/signin/';
   static String singUpPoint = '/signup/';
   static String signUpOtpPoint = '/signup/verify-otp';
