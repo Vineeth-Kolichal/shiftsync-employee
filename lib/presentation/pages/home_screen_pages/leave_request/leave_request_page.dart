@@ -82,7 +82,7 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                   items:
                       leaveType.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
-                      alignment: Alignment.center,
+                      //   alignment: Alignment.center,
                       value: value,
                       child: Text(value),
                     );
@@ -104,8 +104,9 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                           DateTime? date = await showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2101),
+                            firstDate: DateTime.now(),
+                            lastDate:
+                                DateTime.now().add(const Duration(days: 120)),
                           );
                           if (date != null) {
                             DateFormat dateFormat = DateFormat('dd-MM-yyyy');
@@ -125,8 +126,9 @@ class _LeaveRequestpageState extends State<LeaveRequestpage> {
                           DateTime? date = await showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2101),
+                            firstDate: DateTime.now(),
+                            lastDate:
+                                DateTime.now().add(const Duration(days: 120)),
                           );
                           if (date != null) {
                             DateFormat dateFormat = DateFormat('dd-MM-yyyy');

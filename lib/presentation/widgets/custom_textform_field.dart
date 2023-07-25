@@ -12,7 +12,8 @@ class CustomTextFormField extends StatelessWidget {
       this.suffuxIcon,
       this.onTap,
       this.maxLines,
-      required this.labelText});
+      required this.labelText,
+      this.maxLength});
   final TextInputType keyboardType;
   final Function(String)? onChanged;
   final TextEditingController controller;
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function()? onTap;
   final String labelText;
   final int? maxLines;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,13 @@ class CustomTextFormField extends StatelessWidget {
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please fill $labelText';
+            } else if (labelText == 'IFSC Code' && value.length < 11) {
+              return 'IFSC should be 11 character';
             } else {
               return null;
             }
           },
+          maxLength: maxLength,
           maxLines: maxLines,
           onTap: onTap,
           controller: controller,

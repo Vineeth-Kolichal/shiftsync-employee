@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shiftsync/bussiness_logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/dashboard_loading.dart';
+import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/pending_registration_section.dart';
 import 'package:shiftsync/presentation/pages/home_screen_pages/dashboard/widgets/quote_slider_section.dart';
 import 'package:shiftsync/presentation/widgets/title_text.dart';
 import 'package:shiftsync/util/colors/common_colors.dart';
@@ -56,54 +57,60 @@ class DashboardPage extends StatelessWidget {
                             'Please complete profile registration\nbefore getting started',
                       )
                     : (state.dashboardModel.message ==
-                            "Admin requested for correction")
-                        ? ProfileRegOrCorrectionSection(
-                            content:
-                                'Admin requested for correction\nplease fill details again',
-                            message: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const TitileText(title: "Mistakes: "),
-                                Text(state.dashboardModel.data![0]),
-                              ],
-                            ),
+                            "Pending for verification")
+                        ? PendingRegistrationSection(
+                            message: Text('${state.dashboardModel.message}'),
                           )
                         : (state.dashboardModel.message ==
-                                "Welcome to dashboard")
-                            ? Column(
-                                children: [
-                                  kheightTwenty,
-                                  (state.duty.status == 404)
-                                      ? Container(
-                                          width: size.width * 0.9,
-                                          height: size.width * 0.3,
-                                          decoration: BoxDecoration(
-                                              color: kWhiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: const Center(
-                                            child: Text(
-                                              'Duty not Assigned yet\n Please contact to admin',
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        )
-                                      : DutySection(
-                                          dutyType:
-                                              '${state.duty.data![0].type}'),
-                                  kheightTwenty,
-                                  (state.salaryDetailsModel.status != 200)
-                                      ? const TotalSalarySection(
-                                          fontSize: 16,
-                                          totalSalary:
-                                              'Salary details not generated')
-                                      : TotalSalarySection(
-                                          totalSalary:
-                                              '₹${state.salaryDetailsModel.salaryDetails?.netsalary}',
-                                        )
-                                ],
+                                "Admin requested for correction")
+                            ? ProfileRegOrCorrectionSection(
+                                content:
+                                    'Admin requested for correction\nplease fill details again',
+                                message: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const TitileText(title: "Mistakes: "),
+                                    Text(state.dashboardModel.data![0]),
+                                  ],
+                                ),
                               )
-                            : const SizedBox()
+                            : (state.dashboardModel.message ==
+                                    "Welcome to dashboard")
+                                ? Column(
+                                    children: [
+                                      kheightTwenty,
+                                      (state.duty.status == 404)
+                                          ? Container(
+                                              width: size.width * 0.9,
+                                              height: size.width * 0.3,
+                                              decoration: BoxDecoration(
+                                                  color: kWhiteColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: const Center(
+                                                child: Text(
+                                                  'Duty not Assigned yet\n Please contact to admin',
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            )
+                                          : DutySection(
+                                              dutyType:
+                                                  '${state.duty.data![0].type}'),
+                                      kheightTwenty,
+                                      (state.salaryDetailsModel.status != 200)
+                                          ? const TotalSalarySection(
+                                              fontSize: 16,
+                                              totalSalary:
+                                                  'Salary details not generated')
+                                          : TotalSalarySection(
+                                              totalSalary:
+                                                  '₹${state.salaryDetailsModel.salaryDetails?.netsalary}',
+                                            )
+                                    ],
+                                  )
+                                : const SizedBox()
               ],
             ),
           );

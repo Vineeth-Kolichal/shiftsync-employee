@@ -28,7 +28,7 @@ class AttendenceTileWidget extends StatelessWidget {
             SizedBox(
               width: size.width,
               child: Text(
-                DateFormat("d MMMM yyyy")
+                DateFormat("d MMM yyyy")
                     .format(DateTime.parse(attendance.date!)),
                 style:
                     const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),

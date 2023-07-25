@@ -20,7 +20,7 @@ const kHeightFive = SizedBox(
   height: 5,
 );
 
-const List<String> leaveType = <String>["Personal", "Medical"];
+const List<String> leaveType = <String>["Personal", "Medical", "Casual"];
 
 const Widget kDividerTwo = Divider(
   thickness: 2,

@@ -29,6 +29,7 @@ class BankAccountDetailsSection extends StatelessWidget {
             labelText: 'Account number'),
         kHeightTen,
         CustomTextFormField(
+          maxLength: 11,
           controller: ifscController,
           labelText: 'IFSC Code',
         ),

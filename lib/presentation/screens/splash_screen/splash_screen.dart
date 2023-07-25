@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +13,6 @@ class SplashScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final cookies = await persistCookieJar.loadForRequest(
           Uri.parse('${ApiEndPoints.baseUrl} ${ApiEndPoints.signInPoint}'));
-      log(cookies.toString());
       final shared = await SharedPreferences.getInstance();
       final isNewUser = shared.getBool(newUser);
       final pinValue = shared.getString(pin);
